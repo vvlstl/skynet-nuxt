@@ -1,65 +1,67 @@
-[Back to README](../README.md) · [Архитектура →](architecture.md)
+[←](../README.md) · [Архитектура →](architecture.md)
 
 # Начало работы
 
-## Предварительные требования
+## Требования
 
-- Node.js >= 22.22.0
-- npm >= 10.9.4
+- Node.js 18+ 
+- npm 9+
+- Docker (для деплоя)
 
 ## Установка
 
-```bash
+\`\`\`bash
+# Клонирование репозитория
+git clone <repository-url>
+cd skynet-nuxt
+
+# Установка зависимостей
 npm install
-```
 
-## Разработка
+# Установка Docker (если не установлен)
+# Ubuntu/Debian:
+sudo apt-get install docker.io docker-compose
+# macOS:
+brew install docker
+\`\`\`
 
-Запуск dev-сервера на `http://localhost:3000`:
+## Настройка окружения
 
-```bash
+Создайте \`.env\` файл из примера:
+
+\`\`\`bash
+cp .env.example .env
+\`\`\`
+
+## Запуск в разработке
+
+\`\`\`bash
 npm run dev
-```
+\`\`\`
 
-## Сборка для продакшена
+Приложение будет доступно по адресу: http://localhost:3000
 
-```bash
+## Сборка и деплой
+
+\`\`\`bash
+# Сборка для продакшена
 npm run build
-```
 
-Предварительный просмотр production-сборки:
+# Генерация статичных файлов
+npm run generate
 
-```bash
-npm run preview
-```
+# Запуск через Docker
+docker-compose up -d
+\`\`\`
 
-## Тестирование
+## Проверка работы
 
-```bash
-# Запуск всех тестов
-npm test
+1. Откройте http://localhost:3000
+2. Проверьте консоль разработчика на ошибки
+3. Запустите тесты: \`npm run test\`
 
-# Тесты в режиме наблюдения
-npm run test:watch
+## Следующие шаги
 
-# Тесты с покрытием
-npm run test:coverage
-
-# Только unit-тесты
-npm run test:unit
-
-# Только Nuxt-тесты
-npm run test:nuxt
-```
-
-## Проверка кода
-
-```bash
-# ESLint
-npx eslint .
-```
-
-## See Also
-
-- [Архитектура](architecture.md) — структура проекта и паттерны
-- [AGENTS.md](../AGENTS.md) — карта проекта для AI-агентов
+- [Архитектура проекта](architecture.md)
+- [Стили и BEM](styling.md)
+- [Тестирование компонентов](testing.md)
