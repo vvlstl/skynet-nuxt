@@ -17,5 +17,9 @@ export default defineNuxtConfig({
     '@nuxt/hints',
     '@nuxt/scripts',
     '@nuxt/test-utils'
+  ],
+
+  css: [
+    '~/assets/styles/skynet.css'
   ]
 })
