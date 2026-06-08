@@ -1,0 +1,57 @@
+.text-content {
+    font-size: var(--fs16);
+    line-height: 1.6;
+    color: var(--page-text-color);
+
+    &--lead {
+        font-size: var(--fs24);
+        font-weight: 500;
+        margin-bottom: var(--m32);
+    }
+
+    &--small {
+        font-size: var(--fs14);
+    }
+
+    &--bold {
+        font-weight: 600;
+    }
+
+    &--highlight {
+        color: var(--cBeige500);
+        font-weight: 500;
+    }
+
+    p {
+        margin-bottom: var(--m16);
+    }
+
+    h2 {
+        font-size: var(--fs24);
+        font-weight: 600;
+        margin-bottom: var(--m24);
+        margin-top: var(--m32);
+
+        @media @mediaMd {
+            font-size: var(--fs32);
+        }
+    }
+
+    ul {
+        padding-left: var(--m24);
+        margin-bottom: var(--m16);
+
+        li {
+            position: relative;
+            padding-left: var(--m8);
+            margin-bottom: var(--m8);
+
+            &::before {
+                content: "•";
+                position: absolute;
+                left: 0;
+                color: var(--cBeige500);
+            }
+        }
+    }
+}

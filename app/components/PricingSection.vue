@@ -1,20 +1,20 @@
 <template>
-  <section class="pricing-section" id="pricing-section">
-    <h2 class="pricing-title">ТАРИФЫ</h2>
-    <div class="pricing-grid">
+  <section class="pricing" id="pricing-section">
+    <h2 class="pricing__title">ТАРИФЫ</h2>
+    <div class="pricing__grid">
       <div
         v-for="plan in plans"
         :key="plan.id"
         :class="[
-          'pricing-card',
-          { 'highlight': plan.highlight },
-          { 'best-value': plan.bestValue }
+          'pricing__card',
+          { 'pricing__card--highlight': plan.highlight },
+          { 'pricing__card--best-value': plan.bestValue }
         ]"
       >
-        <h3 class="plan-name">{{ plan.name }}</h3>
-        <div class="plan-price">{{ plan.price }}</div>
-        <div class="plan-period">{{ plan.period }}</div>
-        <button class="plan-btn" @click="onConnect(plan)">
+        <h3 class="pricing__plan-name">{{ plan.name }}</h3>
+        <div class="pricing__plan-price">{{ plan.price }}</div>
+        <div class="pricing__plan-period">{{ plan.period }}</div>
+        <button class="pricing__plan-btn" @click="onConnect(plan)">
           {{ plan.cta }}
         </button>
       </div>

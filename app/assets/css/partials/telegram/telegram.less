@@ -1,0 +1,48 @@
+.telegram {
+    padding: 6rem 2rem;
+    background: @cBlack800;
+
+    &__title {
+        font-family: @fontOrbitron;
+        font-size: 2.5rem;
+        font-weight: 900;
+        text-align: center;
+        margin-bottom: 3rem;
+        color: @cRed500;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+    }
+
+    &__terminal {
+        max-width: 1200px;
+        margin: 0 auto;
+        background: @cBlack900;
+        border: 1px solid @cGray800;
+        border-radius: 5px;
+        padding: 2rem;
+        font-family: @fontOrbitron;
+        font-size: 1rem;
+        min-height: 200px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+
+    &__line {
+        color: @cRed500;
+        margin-bottom: 1rem;
+        animation: typewriter 0.5s steps(1) forwards;
+
+        &:nth-child(1) { animation-delay: 0.1s; }
+        &:nth-child(2) { animation-delay: 0.3s; }
+        &:nth-child(3) { animation-delay: 0.5s; }
+        &:nth-child(4) { animation-delay: 0.7s; }
+        &:nth-child(5) { animation-delay: 0.9s; }
+        &:nth-child(6) { animation-delay: 1.1s; }
+    }
+}
+
+@keyframes typewriter {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}

@@ -1,0 +1,51 @@
+.features {
+    padding: 6rem 2rem;
+    background: @cBlack800;
+
+    &__grid {
+        max-width: 1200px;
+        margin: 0 auto;
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 2rem;
+    }
+
+    &__card {
+        background: @cBlack900;
+        border: 1px solid @cGray800;
+        border-radius: 5px;
+        padding: 2rem;
+        position: relative;
+        overflow: hidden;
+
+        &::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: @cRed500;
+            animation: scan 2s linear infinite;
+        }
+    }
+
+    &__icon {
+        font-size: 2.5rem;
+        margin-bottom: 1rem;
+        color: @cRed500;
+    }
+
+    &__title {
+        font-family: @fontOrbitron;
+        font-size: 1.2rem;
+        font-weight: 700;
+        margin-bottom: 0.5rem;
+        color: @cWhite200;
+    }
+
+    &__description {
+        color: @cGray500;
+        line-height: 1.6;
+    }
+}

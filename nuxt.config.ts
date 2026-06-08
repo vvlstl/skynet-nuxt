@@ -1,3 +1,7 @@
+import { fileURLToPath, URL } from 'node:url'
+import path from 'node:path'
+import { readFileSync } from 'node:fs'
+
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
   compatibilityDate: '2025-07-15',
@@ -20,6 +24,24 @@ export default defineNuxtConfig({
   ],
 
   css: [
-    '~/assets/styles/skynet.css'
-  ]
+    '~/assets/css/style.less'
+  ],
+
+  alias: {
+    '@': fileURLToPath(new URL('./', import.meta.url))
+  },
+
+  vite: {
+    css: {
+      preprocessorOptions: {
+        less: {
+          javascriptEnabled: true,
+          globalVars: {
+            imagePath: '"../../public/images/"',
+            fontPath: '"../../public/fonts/"'
+          }
+        }
+      }
+    }
+  }
 })

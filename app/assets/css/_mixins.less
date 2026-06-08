@@ -1,0 +1,208 @@
+/**
+ * Mixins
+ **/
+
+// Mixin для создания rem значений
+.rem(@property, @size, @base-font-size: 16px) {
+    @{property}: round-rem(@size, @base-font-size);
+}
+
+// Mixin для респонсивных значений
+.responsive(@property, @value, @ratio: 0.7) {
+    @{property}: @value;
+
+    @media @mediaMd {
+        @{property}: calc(1px + @ratio * @value);
+    }
+
+    @media @mediaSm {
+        @{property}: calc(1px + @ratio * @ratio * @value);
+    }
+}
+
+// Mixin для clearfix
+.clearfix() {
+    &::after {
+        content: "";
+        display: table;
+        clear: both;
+    }
+}
+
+// Mixin для центрирования элемента
+.center() {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+// Mixin для flex контейнера
+.flex(@direction: row, @wrap: nowrap, @justify: flex-start, @align: stretch) {
+    display: flex;
+    flex-direction: @direction;
+    flex-wrap: @wrap;
+    justify-content: @justify;
+    align-items: @align;
+}
+
+// Mixin для скрытия текста (для замены на иконки)
+.hide-text() {
+    font: 0/0 a;
+    color: transparent;
+    text-shadow: none;
+    background-color: transparent;
+    border: 0;
+}
+
+// Mixin для создания треугольника
+.triangle(@direction, @size, @color) {
+    width: 0;
+    height: 0;
+    border-style: solid;
+
+    & when (@direction = up) {
+        border-width: 0 @size/2 @size @size/2;
+        border-color: transparent transparent @color transparent;
+    }
+
+    & when (@direction = down) {
+        border-width: @size @size/2 0 @size/2;
+        border-color: @color transparent transparent transparent;
+    }
+
+    & when (@direction = left) {
+        border-width: @size/2 @size @size/2 0;
+        border-color: transparent @color transparent transparent;
+    }
+
+    & when (@direction = right) {
+        border-width: @size/2 0 @size/2 @size;
+        border-color: transparent transparent transparent @color;
+    }
+}
+
+// Mixin для градиента с запасом
+.gradient-text(@start-color, @end-color) {
+    background: linear-gradient(90deg, @start-color 0%, @end-color 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    text-fill-color: transparent;
+}
+
+// Mixin для placeholder
+.placeholder(@color: #999) {
+    &::-webkit-input-placeholder {
+        color: @color;
+        opacity: 1;
+    }
+    &::-moz-placeholder {
+        color: @color;
+        opacity: 1;
+    }
+    &:-ms-input-placeholder {
+        color: @color;
+        opacity: 1;
+    }
+    &::placeholder {
+        color: @color;
+        opacity: 1;
+    }
+}
+
+// Mixin для multi-line ellipsis
+.line-clamp(@lines) {
+    display: -webkit-box;
+    -webkit-line-clamp: @lines;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+// Mixin для анимации
+.animation(@name, @duration: 0.3s, @timing: ease, @delay: 0s, @fill: both) {
+    animation: @name @duration @timing @delay @fill;
+}
+
+// Mixin для переходов
+.transition(@properties: all, @duration: 0.3s, @timing: ease, @delay: 0s) {
+    transition-property: @properties;
+    transition-duration: @duration;
+    transition-timing-function: @timing;
+    transition-delay: @delay;
+}
+
+// Mixin для псевдо-элементов с position
+.pseudo(@content: '', @display: block, @pos: absolute) {
+    content: @content;
+    display: @display;
+    position: @pos;
+}
+
+// Mixin для создания квадратного элемента
+.square(@size) {
+    width: @size;
+    height: @size;
+}
+
+// Mixin для создания круга
+.circle(@size) {
+    .square(@size);
+    border-radius: 50%;
+}
+
+// Mixin для aspect ratio
+.aspect-ratio(@width: 1, @height: 1) {
+    position: relative;
+
+    &::before {
+        content: "";
+        display: block;
+        padding-top: (@height / @width) * 100%;
+    }
+
+    > * {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+    }
+}
+
+// Mixin для скроллбара
+.custom-scrollbar(@width: 6px, @track-color: #f1f1f1, @thumb-color: #888) {
+    scrollbar-width: @width;
+    scrollbar-color: @thumb-color @track-color;
+
+    &::-webkit-scrollbar {
+        width: @width;
+        height: @width;
+    }
+
+    &::-webkit-scrollbar-track {
+        background: @track-color;
+    }
+
+    &::-webkit-scrollbar-thumb {
+        background: @thumb-color;
+        border-radius: @width/2;
+    }
+
+    &::-webkit-scrollbar-thumb:hover {
+        background: darken(@thumb-color, 20%);
+    }
+}
+
+// Mixin для hover, focus, active
+.hover-active(@rules) {
+    &:hover,
+    &:focus {
+        @rules();
+    }
+
+    &:active {
+        opacity: @activeOpacity;
+    }
+}

@@ -33,6 +33,7 @@
     "@vitest/coverage-v8": "^4.1.8",
     "@vue/test-utils": "^2.4.10",
     "happy-dom": "^20.9.0",
+    "less": "^4.6.4",
     "vitest": "^4.1.8"
   }
 }

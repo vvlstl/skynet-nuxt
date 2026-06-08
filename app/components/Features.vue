@@ -1,14 +1,14 @@
 <template>
-  <section class="features-section">
-    <div class="features-grid">
+  <section class="features">
+    <div class="features__grid">
       <div
         v-for="feature in features"
         :key="feature.title"
-        class="feature-card"
+        class="features__card"
       >
-        <div class="feature-icon">{{ feature.icon }}</div>
-        <h3 class="feature-title">{{ feature.title }}</h3>
-        <p class="feature-description">{{ feature.description }}</p>
+        <div class="features__icon">{{ feature.icon }}</div>
+        <h3 class="features__title">{{ feature.title }}</h3>
+        <p class="features__description">{{ feature.description }}</p>
       </div>
     </div>
   </section>

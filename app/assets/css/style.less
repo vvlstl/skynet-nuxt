@@ -1,0 +1,31 @@
+@import "_var";
+@import "_fonts";
+
+/****
+ * Внешние либы
+ ****/
+// @import "plugins/**/default.less";
+
+/****
+ * base: общие стили вёрстки
+ ****/
+@import "base/common";
+
+/****
+ * Блоки
+ ****/
+@import "partials/hero/main-hero";
+@import "partials/features/features";
+@import "partials/network/network";
+@import "partials/pricing/pricing";
+@import "partials/telegram/telegram";
+
+@import "base/footer";
+
+.page--dev {
+    .todo {
+        outline: 1px solid red;
+        background-image: linear-gradient(-45deg, fade(red, 20%) 25%, transparent 25%, transparent 50%, fade(red, 20%) 50%, fade(grey, 20%) 75%, transparent 75%, transparent) !important;
+        background-size: 4px 4px;
+    }
+}

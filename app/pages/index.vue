@@ -24,14 +24,14 @@ const onConnect = (plan: any) => {
 }
 
 onMounted(() => {
-  gsap.from('.hero-title', {
+  gsap.from('.hero__title', {
     duration: 1,
     y: 50,
     opacity: 0,
     ease: 'power4.out'
   })
 
-  gsap.from('.hero-subtitle', {
+  gsap.from('.hero__subtitle', {
     duration: 1,
     y: 30,
     opacity: 0,
@@ -39,7 +39,7 @@ onMounted(() => {
     ease: 'power4.out'
   })
 
-  gsap.from('.hero-buttons', {
+  gsap.from('.hero__buttons', {
     duration: 0.8,
     y: 20,
     opacity: 0,
@@ -47,11 +47,11 @@ onMounted(() => {
     ease: 'power4.out'
   })
 
-  const featureCards = document.querySelectorAll('.feature-card')
+  const featureCards = document.querySelectorAll('.features__card')
   featureCards.forEach((card, index) => {
     gsap.from(card, {
       scrollTrigger: {
-        trigger: '.features-section',
+        trigger: '.features',
         start: 'top 80%'
       },
       duration: 0.8,
@@ -62,9 +62,9 @@ onMounted(() => {
     })
   })
 
-  gsap.from('.network-section', {
+  gsap.from('.network', {
     scrollTrigger: {
-      trigger: '.network-section',
+      trigger: '.network',
       start: 'top 80%'
     },
     duration: 1,
@@ -73,9 +73,9 @@ onMounted(() => {
     ease: 'power3.out'
   })
 
-  gsap.from('.pricing-section', {
+  gsap.from('.pricing', {
     scrollTrigger: {
-      trigger: '.pricing-section',
+      trigger: '.pricing',
       start: 'top 80%'
     },
     duration: 1,
@@ -84,9 +84,9 @@ onMounted(() => {
     ease: 'power3.out'
   })
 
-  gsap.from('.telegram-section', {
+  gsap.from('.telegram', {
     scrollTrigger: {
-      trigger: '.telegram-section',
+      trigger: '.telegram',
       start: 'top 80%'
     },
     duration: 1,

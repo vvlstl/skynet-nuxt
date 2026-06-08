@@ -1,46 +1,46 @@
 <template>
   <section class="hero">
-    <div class="smoke"></div>
-    <div class="scan-line"></div>
+    <div class="hero__smoke"></div>
+    <div class="hero__scan-line"></div>
 
-    <div class="logo-triangle">
-      <h1 class="skynet-logo">SKYNET VPN</h1>
+    <div class="hero__logo-triangle">
+      <h1 class="hero__logo">SKYNET VPN</h1>
     </div>
 
-    <div class="robot-container">
-      <div class="robot">
-        <div class="robot-face">
-          <div class="robot-eyes">
-            <div class="robot-eye"></div>
-            <div class="robot-eye"></div>
+    <div class="hero__robot-container">
+      <div class="hero-robot">
+        <div class="hero-robot__face">
+          <div class="hero-robot__eyes">
+            <div class="hero-robot__eye"></div>
+            <div class="hero-robot__eye"></div>
           </div>
         </div>
-        <div class="robot-body"></div>
+        <div class="hero-robot__body"></div>
       </div>
     </div>
 
-    <div class="hero-content">
-      <h2 class="hero-title">Полный контроль над сетью</h2>
-      <p class="hero-subtitle">Защищённое подключение. Высокая скорость. Доступ к любым сервисам.</p>
-      <div class="hero-buttons">
-        <button class="hero-btn pulse" @click="scrollToPlan">
+    <div class="hero__content">
+      <h2 class="hero__title">Полный контроль над сетью</h2>
+      <p class="hero__subtitle">Защищённое подключение. Высокая скорость. Доступ к любым сервисам.</p>
+      <div class="hero__buttons">
+        <button class="hero__btn pulse" @click="scrollToPlan">
           АКТИВИРОВАТЬ ДОСТУП
         </button>
-        <button class="hero-btn pulse" @click="scrollToTelegram">
+        <button class="hero__btn pulse" @click="scrollToTelegram">
           TELEGRAM BOT
         </button>
       </div>
     </div>
 
-    <div class="status-bar">
-      <div class="status-item">
-        <span class="status-dot"></span>
+    <div class="hero__status-bar">
+      <div class="hero__status-item">
+        <span class="hero__status-dot"></span>
         STATUS: ONLINE
       </div>
-      <div class="status-item">
+      <div class="hero__status-item">
         NODES: 127
       </div>
-      <div class="status-item">
+      <div class="hero__status-item">
         LATENCY: 18ms
       </div>
     </div>
@@ -81,7 +81,7 @@ const scrollToTelegram = () => {
   z-index: 1;
 }
 
-.scan-line {
+.hero__scan-line {
   position: absolute;
   top: 0;
   left: 0;
@@ -97,7 +97,7 @@ const scrollToTelegram = () => {
   100% { top: 100%; }
 }
 
-.smoke {
+.hero__smoke {
   position: absolute;
   width: 100%;
   height: 100%;
@@ -107,7 +107,7 @@ const scrollToTelegram = () => {
   z-index: 1;
 }
 
-.logo-triangle {
+.hero__logo-triangle {
   position: absolute;
   left: 10%;
   top: 50%;
@@ -115,7 +115,7 @@ const scrollToTelegram = () => {
   z-index: 3;
 }
 
-.skynet-logo {
+.hero__logo {
   font-family: 'Orbitron', sans-serif;
   font-size: 3rem;
   font-weight: 900;
@@ -131,7 +131,7 @@ const scrollToTelegram = () => {
   50% { text-shadow: -2px 0 var(--red-glow), 2px 0 var(--red-glow); }
 }
 
-.robot-container {
+.hero__robot-container {
   position: absolute;
   right: 10%;
   top: 50%;
@@ -139,13 +139,13 @@ const scrollToTelegram = () => {
   z-index: 3;
 }
 
-.robot {
+.hero-robot {
   width: 300px;
   height: 400px;
   position: relative;
 }
 
-.robot-face {
+.hero-robot__face {
   position: absolute;
   top: 50px;
   left: 50%;
@@ -158,7 +158,7 @@ const scrollToTelegram = () => {
   box-shadow: 0 0 20px rgba(255, 27, 27, 0.3);
 }
 
-.robot-eyes {
+.hero-robot__eyes {
   position: absolute;
   top: 50%;
   left: 50%;
@@ -167,7 +167,7 @@ const scrollToTelegram = () => {
   gap: 20px;
 }
 
-.robot-eye {
+.hero-robot__eye {
   width: 20px;
   height: 20px;
   background: var(--red);
@@ -181,7 +181,7 @@ const scrollToTelegram = () => {
   95% { opacity: 0.3; }
 }
 
-.robot-body {
+.hero-robot__body {
   position: absolute;
   bottom: 0;
   left: 50%;
@@ -193,14 +193,14 @@ const scrollToTelegram = () => {
   border: 2px solid #666;
 }
 
-.hero-content {
+.hero__content {
   position: relative;
   z-index: 4;
   text-align: center;
   max-width: 800px;
 }
 
-.hero-title {
+.hero__title {
   font-family: 'Orbitron', sans-serif;
   font-size: 4rem;
   font-weight: 900;
@@ -210,21 +210,21 @@ const scrollToTelegram = () => {
   letter-spacing: 3px;
 }
 
-.hero-subtitle {
+.hero__subtitle {
   font-size: 1.5rem;
   color: var(--muted);
   margin-bottom: 2rem;
   letter-spacing: 1px;
 }
 
-.hero-buttons {
+.hero__buttons {
   display: flex;
   gap: 2rem;
   justify-content: center;
   margin-top: 3rem;
 }
 
-.hero-btn {
+.hero__btn {
   padding: 1rem 2rem;
   font-family: 'Orbitron', sans-serif;
   font-size: 1rem;
@@ -240,7 +240,7 @@ const scrollToTelegram = () => {
   overflow: hidden;
 }
 
-.hero-btn::before {
+.hero__btn::before {
   content: '';
   position: absolute;
   top: 0;
@@ -252,15 +252,15 @@ const scrollToTelegram = () => {
   z-index: -1;
 }
 
-.hero-btn:hover {
+.hero__btn:hover {
   color: var(--bg);
 }
 
-.hero-btn:hover::before {
+.hero__btn:hover::before {
   left: 0;
 }
 
-.status-bar {
+.hero__status-bar {
   position: absolute;
   bottom: 2rem;
   left: 50%;
@@ -273,13 +273,13 @@ const scrollToTelegram = () => {
   z-index: 4;
 }
 
-.status-item {
+.hero__status-item {
   display: flex;
   align-items: center;
   gap: 0.5rem;
 }
 
-.status-dot {
+.hero__status-dot {
   width: 10px;
   height: 10px;
   background: var(--red);
@@ -293,20 +293,20 @@ const scrollToTelegram = () => {
 }
 
 @media (max-width: 768px) {
-  .hero-title {
+  .hero__title {
     font-size: 2.5rem;
   }
 
-  .skynet-logo {
+  .hero__logo {
     font-size: 2rem;
   }
 
-  .robot {
+  .hero-robot {
     width: 200px;
     height: 300px;
   }
 
-  .hero-buttons {
+  .hero__buttons {
     flex-direction: column;
     gap: 1rem;
   }

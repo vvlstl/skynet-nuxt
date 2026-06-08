@@ -1,0 +1,39 @@
+.header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: @headerZIndex;
+    background-color: var(--page-bg-color);
+    padding: var(--header-padding);
+    border-bottom: 1px solid var(--cStroke);
+
+    .container {
+        .flex(row, nowrap, space-between, center);
+        max-width: var(--content-max-width);
+        margin: 0 auto;
+    }
+
+    &__logo {
+        font-size: var(--fs24);
+        font-weight: 600;
+        color: var(--page-text-color);
+    }
+
+    &__nav {
+        .flex(row, nowrap, center, center);
+        gap: var(--m16);
+
+        &-link {
+            font-size: var(--fs14);
+            color: var(--page-text-color);
+            .hover-active({
+                color: var(--cBeige500);
+            });
+        }
+    }
+
+    @media @mediaSm {
+        padding: var(--m12);
+    }
+}
