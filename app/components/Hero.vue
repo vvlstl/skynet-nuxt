@@ -20,11 +20,11 @@
     </div>
 
     <div class="hero__content">
-      <h2 class="hero__title">Полный контроль над сетью</h2>
-      <p class="hero__subtitle">Защищённое подключение. Высокая скорость. Доступ к любым сервисам.</p>
+      <h2 class="hero__title">Full Network Control</h2>
+      <p class="hero__subtitle">Secure connection. High speed. Access to any services.</p>
       <div class="hero__buttons">
         <button class="hero__btn pulse" @click="scrollToPlan">
-          АКТИВИРОВАТЬ ДОСТУП
+          ACTIVATE ACCESS
         </button>
         <button class="hero__btn pulse" @click="scrollToTelegram">
           TELEGRAM BOT

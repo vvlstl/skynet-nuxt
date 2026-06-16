@@ -1,27 +1,27 @@
 <template>
   <section class="network">
     <h2 class="network__title">GLOBAL NETWORK</h2>
-    <p class="network__subtitle">Сеть распределённых узлов работает 24/7.</p>
+    <p class="network__subtitle">Distributed network nodes operating 24/7.</p>
     <div class="network__map">
       <div class="network__node" style="left: 52%; top: 30%;">
         <span class="network__node-dot"></span>
-        <span class="network__node-label">США</span>
+        <span class="network__node-label">USA</span>
       </div>
       <div class="network__node" style="left: 51%; top: 33%;">
         <span class="network__node-dot"></span>
-        <span class="network__node-label">Германия</span>
+        <span class="network__node-label">Germany</span>
       </div>
       <div class="network__node" style="left: 50%; top: 34%;">
         <span class="network__node-dot"></span>
-        <span class="network__node-label">Нидерланды</span>
+        <span class="network__node-label">Netherlands</span>
       </div>
       <div class="network__node" style="left: 55%; top: 38%;">
         <span class="network__node-dot"></span>
-        <span class="network__node-label">Турция</span>
+        <span class="network__node-label">Turkey</span>
       </div>
       <div class="network__node" style="left: 75%; top: 40%;">
         <span class="network__node-dot"></span>
-        <span class="network__node-label">Япония</span>
+        <span class="network__node-label">Japan</span>
       </div>
       <div class="network__node" style="left: 72%; top: 55%;">
         <span class="network__node-dot"></span>
