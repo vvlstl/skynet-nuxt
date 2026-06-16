@@ -39,6 +39,17 @@ export default defineNuxtConfig({
                     }
                 }
             }
-        }
+        },
+        build: {
+            rollupOptions: {
+                output: {
+                    manualChunks: (id: string) => {
+                        if (id.includes('gsap')) {
+                            return 'vendor-gsap'
+                        }
+                    }
+                },
+            },
+        },
     }
 })
