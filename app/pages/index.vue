@@ -121,36 +121,3 @@ onMounted(() => {
     <Footer />
   </div>
 </template>
-
-<style>
-:root {
-  --bg: #050505;
-  --panel: #0f0f0f;
-  --red: #ff1b1b;
-  --red-glow: #ff4040;
-  --text: #f5f5f5;
-  --muted: #8a8a8a;
-  --border: #333;
-}
-
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
-body {
-  background-color: var(--bg);
-  color: var(--text);
-  font-family: 'Rajdhani', sans-serif;
-  overflow-x: hidden;
-}
-
-.skynet-landing {
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-}
-
-@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700;900&family=Rajdhani:wght@300;400;500;600;700&display=swap');
-</style>
