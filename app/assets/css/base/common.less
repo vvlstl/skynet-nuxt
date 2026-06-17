@@ -1,24 +1,55 @@
-@import "../_var";
+@import "../_var.less";
+
+/**
+ * Базовые стили верстки
+ **/
 
 :root {
     .css-vars();
 }
 
+html, body {
+    scrollbar-gutter: stable;
+}
+
+html {
+    height: 100%;
+    min-height: 100vh;
+    -ms-text-size-adjust: 100%;
+    -webkit-text-size-adjust: 100%;
+
+    font-size: min(var(--fs-base), var(--fs-base-max));
+}
+
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+    -webkit-tap-highlight-color: transparent
 }
 
 body {
-    background-color: @cBlack900;
-    color: @cWhite200;
-    font-family: @font;
-    overflow-x: hidden;
-}
-
-.skynet-landing {
-    min-height: 100vh;
     display: flex;
     flex-direction: column;
+    margin: 0;
+    padding: 0;
+    min-height: calc(100 * var(--vh));
+    min-width: 360px;
+    width: 100%;
+    background: var(--page-bg-color);
+    color: var(--page-text-color);
+    font: 400 1rem / 1.4 @font;
+    letter-spacing: var(--letter-spacing);
+
+    h1, h2, h3, h4, h5, p {
+        margin: 0;
+    }
+
+    * {
+        font-synthesis: none;
+        overflow-anchor: none;
+    }
+}
+
+.content-container {
+    box-sizing: border-box;
+    margin: 0 auto;
+    width: var(--content-width);
 }

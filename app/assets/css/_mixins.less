@@ -1,208 +1,453 @@
-/**
- * Mixins
- **/
+@import "_var";
 
-// Mixin для создания rem значений
-.rem(@property, @size, @base-font-size: 16px) {
-    @{property}: round-rem(@size, @base-font-size);
+/****
+ * Анимация
+ ****/
+.transit(@prop: all, @time: @transitTime, @ease: @transitEase) {
+    transition-property: e(@prop);
+    transition-duration: @time;
+    transition-timing-function: @ease;
 }
 
-// Mixin для респонсивных значений
-.responsive(@property, @value, @ratio: 0.7) {
-    @{property}: @value;
+/****
+ * Ховеры
+ ****/
+.hover(@hoverRuleset: false, @focusRuleset: @defaultFocusRuleset, @activeRuleset: @defaultActiveRuleset, @touch: true) {
+    & when (@touch = true) {
+        @media @mediaNotHover {
+            & when not (@hoverRuleset = false) {
+                &:active {
+                    @hoverRuleset();
+                }
+            }
+        }
+    }
+
+    @media @mediaHover {
+        & when not (@hoverRuleset = false) {
+            &:hover {
+                @hoverRuleset();
+            }
+        }
+
+        & when not (@activeRuleset = false) {
+            &:active {
+                @activeRuleset();
+            }
+        }
+
+        & when not (@focusRuleset = false) {
+            &:focus-visible {
+                @focusRuleset();
+            }
+        }
+    }
+}
+
+.btn-hover() {
+    .btn {
+        &__line {
+            &:before, &:after {
+                transition-delay: 0s;
+                width: 20%;
+                opacity: 1;
+            }
+
+            &:before {
+                left: 0;
+            }
+
+            &:after {
+                right: 0;
+            }
+
+            span {
+                &:before, &:after {
+                    height: 50%;
+                    transition-delay: 0.45s;
+                }
+            }
+        }
+
+        &__line-2 {
+            background: transparent;
+            transition-delay: 0s;
+            opacity: 0;
+        }
+
+        &--bordered {
+            .btn {
+                &__line {
+                    transform: scale(0.9) skew(0deg, 0deg);
+
+                    &:before, &:after {
+                        width: 60px;
+                    }
+
+                    &:before {
+                        left: calc(50% - 30px);
+                    }
+
+                    &:after {
+                        right: calc(50% - 30px);
+                    }
+
+                    span {
+                        &:before, &:after {
+                            height: 0;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+.btn-active() {
+    --btn-icon-color: var(--btn-active-icon-color);
+
+    color: var(--btn-active-color);
+    border-color: var(--btn-active-border-color);
+    background-color: var(--btn-active-bg-color);
+}
+
+.btn-disabled() {
+    --btn-icon-color: var(--btn-disabled-icon-color);
+
+    color: var(--btn-disabled-color);
+    border-color: var(--btn-disabled-border-color);
+    background-color: var(--btn-disabled-bg-color);
+}
+
+.btn-animated() {
+    --btn-position: var(--btn-position-end);
+}
+
+/****
+ * Сброс дефолтных стилей
+ ****/
+.clear-input() {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    outline: none !important;
+    resize: none;
+    box-shadow: none;
+    font-family: @font;
+    background: none;
+    border: none;
+    padding: 0;
+    margin: 0;
+    -webkit-tap-highlight-color: transparent;
+    appearance: none;
+
+    &:focus {
+        outline: none;
+    }
+
+    &::-ms-reveal,
+    &::-ms-clear {
+        display: none;
+    }
+
+    &::-webkit-search-decoration,
+    &::-webkit-search-cancel-button,
+    &::-webkit-search-results-button,
+    &::-webkit-search-results-decoration {
+        display: none;
+    }
+
+    //noinspection CssInvalidPseudoSelector
+    &::-webkit-credentials-auto-fill-button {
+        visibility: hidden;
+        pointer-events: none;
+        position: absolute;
+        right: 0;
+    }
+
+    &:focus {
+        outline: none;
+        box-shadow: none;
+    }
+
+    //Скрываем стрелки
+    /* Chrome, Safari, Edge, Opera */
+    &::-webkit-outer-spin-button,
+    &::-webkit-inner-spin-button {
+        -webkit-appearance: none;
+        margin: 0;
+    }
+
+    /* Firefox */
+    &[type=number] {
+        -moz-appearance: textfield;
+    }
+}
+
+.clear-btn() {
+    padding: 0;
+    border: none;
+    outline: none;
+    background-color: transparent;
+    font-size: inherit;
+    font-family: inherit;
+    line-height: inherit;
+    font-weight: inherit;
+    cursor: pointer;
+    text-align: inherit;
+    -webkit-tap-highlight-color: transparent;
+    color: currentColor;
+}
+
+.clear-link(@color: currentColor) {
+    color: @color;
+    text-decoration: none;
+    outline: none !important;
+    background-color: transparent;
+    -webkit-text-decoration-skip: objects;
+    -webkit-tap-highlight-color: transparent;
+}
+
+.clear-list() {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.clear-form() {
+    margin: 0;
+}
+
+.hide-input() {
+    border: 0 !important;
+    clip: rect(0 0 0 0) !important;
+    //noinspection CssUnknownProperty
+    -webkit-clip-path: inset(50%) !important;
+    clip-path: inset(50%) !important;
+    height: 1px !important;
+    overflow: hidden !important;
+    padding: 0 !important;
+    position: absolute !important;
+    width: 1px !important;
+    white-space: nowrap !important
+}
+
+/****
+ * Sizes
+ ****/
+.size(@width, @height: @width) {
+    width: @width;
+    height: @height;
+}
+
+@column: 100%;
+.column(@count: 1, @total: @columnsCount, @columnGap: var(--grid-gap)) {
+    @column: calc(@count * (100% - @columnGap * (@total - 1)) / @total + @columnGap * (@count - 1));
+}
+
+.column-property(@prop: '', @count: 1, @total: @columnsCount, @columnGap: var(--grid-gap)) {
+    .column(@count, @total, @columnGap);
+        @{prop}: @column;
+}
+
+// Стандартная сетка
+// Преимущество использования calc вместо fr - сетку не разносит контентом
+.grid(@total: @columnsCount, @columnGap: var(--grid-gap), @rowGap: @columnGap) {
+    .template-columns(@total, @columnGap);
+    display: grid;
+    grid-column-gap: @columnGap;
+    grid-row-gap: @rowGap;
+}
+
+// Используется для изменения grid-template-columns у .grid(), например, на адаптиве
+.template-columns(@total: @columnsCount, @columnGap: var(--grid-gap)) {
+    .column(1, @total, @columnGap);
+    grid-template-columns: repeat(@total, @column);
+}
+
+// Используется, если нужно установить блоку ширину по сетке без использования grid
+.column-width(@count: 1, @total: @columnsCount, @gap: var(--grid-gap)) {
+    .column(@count, @total, @gap);
+    width: @column;
+}
+
+// Блоки, пропорционально изменяющие высоту в зависимости от ширины
+.proportional-size(@ratio: 1, @position: relative, @minHeight: 0px, @maxHeight: 9999999rem) {
+    position: @position;
+
+    &:before {
+        position: relative;
+        content: '';
+        display: block;
+        padding-bottom: ~'clamp(@{minHeight}, @{ratio} * 100%, @{maxHeight})';
+    }
+}
+
+/****
+ * Разное
+ ****/
+.pseudo(@position: absolute) {
+    content: '';
+    position: @position;
+
+
+    & when (@position = relative) {
+        display: inline-block;
+        vertical-align: middle;
+    }
+}
+
+.line-clamp(@line-count: 3) {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    //noinspection CssUnknownProperty
+    -webkit-line-clamp: @line-count;
+}
+
+.picture(@ratio: 1, @fit: scale-down, @position: relative, @overflow: hidden, @size: 100%, @minHeight: 0rem, @maxHeight: 9999999px, @overlay: false) {
+    .proportional-size(@ratio, @position, @minHeight, @maxHeight);
+
+    overflow: @overflow;
+    transform: translateZ(0); // fix safari квадратные углы у картинок
+
+    img, picture, video, .sx-video {
+        .size(@size);
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        margin: auto;
+        object-fit: @fit;
+        border-radius: inherit;
+        transform: translateZ(0); // fix safari квадратные углы у картинок
+    }
+
+    & when not(@overlay = false) {
+        &:after {
+            .pseudo();
+            .size(100%);
+            top: 0;
+            left: 0;
+            z-index: 2;
+            background: @overlay;
+            border-radius: inherit;
+        }
+    }
+}
+
+.picture-fit(@fit: cover, @width: 100%, @height: 100%) {
+    picture, img, video {
+        .size(@width, @height);
+        display: block;
+        object-fit: @fit;
+        border-radius: inherit;
+    }
+}
+
+// Используется для того, чтобы у блока не было разрывов при печати и при использовании columns у родителя
+.avoid-break() {
+    -webkit-column-break-inside: avoid;
+    page-break-inside: avoid;
+    break-inside: avoid;
+}
+
+.responsive(@name, @size, @ratio) {
+    // responsive генерирует плравила только для @media, чтобы в _var.less оставалось объявление переменной, и шторм ее видел
+    //@{name}: @size;
+
+    @media @mediaXl {
+        @value: (@size) * @ratio;
+            @{name}: ~'round(@{value}, 1px)';
+    }
+
+    @media @mediaLg {
+        @value: (@size) * pow(@ratio, 2);
+            @{name}: ~'round(@{value}, 1px)';
+    }
 
     @media @mediaMd {
-        @{property}: calc(1px + @ratio * @value);
+        @value: (@size) * pow(@ratio, 3);
+            @{name}: ~'round(@{value}, 1px)';
     }
 
     @media @mediaSm {
-        @{property}: calc(1px + @ratio * @ratio * @value);
+        @value: (@size) * pow(@ratio, 4);
+            @{name}: ~'round(@{value}, 1px)';
+    }
+
+    @media @mediaXs {
+        @value: (@size) * pow(@ratio, 5);
+            @{name}: ~'round(@{value}, 1px)';
     }
 }
 
-// Mixin для clearfix
-.clearfix() {
-    &::after {
-        content: "";
-        display: table;
-        clear: both;
-    }
-}
-
-// Mixin для центрирования элемента
-.center() {
+.cover() {
+    .size(100%);
     position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+    top: 0;
+    left: 0;
 }
 
-// Mixin для flex контейнера
-.flex(@direction: row, @wrap: nowrap, @justify: flex-start, @align: stretch) {
+.container(@width, @height: @width) {
+    .size(@width, @height);
     display: flex;
-    flex-direction: @direction;
-    flex-wrap: @wrap;
-    justify-content: @justify;
-    align-items: @align;
+    align-items: center;
+    align-content: center;
+    justify-content: center;
+    flex-shrink: 0;
 }
 
-// Mixin для скрытия текста (для замены на иконки)
-.hide-text() {
-    font: 0/0 a;
-    color: transparent;
-    text-shadow: none;
-    background-color: transparent;
-    border: 0;
+.link-common() {
+    .clear-btn();
+    .clear-link(var(--link-color));
+    .transit();
+    display: inline-flex;
+    align-items: center;
+    gap: var(--link-gap);
+    cursor: pointer;
+    text-decoration-color: color-mix(in hsl, var(--link-border-color) 60%, transparent);
+    will-change: color, opacity, transform, text-decoration-color;
+
+    .hover({
+        color: var(--link-hover-color);
+        text-decoration-color: var(--link-hover-border-color);
+
+        .link {
+            &__icon {
+                color: var(--link-hover-icon-color);
+            }
+        }
+    });
 }
 
-// Mixin для создания треугольника
-.triangle(@direction, @size, @color) {
-    width: 0;
-    height: 0;
-    border-style: solid;
-
-    & when (@direction = up) {
-        border-width: 0 @size/2 @size @size/2;
-        border-color: transparent transparent @color transparent;
-    }
-
-    & when (@direction = down) {
-        border-width: @size @size/2 0 @size/2;
-        border-color: @color transparent transparent transparent;
-    }
-
-    & when (@direction = left) {
-        border-width: @size/2 @size @size/2 0;
-        border-color: transparent @color transparent transparent;
-    }
-
-    & when (@direction = right) {
-        border-width: @size/2 0 @size/2 @size;
-        border-color: transparent transparent transparent @color;
-    }
+.blur(@value) {
+    /* autoprefixer: ignore next */
+    -webkit-backdrop-filter: blur(@value);
+    backdrop-filter: blur(@value);
 }
 
-// Mixin для градиента с запасом
-.gradient-text(@start-color, @end-color) {
-    background: linear-gradient(90deg, @start-color 0%, @end-color 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-    text-fill-color: transparent;
+.black-panel() {
+    .blur(0.5rem);
+
+    background: linear-gradient(229deg, fade(@cBlack, 16) 51.29%, fade(@cBlack, 48) 100%);
+    box-shadow: calc(-1 * 0.125rem) 0.125rem 0.75rem 0 fade(@cBlack, 16) inset;
 }
 
-// Mixin для placeholder
-.placeholder(@color: #999) {
-    &::-webkit-input-placeholder {
-        color: @color;
-        opacity: 1;
-    }
-    &::-moz-placeholder {
-        color: @color;
-        opacity: 1;
-    }
-    &:-ms-input-placeholder {
-        color: @color;
-        opacity: 1;
-    }
-    &::placeholder {
-        color: @color;
-        opacity: 1;
-    }
+.link-uline-common() {
+    text-decoration-thickness: 0.0625rem;
+    text-underline-offset: 0.25rem;
+    text-underline-position: left;
 }
 
-// Mixin для multi-line ellipsis
-.line-clamp(@lines) {
-    display: -webkit-box;
-    -webkit-line-clamp: @lines;
-    -webkit-box-orient: vertical;
-    overflow: hidden;
-    text-overflow: ellipsis;
+.title-block(@fontSize: var(--fs48)) {
+    font: 400 @fontSize / 1 @font;
+    letter-spacing: var(--letter-spacing);
 }
 
-// Mixin для анимации
-.animation(@name, @duration: 0.3s, @timing: ease, @delay: 0s, @fill: both) {
-    animation: @name @duration @timing @delay @fill;
-}
-
-// Mixin для переходов
-.transition(@properties: all, @duration: 0.3s, @timing: ease, @delay: 0s) {
-    transition-property: @properties;
-    transition-duration: @duration;
-    transition-timing-function: @timing;
-    transition-delay: @delay;
-}
-
-// Mixin для псевдо-элементов с position
-.pseudo(@content: '', @display: block, @pos: absolute) {
-    content: @content;
-    display: @display;
-    position: @pos;
-}
-
-// Mixin для создания квадратного элемента
-.square(@size) {
-    width: @size;
-    height: @size;
-}
-
-// Mixin для создания круга
-.circle(@size) {
-    .square(@size);
-    border-radius: 50%;
-}
-
-// Mixin для aspect ratio
-.aspect-ratio(@width: 1, @height: 1) {
-    position: relative;
-
-    &::before {
-        content: "";
-        display: block;
-        padding-top: (@height / @width) * 100%;
-    }
-
-    > * {
-        position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-    }
-}
-
-// Mixin для скроллбара
-.custom-scrollbar(@width: 6px, @track-color: #f1f1f1, @thumb-color: #888) {
-    scrollbar-width: @width;
-    scrollbar-color: @thumb-color @track-color;
-
-    &::-webkit-scrollbar {
-        width: @width;
-        height: @width;
-    }
-
-    &::-webkit-scrollbar-track {
-        background: @track-color;
-    }
-
-    &::-webkit-scrollbar-thumb {
-        background: @thumb-color;
-        border-radius: @width/2;
-    }
-
-    &::-webkit-scrollbar-thumb:hover {
-        background: darken(@thumb-color, 20%);
-    }
-}
-
-// Mixin для hover, focus, active
-.hover-active(@rules) {
-    &:hover,
-    &:focus {
-        @rules();
-    }
-
-    &:active {
-        opacity: @activeOpacity;
-    }
+.round-rem(@property
+,
+@value) {
+    @rem-value: (@value / 16);
+        @{property}: ~"round(@{rem-value}rem, 1px)";
 }

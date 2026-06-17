@@ -1,8 +1,263 @@
 @import "_mixins";
 
 /**
+ * Переменные
+ **/
+.css-vars() {
+    --refRes: 1440;
+    --ratio: .7;
+
+    --fs-base-max: 24px;
+    --fs-base: calc(16px + var(--ratio) * (100vw * 16 / var(--refRes) - 16px));
+
+    // на мобилках некорректно работает vh в css, переопределяется в JS
+    // в некоторых блоках, где нужно избежать дерготни контента при сворачивании / разворачивании панельки браузера, используйте vh, а не --vh
+    --vh: 1vh;
+    --sw: 1rem;
+
+    // Layout
+    --content-max-width: 100rem; // Максимальная ширина контента
+    --page-max-width: calc(var(--content-max-width) + 2 * var(--page-gutter));
+    --page-width-sizes-base: ~'min(100vw, var(--page-max-width))';
+    --content-width: ~'min(100% - 2 * var(--page-gutter), var(--content-max-width))'; // Текущая ширина контента
+    --page-width: calc(100vw - var(--sw)); // Ширина страницы без учета скроллбара
+
+    --page-gutter: var(--m32);
+    --grid-gap: var(--m8);
+
+    --default-header-height: 6.5rem;
+    --default-header-margin: 0rem;
+
+    --fixed-header-height: 2.625rem;
+    --fixed-header-margin: var(--m2);
+
+    --header-height: var(--default-header-height);
+
+    --sticky-position-top: calc(var(--fixed-header-height) + 2 * var(--fixed-header-margin));
+    --header-compensation: 2.875rem;
+
+    --bottom-panel-height: 0rem;
+
+    --icon-size: 1.5rem;
+    --icon-size-lg: 2rem;
+
+    --page-bg-color: @cBlack900;
+    --page-text-color: @cWhite;
+
+    // Типографика
+    --fs8: 0.5rem;
+    --fs10: 0.625rem;
+    --fs12: 0.75rem;
+    --fs13: 0.8125rem;
+    --fs14: 0.875rem;
+    --fs15: 0.9375rem;
+    --fs16: 1rem;
+    --fs18: 1.125rem;
+    --fs20: 1.25rem;
+    --fs22: 1.375rem;
+    --fs24: 1.5rem;
+    --fs26: 1.625rem;
+    .responsive(--fs26, 26 / 16rem, .98);
+    --fs28: 1.75rem;
+    .responsive(--fs28, 28 / 16rem, .96);
+    --fs30: 1.875rem;
+    .responsive(--fs30, 30 / 16rem, .94);
+    --fs32: 2rem;
+    .responsive(--fs32, 32 / 16rem, .94);
+    --fs36: 2.25rem;
+    .responsive(--fs36, 36 / 16rem, .94);
+    --fs40: 2.5rem;
+    .responsive(--fs40, 40 / 16rem, .92);
+    --fs56: 3.5rem;
+    .responsive(--fs56, 56 / 16rem, .91);
+
+    --letter-spacing: -0.02em;
+
+    // Вертикальные отступы
+    --m2: 0.125rem;
+    --m3: 0.1875rem;
+    --m4: 0.25rem;
+    --m6: 0.375rem;
+    --m8: 0.5rem;
+    --m10: 0.625rem;
+    --m11: 0.6875rem;
+    --m12: 0.75rem;
+    --m14: 0.875rem;
+    --m16: 1rem;
+    --m18: 1.125rem;
+    --m20: 1.25rem;
+    --m22: 1.375rem;
+    --m24: 1.5rem;
+    --m26: 1.625rem;
+    --m28: 1.75rem;
+    --m30: 1.875rem;
+    --m32: 2rem;
+    --m34: 2.125rem;
+    --m36: 2.25rem;
+    .responsive(--m36, 36 / 16rem, .98);
+    --m37: 2.3125rem;
+    .responsive(--m37, 37 / 16rem, .98);
+    --m38: 2.375rem;
+    .responsive(--m38, 38 / 16rem, .96);
+    --m40: 2.5rem;
+    .responsive(--m40, 40 / 16rem, .94);
+    --m42: 2.625rem;
+    .responsive(--m42, 42 / 16rem, .94);
+    --m46: 2.875rem;
+    .responsive(--m46, 46 / 16rem, .94);
+    --m48: 3rem;
+    .responsive(--m48, 48 / 16rem, .94);
+    --m50: 3.125rem;
+    .responsive(--m50, 50 / 16rem, .94);
+    --m54: 3.375rem;
+    .responsive(--m54, 54 / 16rem, .92);
+    --m56: 3.5rem;
+    .responsive(--m56, 56 / 16rem, .92);
+    --m58: 3.625rem;
+    .responsive(--m58, 58 / 16rem, .92);
+    --m60: 3.75rem;
+    .responsive(--m60, 60 / 16rem, .92);
+    --m66: 4.125rem;
+    .responsive(--m66, 66 / 16rem, .92);
+    --m64: 4rem;
+    .responsive(--m64, 64 / 16rem, .92);
+    --m68: 4.25rem;
+    .responsive(--m68, 68 / 16rem, .92);
+    --m70: 4.375rem;
+    .responsive(--m70, 70 / 16rem, .9);
+    --m72: 4.5rem;
+    .responsive(--m72, 72 / 16rem, .92);
+    --m78: 4.875rem;
+    .responsive(--m78, 78 / 16rem, .92);
+    --m80: 5rem;
+    .responsive(--m80, 80 / 16rem, .9);
+    --m88: 5.5rem;
+    .responsive(--m88, 88 / 16rem, .9);
+    --m90: 5.625rem;
+    .responsive(--m90, 90 / 16rem, .9);
+    --m92: 5.75rem;
+    .responsive(--m92, 92 / 16rem, .9);
+    --m94: 5.875rem;
+    .responsive(--m94, 94 / 16rem, .9);
+    --m100: 6.25rem;
+    .responsive(--m100, 100 / 16rem, .9);
+    --m116: 7.25rem;
+    .responsive(--m116, 116 / 16rem, .9);
+    --m120: 7.5rem;
+    .responsive(--m120, 120 / 16rem, .9);
+    --m136: 8.5rem;
+    .responsive(--m136, 136 / 16rem, .9);
+    --m154: 9.625rem;
+    .responsive(--m154, 154 / 16rem, .9);
+    --m160: 10rem;
+    .responsive(--m160, 160 / 16rem, .9);
+    --m170: 10.625rem;
+    .responsive(--m170, 170 / 16rem, .9);
+
+
+    // Поля ввода
+    --input-height: 3rem;
+    --input-padding-top: var(--m16);
+    --input-padding-bottom: var(--input-padding-top);
+    --input-padding-left: var(--m12);
+    --input-padding-right: var(--input-padding-left);
+    --input-border-width: 0.0625rem;
+    --input-font-weight: 400;
+    --input-font-size: var(--fs14);
+    --input-line-height: 1.15;
+    --input-font-family: @font;
+    --input-border-radius: var(--br4);
+
+    --input-label-font-weight: 400;
+    --input-label-font-size: var(--fs12);
+    --input-label-line-height: 1.2;
+    --input-label-font-family: @font;
+
+    --input-caption-color: @cGray800;
+    --input-message-color: @cGray800;
+    --input-error-color: @cRed500;
+
+    // border-radius, которые адаптивятся
+    --br4: 0.25rem;
+    --br8: 0.5rem;
+    --br10: 0.625rem;
+    --br12: 0.75rem;
+    --br16: 1rem;
+    --br22: 1.375rem;
+    --br24: 1.5rem;
+    --br32: 2rem;
+    --br40: 2.5rem;
+
+    @media @mediaMobile {
+        --br16: 0.625rem;
+        --br22: 0.75rem;
+        --br24: 0.875rem;
+        --br32: 1rem;
+        --br40: 1.25rem;
+
+        --default-header-height: 4.25rem;
+
+        --fixed-header-height: var(--default-header-height);
+        --fixed-header-margin: 0rem;
+
+        --bottom-panel-height: 3.5rem;
+
+        --input-font-size: 0.75rem; // fix zoom на ios при фокусе в поле
+    }
+
+    @media @mediaXl {
+        --ratio: 1;
+        --refRes: 1240;
+
+        @media @mediaLandscape {
+            --refRes: 1440;
+        }
+    }
+
+    @media @mediaLg {
+        --refRes: 1024;
+
+        @media @mediaLandscape {
+            --refRes: 1240;
+        }
+    }
+
+    @media @mediaMd {
+        --refRes: 768;
+
+        @media @mediaLandscape {
+            --refRes: 1024;
+        }
+    }
+
+    @media @mediaSm {
+        --page-scrollbar-width: 0rem;
+        --page-gutter: var(--m16);
+        --refRes: 480;
+
+        @media @mediaLandscape {
+            --refRes: 768;
+        }
+    }
+
+    @media @mediaXs {
+        --refRes: 360;
+
+        @media @mediaLandscape {
+            --refRes: 480;
+        }
+    }
+}
+
+//noinspection LessUnresolvedVariable
+@imagePath: '../../public/images/';
+//noinspection LessUnresolvedVariable
+@fontPath: '../../public/fonts/';
+
+/**
  * Сетка
  **/
+
 @screenXs: 480px;
 @screenSm: 768px;
 @screenMd: 1024px;
@@ -30,14 +285,19 @@
 @mediaMoreXl: ~'(min-width: @{screenXl})';
 @mediaMoreXxl: ~'(min-width: @{screenXxl})';
 
+@mediaHover: ~'(pointer: fine), (-ms-high-contrast: none), (-ms-high-contrast: active)';
+@mediaNotHover: ~'(pointer: coarse)';
+
 @mediaPortrait: ~'(orientation: portrait)';
 @mediaLandscape: ~'(orientation: landscape)';
 
 @mediaMobile: @mediaMd;
 @mediaDesktop: @mediaMoreMd;
 
+@columnsCount: 48;
+
 /**
- * Fonts
+ * Шрифты
  **/
 @fontName: 'Rajdhani';
 @font: @fontName, Arial, sans-serif, -apple-system;
@@ -45,13 +305,15 @@
 @fontOrbitron: @fontBaseOrbitron, sans-serif;
 
 /**
- * Colors
+ * Цвета
  **/
+
 @cWhite: #fff;
 @cBlack: #000;
 
 @cBlack900: #050505;
 @cBlack800: #0f0f0f;
+@cBlack700: #111; /* добавлено */
 @cWhite200: #f5f5f5;
 
 @cGray800: #333;
@@ -66,137 +328,28 @@
 /**
  * UI
  **/
+@hoverScale: 1.1;
 @hoverOpacity: .8;
 @activeOpacity: .6;
 @disabledOpacity: .3;
 
 @defaultFocusRuleset: {
     outline: 0.0625rem dashed @cBlack !important;
-    outline-offset: 0.3125rem;
-};
+    outline-offset: var(--m4);
+}
 
 @defaultActiveRuleset: {
     opacity: @activeOpacity;
-};
+}
 
 /**
- * Animation
+ * Анимация
  **/
-@transitTime: .15s;
-@transitTimeMedium: .3s;
+@transitTime: .15s; // Используется для ховеров на текст и иконки (изменение цвета, прозрачности)
+@transitTimeMedium: .3s; // Используется для анимации стейтов
 @transitEase: ease;
 
 @headerZIndex: 100;
 @menuZIndex: 100;
+@fixedZIndex: 50;
 @overlayZIndex: 200;
-
-/**
- * Переменные CSS
- **/
-.css-vars() {
-    --refRes: 1440;
-    --ratio: .7;
-
-    --fs-base-max: 24px;
-    --fs-base: calc(16px + var(--ratio) * (100vw * 16 / var(--refRes) - 16px));
-
-    --sw: 1rem;
-
-    // Layout
-    --content-max-width: 75rem;
-    --content-width: ~'min(calc(100% - 2 * var(--page-gutter)), var(--content-max-width))';
-    --page-width: calc(100vw - var(--sw));
-
-    --page-gutter: var(--m32);
-    --grid-gap: var(--m8);
-
-    --logo-height: 3.125rem;
-    --header-height: calc((var(--header-padding) * 2) + var(--logo-height));
-
-    --bottom-panel-height: 0;
-
-    --icon-size: 1.5rem;
-    --icon-size-lg: 2rem;
-
-    --page-bg-color: @cWhite;
-    --page-text-color: @cBlack;
-
-    // Typography
-    --fs8: 0.5rem;
-    --fs10: 0.625rem;
-    --fs12: 0.75rem;
-    --fs14: 0.875rem;
-    --fs16: 1rem;
-    --fs18: 1.125rem;
-    --fs22: 1.375rem;
-    --fs24: 1.5rem;
-    --fs30: 1.875rem;
-    --fs32: 2rem;
-    --fs38: 2.375rem;
-    --fs48: 3rem;
-
-    --letter-spacing: -0.02em;
-
-    // Spacing
-    --m2: 0.125rem;
-    --m4: 0.25rem;
-    --m6: 0.375rem;
-    --m8: 0.5rem;
-    --m10: 0.625rem;
-    --m12: 0.75rem;
-    --m16: 1rem;
-    --m20: 1.25rem;
-    --m24: 1.5rem;
-    --m30: 1.875rem;
-    --m32: 2rem;
-    --m40: 2.5rem;
-    --m60: 3.75rem;
-    --m64: 4rem;
-
-    // Border radius
-    --br4: 0.25rem;
-    --br8: 0.5rem;
-    --br10: 0.625rem;
-    --br12: 0.75rem;
-    --br16: 1rem;
-    --br22: 1.375rem;
-    --br24: 1.5rem;
-    --br32: 2rem;
-    --br40: 2.5rem;
-
-    @media @mediaSm {
-        --refRes: 480;
-        --br16: 0.625rem;
-        --br22: 0.75rem;
-        --br24: 0.875rem;
-        --br32: 1rem;
-        --br40: 1.25rem;
-        --bottom-panel-height: 3.5rem;
-    }
-
-    @media @mediaMd {
-        --refRes: 768;
-    }
-
-    @media @mediaLg {
-        --refRes: 1024;
-
-        @media @mediaLandscape {
-            --refRes: 1240;
-        }
-    }
-
-    @media @mediaXl {
-        --ratio: 1;
-        --refRes: 1240;
-
-        @media @mediaLandscape {
-            --refRes: 1440;
-        }
-    }
-}
-
-//noinspection LessUnresolvedVariable
-@imagePath: '~/assets/images/';
-//noinspection LessUnresolvedVariable
-@fontPath: '~/assets/fonts/';

@@ -1,35 +1,33 @@
 <template>
-  <div class="skynet-landing">
-    <PromoBlock />
-    <Features :features="features" />
-    <NetworkSection />
-    <PricingSection
-      :plans="pricingPlans"
-      @connect="onConnect"
-    />
-    <TelegramSection />
-    <Footer />
-  </div>
+	<PromoBlock/>
+	<Features :features="features"/>
+	<NetworkSection/>
+	<PricingSection
+		:plans="pricingPlans"
+		@connect="onConnect"
+	/>
+	<TelegramSection/>
+	<Footer/>
 </template>
 
 <script setup lang="ts">
-	import { ref, onMounted } from 'vue'
-	import { gsap } from 'gsap'
-	import { ScrollTrigger } from 'gsap/ScrollTrigger'
+	import {ref, onMounted} from 'vue'
+	import {gsap} from 'gsap'
+	import {ScrollTrigger} from 'gsap/ScrollTrigger'
 
 	gsap.registerPlugin(ScrollTrigger)
 
 	const features = [
-		{ icon: '📡', title: 'Глобальная сеть', description: '127 серверов по всему миру' },
-		{ icon: '⚡', title: 'Максимальная скорость', description: 'До 10 Гбит/с без ограничений трафика' },
-		{ icon: '🔒', title: 'Полная приватность', description: 'Не храним логи, шифрование military-grade' },
-		{ icon: '🤖', title: 'Telegram управление', description: 'Покупка и продление за 30 секунд' }
+		{icon: '📡', title: 'Глобальная сеть', description: '127 серверов по всему миру'},
+		{icon: '⚡', title: 'Максимальная скорость', description: 'До 10 Гбит/с без ограничений трафика'},
+		{icon: '🔒', title: 'Полная приватность', description: 'Не храним логи, шифрование military-grade'},
+		{icon: '🤖', title: 'Telegram управление', description: 'Покупка и продление за 30 секунд'}
 	]
 
 	const pricingPlans = [
-		{ id: '1m', name: 'ACCESS // 1 MONTH', price: '199 ₽', period: 'месяц', cta: 'CONNECT' },
-		{ id: '3m', name: 'ACCESS // 3 MONTHS', price: '499 ₽', period: 'месяц', cta: 'CONNECT', highlight: true },
-		{ id: '12m', name: 'ACCESS // 12 MONTHS', price: '1490 ₽', period: 'месяц', cta: 'CONNECT', bestValue: true }
+		{id: '1m', name: 'ACCESS // 1 MONTH', price: '199 ₽', period: 'месяц', cta: 'CONNECT'},
+		{id: '3m', name: 'ACCESS // 3 MONTHS', price: '499 ₽', period: 'месяц', cta: 'CONNECT', highlight: true},
+		{id: '12m', name: 'ACCESS // 12 MONTHS', price: '1490 ₽', period: 'месяц', cta: 'CONNECT', bestValue: true}
 	]
 
 	const onConnect = (plan: any) => {
