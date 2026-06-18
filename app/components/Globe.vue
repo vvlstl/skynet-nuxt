@@ -4,21 +4,11 @@
 			class="globe"
 			:class="{ 'globe--hidden': !visible }"
 		>
-			<div class="globe__title">
-				<slot name="title">ГЛОБУС СЕТИ</slot>
-			</div>
 			<div
 				v-if="!ready"
 				class="globe__status"
 			>
 				{{ statusText }}
-			</div>
-			<div class="globe__legend">
-				<slot name="legend">
-					<span class="globe__legend-item">● ONLINE</span>
-					<span class="globe__legend-item">NODES: 16</span>
-					<span class="globe__legend-item">PROTOCOL: WIREGUARD</span>
-				</slot>
 			</div>
 			<Transition name="globe-fade">
 				<div
@@ -46,7 +36,6 @@
 
 		const props = withDefaults(defineProps<TProps>(), {
 			visible: true,
-			background: 0x060606,
 			options: () => ({}),
 		})
 
@@ -145,26 +134,10 @@
 			width: 100%;
 			height: 100%;
 			min-height: 320px;
-			overflow: hidden;
-			background: #060606;
-			border-radius: 12px;
 			touch-action: none;
 
 			&--hidden {
 				opacity: 0;
-				pointer-events: none;
-			}
-
-			&__title {
-				position: absolute;
-				top: 16px;
-				left: 20px;
-				z-index: 2;
-				font-family: monospace;
-				color: #ff2200;
-				font-size: 11px;
-				letter-spacing: 2px;
-				opacity: 0.8;
 				pointer-events: none;
 			}
 
@@ -180,26 +153,6 @@
 				letter-spacing: 2px;
 				opacity: 0.8;
 				pointer-events: none;
-			}
-
-			&__legend {
-				position: absolute;
-				bottom: 14px;
-				left: 50%;
-				transform: translateX(-50%);
-				z-index: 2;
-				display: flex;
-				gap: 20px;
-				font-family: monospace;
-				font-size: 11px;
-				color: #ff3300;
-				letter-spacing: 1px;
-				opacity: 0.7;
-				pointer-events: none;
-			}
-
-			&__legend-item {
-				white-space: nowrap;
 			}
 
 			&__fallback {
