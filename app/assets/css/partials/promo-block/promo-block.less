@@ -72,6 +72,22 @@
         font: 400 var(--fs16) / 1 @font;
     }
 
+    &__globus {
+        position: relative;
+        min-height: 480px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    &__globus-fallback {
+        color: fade(@cWhite, 40);
+        font-family: monospace;
+        font-size: var(--fs14);
+        letter-spacing: 0.05em;
+        text-transform: uppercase;
+    }
+
     @media @mediaMoreSm {
         &__node-info {
             max-width: unit((300 / 16), rem);

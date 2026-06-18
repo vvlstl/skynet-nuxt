@@ -66,7 +66,16 @@
 						</div>
 					</div>
 				</div>
-				<div class="promo-block__globus"></div>
+				<div class="promo-block__globus">
+					<ClientOnly>
+						<ThreeScene :visible="true" />
+						<template #fallback>
+							<div class="promo-block__globus-fallback">
+								3D unavailable
+							</div>
+						</template>
+					</ClientOnly>
+				</div>
 			</div>
 		</div>
 	</section>
