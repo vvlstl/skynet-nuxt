@@ -39,16 +39,6 @@
 		stop: () => void
 	}
 
-	const LOG_PREFIX = '[DEBUG][useGlobeScene]'
-
-	function log(message: string, ...args: unknown[]): void {
-		console.log(LOG_PREFIX, message, ...args)
-	}
-
-	function logError(message: string, ...args: unknown[]): void {
-		console.error(LOG_PREFIX, message, ...args)
-	}
-
 	const DEFAULT_CITIES: GlobeCity[] = [
 		{ lat: 55.75, lon: 37.6, major: true },
 		{ lat: 51.5, lon: -0.1, major: true },
@@ -136,27 +126,23 @@
 		options: UseGlobeSceneOptions = {},
 	): Promise<GlobeSceneContext | null> {
 		if (!import.meta.client) {
-			log('init skipped: SSR context')
 			return null
 		}
 
 		if (!container) {
-			logError('init failed: container is null')
 			return null
 		}
 
 		const {
 			cities = DEFAULT_CITIES,
 			connections = DEFAULT_CONNECTIONS,
-			background = 0x060606,
+			background = null,
 			fov = 42,
 			near = 0.1,
 			far = 100,
 			cameraZ = 3.2,
 			autoRotateSpeed = 0.0025,
 		} = options
-
-		log('init start', { cities: cities.length, connections: connections.length })
 
 		const ctx = useThreeScene(container, {
 			background,
@@ -165,18 +151,16 @@
 			far,
 			cameraZ,
 			antialias: true,
-			alpha: false,
+			alpha: true,
 		}) as ThreeSceneContext | null
 
 		if (!ctx) {
-			logError('useThreeScene returned null')
 			return null
 		}
 
 		const worldMap = buildWorldMapCanvas()
 		const texture = new THREE.CanvasTexture(worldMap.canvas)
 		texture.needsUpdate = true
-		log('world map texture', { status: worldMap.status })
 
 		const root = new THREE.Group()
 		ctx.scene.add(root)
@@ -311,13 +295,6 @@
 		)
 		root.add(particles)
 
-		log('globe built', {
-			cities: dotMeshes.length,
-			arcs: arcs.length,
-			packets: packets.length,
-			pulseRings: pulseRings.length,
-		})
-
 		const dragState = { active: false, prevX: 0, prevY: 0, vx: 0, vy: 0 }
 		let clock = 0
 		let frameId = 0
@@ -329,7 +306,6 @@
 			dragState.prevY = clientY
 			dragState.vx = 0
 			dragState.vy = 0
-			log('drag start')
 		}
 
 		function onPointerMove(clientX: number, clientY: number): void {
@@ -343,9 +319,6 @@
 		}
 
 		function onPointerUp(): void {
-			if (dragState.active) {
-				log('drag end')
-			}
 			dragState.active = false
 		}
 
@@ -424,7 +397,6 @@
 			if (frameId || disposed) {
 				return
 			}
-			log('animation start')
 			animate()
 		}
 
@@ -434,7 +406,6 @@
 			}
 			cancelAnimationFrame(frameId)
 			frameId = 0
-			log('animation stop')
 		}
 
 		function resize(): void {
@@ -443,11 +414,9 @@
 
 		function dispose(): void {
 			if (disposed) {
-				log('dispose skipped: already disposed')
 				return
 			}
 			disposed = true
-			log('dispose start')
 
 			stop()
 			container.removeEventListener('mousedown', onMouseDown)
@@ -460,8 +429,6 @@
 			texture.dispose()
 			disposeObject3D(root)
 			ctx.dispose()
-
-			log('dispose done')
 		}
 
 		return {

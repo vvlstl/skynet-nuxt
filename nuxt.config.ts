@@ -44,6 +44,7 @@ export default defineNuxtConfig({
                 }
             }
         },
+        //TODO добавить tree.js
         build: {
             rollupOptions: {
                 output: {

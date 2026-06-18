@@ -176,6 +176,7 @@
 </script>
 
 <style lang="less" scoped>
+//TODO разнести по less
 	.three-scene {
 		position: relative;
 		width: 100%;

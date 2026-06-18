@@ -15,9 +15,7 @@
 					v-if="!supported"
 					class="globe__fallback"
 				>
-					<slot name="fallback">
-						<span class="globe__fallback-text">3D unavailable</span>
-					</slot>
+					<slot name="fallback"></slot>
 				</div>
 			</Transition>
 		</div>
@@ -39,20 +37,10 @@
 			options: () => ({}),
 		})
 
-		const LOG_PREFIX = '[DEBUG][Globe]'
-
-		function log(message: string, ...args: unknown[]): void {
-			console.log(LOG_PREFIX, message, ...args)
-		}
-
-		function logError(message: string, ...args: unknown[]): void {
-			console.error(LOG_PREFIX, message, ...args)
-		}
-
 		const containerRef = ref<HTMLElement | null>(null)
 		const supported = ref(true)
 		const ready = ref(false)
-		const statusText = ref('ЗАГРУЗКА КАРТЫ...')
+		const statusText = ref('LOADING THE WEB GLOBE...')
 
 		let ctx: GlobeSceneContext | null = null
 		let resizeObserver: ResizeObserver | null = null
@@ -66,25 +54,21 @@
 				)
 			}
 			catch (error) {
-				logError('WebGL probe failed', error)
 				return false
 			}
 		}
 
 		onMounted(async () => {
 			if (!import.meta.client) {
-				log('mount skipped: SSR')
 				return
 			}
 
 			if (!containerRef.value) {
-				logError('mount failed: container missing')
 				supported.value = false
 				return
 			}
 
 			if (!probeWebGL()) {
-				log('WebGL not supported: fallback')
 				supported.value = false
 				return
 			}
@@ -96,12 +80,14 @@
 
 			if (!ctx) {
 				supported.value = false
-				statusText.value = 'ОШИБКА ИНИЦИАЛИЗАЦИИ'
+				statusText.value = 'INITIALIZATION ERROR'
 				return
+			}else {
+				//сдвигаем глобус в парво
+				ctx.root.position.x = 1
 			}
 
 			ready.value = true
-			log('mounted', { cities: props.options?.cities?.length ?? 16 })
 
 			resizeObserver = new ResizeObserver(() => {
 				ctx?.resize()
@@ -112,23 +98,15 @@
 		})
 
 		onBeforeUnmount(() => {
-			log('unmount start')
 			resizeObserver?.disconnect()
 			resizeObserver = null
 			ctx?.dispose()
 			ctx = null
-			log('unmount done')
 		})
-
-		watch(
-			() => props.visible,
-			(value) => {
-				log('visible changed', { value })
-			},
-		)
 	</script>
 
 	<style lang="less" scoped>
+	//TODO унести в less
 		.globe {
 			position: relative;
 			width: 100%;
@@ -147,7 +125,6 @@
 				left: 50%;
 				transform: translate(-50%, -50%);
 				z-index: 2;
-				font-family: monospace;
 				color: #ff2200;
 				font-size: 13px;
 				letter-spacing: 2px;
