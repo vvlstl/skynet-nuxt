@@ -2,8 +2,55 @@
 	import { useThreeScene } from '~/composables/useThreeScene'
 	import type { ThreeSceneContext } from '~/composables/useThreeScene'
 	import { buildWorldMapCanvas } from '~/utils/worldMap'
-
+	
 	const RADIUS = 1
+
+const GRATICULE_COLOR = 0xff1b1b
+const GRATICULE_OPACITY = 0.3
+
+function buildGraticule(radius: number): THREE.Group {
+	const group = new THREE.Group()
+	const material = new THREE.LineBasicMaterial({
+		color: GRATICULE_COLOR,
+		transparent: true,
+		opacity: GRATICULE_OPACITY,
+	})
+	const latStep = 15
+	const lonStep = 30
+	const segs = 48
+
+	// широты (без экватора)
+	for (let lat = -75; lat <= 75; lat += latStep) {
+		const phi = THREE.MathUtils.degToRad(90 - lat)
+		const pts: THREE.Vector3[] = []
+		for (let i = 0; i <= segs; i++) {
+			const theta = (i / segs) * Math.PI * 2
+			pts.push(new THREE.Vector3(
+				radius * Math.sin(phi) * Math.cos(theta),
+				radius * Math.cos(phi),
+				radius * Math.sin(phi) * Math.sin(theta),
+			))
+		}
+		group.add(new THREE.Line(new THREE.BufferGeometry().setFromPoints(pts), material))
+	}
+
+	// меридианы
+	for (let lon = 0; lon < 360; lon += lonStep) {
+		const theta = THREE.MathUtils.degToRad(lon)
+		const pts: THREE.Vector3[] = []
+		for (let i = 0; i <= segs; i++) {
+			const phi = (i / segs) * Math.PI
+			pts.push(new THREE.Vector3(
+				radius * Math.sin(phi) * Math.cos(theta),
+				radius * Math.cos(phi),
+				radius * Math.sin(phi) * Math.sin(theta),
+			))
+		}
+		group.add(new THREE.Line(new THREE.BufferGeometry().setFromPoints(pts), material))
+	}
+
+	return group
+}
 
 	export interface GlobeCity {
 		lat: number
@@ -158,24 +205,30 @@
 			return null
 		}
 
+		const root = new THREE.Group()
+		ctx.scene.add(root)
+
+		const globeGroup = new THREE.Group()
+		globeGroup.rotation.x = THREE.MathUtils.degToRad(23.5)
+		root.add(globeGroup)
+
 		const worldMap = buildWorldMapCanvas()
 		const texture = new THREE.CanvasTexture(worldMap.canvas)
 		texture.needsUpdate = true
 
-		const root = new THREE.Group()
-		ctx.scene.add(root)
-
 		const globeMesh = new THREE.Mesh(
 			new THREE.SphereGeometry(RADIUS * 0.999, 64, 32),
-			new THREE.MeshBasicMaterial({ map: texture }),
+			new THREE.MeshBasicMaterial({
+				map: texture,
+				transparent: true,
+				opacity: 0.5,
+				depthWrite: false,
+			}),
 		)
-		root.add(globeMesh)
+		globeGroup.add(globeMesh)
 
-		const wireframe = new THREE.LineSegments(
-			new THREE.WireframeGeometry(new THREE.SphereGeometry(RADIUS, 36, 18)),
-			new THREE.LineBasicMaterial({ color: 0xbb1100, transparent: true, opacity: 0.1 }),
-		)
-		root.add(wireframe)
+		const graticule = buildGraticule(RADIUS)
+		globeGroup.add(graticule)
 
 		const glowShells: THREE.Mesh[] = []
 		const glowScales = [1.04, 1.09, 1.15]
@@ -190,7 +243,7 @@
 					side: THREE.BackSide,
 				}),
 			)
-			root.add(shell)
+			globeGroup.add(shell)
 			glowShells.push(shell)
 		})
 
@@ -206,7 +259,7 @@
 				new THREE.MeshBasicMaterial({ color: city.major ? 0xff6644 : 0xff2200 }),
 			)
 			dot.position.copy(cityVectors[i])
-			root.add(dot)
+			globeGroup.add(dot)
 			dotMeshes.push(dot)
 		})
 
@@ -222,7 +275,7 @@
 					.multiplyScalar(RADIUS + Math.sin(Math.PI * t) * 0.2)
 				points.push(point)
 			}
-			root.add(new THREE.Line(
+			globeGroup.add(new THREE.Line(
 				new THREE.BufferGeometry().setFromPoints(points),
 				new THREE.LineBasicMaterial({ color: 0xff2200, transparent: true, opacity: 0.4 }),
 			))
@@ -235,7 +288,7 @@
 				packetGeo,
 				new THREE.MeshBasicMaterial({ color: 0xff6633 }),
 			)
-			root.add(mesh)
+			globeGroup.add(mesh)
 
 			const trailGeo = new THREE.BufferGeometry().setFromPoints(
 				Array.from({ length: 14 }, () => new THREE.Vector3()),
@@ -244,7 +297,7 @@
 				trailGeo,
 				new THREE.LineBasicMaterial({ color: 0xff3300, transparent: true, opacity: 0.55 }),
 			)
-			root.add(trail)
+			globeGroup.add(trail)
 
 			return {
 				mesh,
@@ -266,7 +319,7 @@
 					new THREE.MeshBasicMaterial({
 						color: 0xff3300,
 						transparent: true,
-						opacity: 0.8,
+						opacity: 0.15,
 						side: THREE.DoubleSide,
 					}),
 				)
@@ -274,7 +327,7 @@
 				ring.position.copy(pos)
 				ring.lookAt(pos.clone().multiplyScalar(2))
 				ring.userData.phase = idx * 1.8
-				root.add(ring)
+				globeGroup.add(ring)
 				return ring
 			})
 
@@ -293,7 +346,7 @@
 			particleGeo,
 			new THREE.PointsMaterial({ color: 0xff1100, size: 0.009, transparent: true, opacity: 0.35 }),
 		)
-		root.add(particles)
+		globeGroup.add(particles)
 
 		const dragState = { active: false, prevX: 0, prevY: 0, vx: 0, vy: 0 }
 		let clock = 0
@@ -369,7 +422,7 @@
 				const phase = (clock + ring.userData.phase) % 2.5
 				ring.scale.setScalar(phase * 9)
 				const material = ring.material as THREE.MeshBasicMaterial
-				material.opacity = Math.max(0, 0.65 - phase * 0.26)
+				material.opacity = Math.max(0, 0.12 - phase * 0.048)
 			})
 
 			packets.forEach((packet) => {

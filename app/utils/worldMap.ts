@@ -145,10 +145,10 @@
 		const {
 			width = 2048,
 			height = 1024,
-			fillColor = '#200505',
-			strokeColor = '#cc2200',
-			strokeWidth = 1.0,
-			backgroundColor = '#08010a',
+			fillColor = '#330808',
+			strokeColor = '#ff1b1b',
+			strokeWidth = 1.2,
+			backgroundColor = '#050505',
 		} = options
 
 		const canvas = document.createElement('canvas')
