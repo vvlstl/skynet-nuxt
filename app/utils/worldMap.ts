@@ -110,9 +110,22 @@
 
 		const [sx, sy] = ll2xy(points[0][0], points[0][1], width, height)
 		ctx.moveTo(sx, sy)
+		let prevLon = points[0][0]
+
 		for (let i = 1; i < points.length; i++) {
-			const [x, y] = ll2xy(points[i][0], points[i][1], width, height)
-			ctx.lineTo(x, y)
+			const [lon, lat] = points[i]
+			const [x, y] = ll2xy(lon, lat, width, height)
+
+			// скачок через антимеридиан (180/-180) — не рисуем линию через весь canvas,
+			// а начинаем путь заново
+			if (Math.abs(lon - prevLon) > 180) {
+				ctx.moveTo(x, y)
+			}
+			else {
+				ctx.lineTo(x, y)
+			}
+
+			prevLon = lon
 		}
 	}
 
