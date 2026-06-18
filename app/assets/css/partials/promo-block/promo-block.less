@@ -28,7 +28,7 @@
     }
 
     &__title {
-        max-width: unit((600 / 48), em);
+        max-width: unit((700 / 48), em);
         font: 900 var(--fs40) / 1.4 @fontOrbitron;
         text-transform: uppercase;
     }
@@ -42,5 +42,31 @@
     &__group-btns {
         display: flex;
         gap: var(--m24);
+    }
+
+    &__node-info {
+        max-width: unit((300 / 16), rem);
+        display: flex;
+        flex-direction: column;
+        gap: var(--m4);
+        box-sizing: border-box;
+        padding: var(--m8);
+        border: 1px solid fade(@cWhite, 8);
+        border-radius: var(--m4);
+    }
+
+    &__node-info-row {
+        display: flex;
+        align-items: center;
+        gap: var(--m4);
+        color: fade(@cWhite, 60);
+    }
+
+    &__node-info-icon {
+    }
+
+    &__node-info-value {
+        text-transform: uppercase;
+        font: 400 var(--fs16) / 1.4 @font;
     }
 }
