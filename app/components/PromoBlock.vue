@@ -19,7 +19,13 @@
 							text="Telegram Bot"
 							theme="white"
 							:is-bordered="true"
-						/>
+						>
+							<template #iconLeft>
+								<span class="btn__icon">
+									<Icon name="hugeicons:telegram" />
+								</span>
+							</template>
+						</Btn>
 					</div>
 				</div>
 				<div class="promo-block__globus"></div>

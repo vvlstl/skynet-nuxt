@@ -1,4 +1,7 @@
-import {fileURLToPath, URL} from 'node:url'
+import {fileURLToPath, URL} from 'node:url';
+import {createResolver} from 'nuxt/kit';
+
+const {resolve} = createResolver(import.meta.url);
 
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
@@ -19,6 +22,7 @@ export default defineNuxtConfig({
         '@nuxt/scripts',
         '@nuxt/test-utils'
     ],
+
 
     css: [
         '~/assets/css/style.less'
