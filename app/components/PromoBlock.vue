@@ -68,7 +68,7 @@
 				</div>
 				<div class="promo-block__globus">
 					<ClientOnly>
-						<ThreeScene :visible="true" />
+						<Globe :visible="true" />
 						<template #fallback>
 							<div class="promo-block__globus-fallback">
 								3D unavailable
