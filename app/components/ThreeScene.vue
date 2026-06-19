@@ -46,7 +46,7 @@
 		console.error(LOG_PREFIX, message, ...args)
 	}
 
-	const containerRef = ref<HTMLElement | null>(null)
+	const containerRef = useTemplateRef<HTMLElement>("containerRef")
 	const supported = ref(true)
 
 	let ctx: ThreeSceneContext | null = null

@@ -26,18 +26,18 @@
 		import { useGlobeScene } from '~/composables/useGlobeScene'
 		import type { GlobeSceneContext, UseGlobeSceneOptions } from '~/composables/useGlobeScene'
 
-		type TProps = {
+		type TComponentProps = {
 			visible?: boolean
 			background?: THREE.ColorRepresentation | null
 			options?: UseGlobeSceneOptions
 		}
 
-		const props = withDefaults(defineProps<TProps>(), {
+		const props = withDefaults(defineProps<TComponentProps>(), {
 			visible: true,
 			options: () => ({}),
 		})
 
-		const containerRef = ref<HTMLElement | null>(null)
+		const containerRef = useTemplateRef<HTMLElement>('containerRef')
 		const supported = ref(true)
 		const ready = ref(false)
 		const statusText = ref('LOADING THE WEB GLOBE...')
