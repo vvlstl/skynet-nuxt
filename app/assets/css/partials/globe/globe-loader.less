@@ -1,156 +1,485 @@
 @import "../../_var";
 
+// Duration constants — derived from old JS frameloop (60fps reference)
+@gl-loader-ring-speed: 2.5s; // 360/2.4 deg/frame ≈ 150f ≈ 2.5s
+@gl-loader-ring-mid-speed: 1.56s; // 150/1.6f
+@gl-loader-arc-speed: 1.14s; // 150/2.2f
+@gl-loader-hex-speed: 6.25s; // 150/0.4f
+@gl-loader-cycle-duration: 9s; // master timeline for text/progress cycling
+
+// Fast cycle durations
+@gl-status-duration: 1.5s; // 6 status lines, 0.5s each
+@gl-hexdump-duration: 0.3s; // 3 hexdump lines, 0.8s each
+
+// PCT count-up: 0 → 99 step 1 (100 spans), finite, ends at 99 visible
+@gl-pct-step: 0.06s; // 60ms per step → 6s total for 100 steps
+
+// ── Keyframes ──────────────────────────────────────────────
+
+@keyframes gl-spin-cw {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes gl-spin-ccw {
+    to {
+        transform: rotate(-360deg);
+    }
+}
+
+@keyframes gl-hex-pulse {
+    0%, 100% {
+        opacity: 0.06;
+    }
+    50% {
+        opacity: 0.14;
+    }
+}
+
+@keyframes gl-progress {
+    from {
+        width: 0%;
+    }
+    to {
+        width: 99.4%;
+    }
+}
+
+// Generic fade-cycle — used by status-text, nodescan
+// Each child visible for ~1/6th of cycle
+@keyframes gl-cycle-fade {
+    0%, 15% {
+        opacity: 1;
+    }
+    16.67%, 100% {
+        opacity: 0;
+    }
+}
+
+@keyframes gl-cycle-fade-3 {
+    0%, 30% {
+        opacity: 1;
+    }
+    33.34%, 100% {
+        opacity: 0;
+    }
+}
+
+// PCT count-up: flash each span briefly, hide until last
+@keyframes gl-pct-flash {
+    0%, 0.5% {
+        opacity: 1;
+    }
+    1%, 100% {
+        opacity: 0;
+    }
+}
+
+// Last PCT span (99%): flash then hold visible
+@keyframes gl-pct-last {
+    0%, 0.5% {
+        opacity: 1;
+    }
+    1%, 99% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+@keyframes gl-uplink-hide {
+    0%, 60% {
+        opacity: 1;
+    }
+    65%, 100% {
+        opacity: 0;
+    }
+}
+
+@keyframes gl-uplink-show {
+    0%, 60% {
+        opacity: 0;
+    }
+    65%, 100% {
+        opacity: 1;
+    }
+}
+
+@keyframes gl-clock-pulse {
+    0%, 45%, 55%, 100% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0.3;
+    }
+}
+
+@keyframes gl-glitch {
+    0%, 94.5%, 100% {
+        opacity: 0;
+        transform: translate(0, 0);
+    }
+    94.6% {
+        opacity: 0.04;
+        transform: translate(2px, -1px) scaleX(-1);
+    }
+    94.9% {
+        opacity: 0;
+        transform: translate(-1px, 1px);
+    }
+    95.2% {
+        opacity: 0.03;
+        transform: translate(1px, -0.5px);
+    }
+    95.5% {
+        opacity: 0;
+        transform: translate(0, 0);
+    }
+}
+
+// ── LESS loop: generate 100 animation-delays for PCT spans ──
+
+.gen-pct-delays(@i) when (@i > 0) {
+    .gen-pct-delays(@i - 1);
+    &:nth-child(@{i}) {
+        animation-delay: (@i - 1) * @gl-pct-step;
+    }
+}
+
+// ── Component ──────────────────────────────────────────────
+
 .globe-loader {
-	.size(100%);
-	position: relative;
-	overflow: hidden;
-	display: flex;
-	align-items: center;
-	justify-content: center;
+    .size(100%);
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    //pointer-events: none;
 
-	&--hidden {
-		display: none;
-	}
+    &--hidden {
+        display: none;
+    }
 
-	&__scanlines {
-		position: absolute;
-		inset: 0;
-		background: repeating-linear-gradient(
-			0deg,
-			fade(@cRed500, 2.5) 0px,
-			fade(@cRed500, 2.5) 1px,
-			transparent 1px,
-			transparent 3px
-		);
-		pointer-events: none;
-		z-index: 10;
-	}
+    // ── scanlines ──
 
-	&__vignette {
-		position: absolute;
-		inset: 0;
-		pointer-events: none;
-		z-index: 9;
-	}
+    &__scanlines {
+        position: absolute;
+        inset: 0;
+        pointer-events: none;
+        z-index: 10;
+    }
 
-	&__corners {
-		position: absolute;
-		z-index: 5;
-		top: 50%;
-		left: 50%;
-		transform: translate(-50%, -50%);
-	}
+    // ── vignette ──
 
-	&__telemetry {
-		position: absolute;
-		top: unit((28 / 16), rem);
-		left: unit((34 / 16), rem);
-		font-size: var(--fs10);
-		color: @cRed500;
-		letter-spacing: var(--letter-spacing);
-		opacity: 0.75;
-		z-index: 6;
-		line-height: 1.6;
-	}
+    &__vignette {
+        position: absolute;
+        inset: 0;
+        pointer-events: none;
+        z-index: 9;
+    }
 
-	&__id {
-		position: absolute;
-		top:  unit((28 / 16), rem);
-		right: unit((34 / 16), rem);
-		font-size: var(--fs10);
-		color: @cRed500;
-		letter-spacing: var(--letter-spacing);
-		opacity: 0.75;
-		z-index: 6;
-		text-align: right;
-		line-height: 1.6;
-	}
+    // ── corners ──
 
-	&__center {
-		--size: unit((220 / 16), rem);
-		.size(var(--size));
-		position: relative;
-		z-index: 7;
-	}
+    &__corners {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: unit((500 / 16), rem);;
+        z-index: 5;
+    }
 
-	&__pct-wrap {
-		position: absolute;
-		inset: 0;
-		display: flex;
-		flex-direction: column;
-		align-items: center;
-		justify-content: center;
-	}
+    // ── telemetry ──
 
-	&__pct {
-		font-size: var(--fs32);
-		font-weight: bold;
-		color: @cRedOrange450;
-		letter-spacing: var(--letter-spacing);
-		text-shadow: 0 0 var(--m12) fade(@cRed500, 70);
-	}
+    &__telemetry {
+        position: absolute;
+        top: unit((28 / 16), rem);
+        left: unit((34 / 16), rem);
+        font-size: var(--fs10);
+        color: @cRed500;
+        letter-spacing: var(--letter-spacing);
+        opacity: 0.75;
+        z-index: 6;
+        line-height: 1.6;
 
-	&__label {
-		font-size: var(--fs8);
-		color: @cRedOrange400;
-		letter-spacing: var(--letter-spacing);
-		opacity: 0.7;
-		margin-top: var(--m2);
-	}
+        // UPLINK container — needed for absolute span positioning
+        > :nth-child(3) {
+            position: relative;
+            white-space: nowrap;
+        }
+    }
 
-	&__status-line {
-		position: absolute;
-		bottom: unit((50 / 16), rem);
-		left: 0;
-		right: 0;
-		text-align: center;
-		z-index: 6;
-	}
+    &__nodescan {
+        display: inline-grid;
+        grid-template-columns: 100%;
+    }
 
-	&__status-text {
-		font-size: var(--fs12);
-		color: @cRed500;
-		letter-spacing: var(--letter-spacing);
-		opacity: 0.85;
-	}
+    &__nodescan-num {
+        white-space: nowrap;
+        opacity: 0;
+        animation: gl-cycle-fade-3 @gl-loader-cycle-duration infinite;
+        grid-row: 1;
+        grid-column: 1;
 
-	&__progress-track {
-		position: absolute;
-		bottom: unit((30 / 16), rem);
-		left: 50%;
-		transform: translateX(-50%);
-		width: unit((280 / 16), rem);
-		height: 3px;
-		background: fade(@cRed500, 15);
-		z-index: 6;
-		border-radius: 2px;
-		overflow: hidden;
-	}
+        &--2 {
+            animation-delay: 3s;
+        }
 
-	&__progress-fill {
-		height: 100%;
-		width: 0;
-		background: linear-gradient(90deg, @cRed500, @cRedOrange300);
-		box-shadow: 0 0 var(--m8) @cRed500;
-	}
+        &--3 {
+            animation-delay: 6s;
+        }
+    }
 
-	&__hexdump {
-		position: absolute;
-		bottom: var(--m8);
-		left: unit((34 / 16), rem);
-		font-size: var(--fs8);
-		color: @cRed500;
-		opacity: 0.3;
-		letter-spacing: var(--letter-spacing);
-		z-index: 6;
-	}
+    &__uplink {
+        white-space: nowrap;
+        color: @cRedOrange200;
+    }
 
-	&__glitch {
-		position: absolute;
-		inset: 0;
-		background: @cRed500;
-		opacity: 0;
-		pointer-events: none;
-		z-index: 11;
-	}
+    // ── id / clock ──
+
+    &__id {
+        position: absolute;
+        top: unit((28 / 16), rem);
+        right: unit((34 / 16), rem);
+        font-size: var(--fs10);
+        color: @cRed500;
+        letter-spacing: var(--letter-spacing);
+        opacity: 0.75;
+        z-index: 6;
+        text-align: right;
+        line-height: 1.6;
+    }
+
+    &__clock {
+        &::after {
+            content: "00:00:00";
+            animation: gl-clock-pulse 2s ease-in-out infinite;
+        }
+    }
+
+    // ── center ──
+
+    &__main {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: var(--m24);
+    }
+
+    &__center {
+        --size: unit((220 / 16), rem);
+        .size(var(--size));
+        position: relative;
+        z-index: 7;
+
+        svg {
+            display: block;
+        }
+
+        [class*="ring-outer"] {
+            transform-box: view-box;
+            transform-origin: 50% 50%;
+            animation: gl-spin-cw @gl-loader-ring-speed linear infinite;
+        }
+
+        [class*="ring-mid"] {
+            transform-box: view-box;
+            transform-origin: 50% 50%;
+            animation: gl-spin-ccw @gl-loader-ring-mid-speed linear infinite;
+        }
+
+        [class*="arc"] {
+            transform-box: view-box;
+            transform-origin: 50% 50%;
+            animation: gl-spin-cw @gl-loader-arc-speed linear infinite;
+        }
+
+        [class*="hex"]:not([class*="fill"]) {
+            transform-box: view-box;
+            transform-origin: 50% 50%;
+            animation: gl-spin-cw @gl-loader-hex-speed linear infinite;
+        }
+
+        [class*="hex-fill"] {
+            animation: gl-hex-pulse 3s ease-in-out infinite;
+        }
+    }
+
+    // ── pct-wrap ──
+
+    &__pct-wrap {
+        position: absolute;
+        inset: 0;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+
+    &__pct {
+        display: inline-grid;
+        grid-template-columns: 100%;
+        position: relative;
+        text-align: center;
+        font-size: var(--fs32);
+        font-weight: bold;
+        color: @cRedOrange450;
+        letter-spacing: var(--letter-spacing);
+        text-shadow: 0 0 var(--m12) fade(@cRed500, 70);
+
+        > span {
+            grid-row: 1;
+            grid-column: 1;
+            text-align: center;
+            opacity: 0;
+            animation: gl-pct-flash (@gl-pct-step * 100) forwards;
+
+            // Generate 100 animation-delays: 0s, 0.06s, …, 5.94s
+            .gen-pct-delays(100);
+
+            // Last span (99%) holds visible after count-up
+            &:last-child {
+                animation-name: gl-pct-last;
+            }
+        }
+    }
+
+    &__label {
+        font-size: var(--fs12);
+        color: @cRedOrange400;
+        letter-spacing: var(--letter-spacing);
+        opacity: 0.7;
+    }
+
+    // ── status line ──
+
+    &__status-line-info {
+        display: flex;
+        flex-direction: column;
+        gap: var(--m20);
+    }
+
+    &__status-line {
+        text-align: center;
+        z-index: 6;
+    }
+
+    &__status-text {
+        position: relative;
+        font-size: var(--fs12);
+        color: @cRed500;
+        letter-spacing: var(--letter-spacing);
+        opacity: 0.85;
+
+        > span {
+            position: absolute;
+            left: 0;
+            right: 0;
+            opacity: 0;
+            animation: gl-cycle-fade @gl-status-duration infinite;
+
+            &:nth-child(1) {
+                animation-delay: 0s;
+            }
+
+            &:nth-child(2) {
+                animation-delay: 0.2s;
+            }
+
+            &:nth-child(3) {
+                animation-delay: 0.4s;
+            }
+
+            &:nth-child(4) {
+                animation-delay: 0.8s;
+            }
+
+            &:nth-child(5) {
+                animation-delay: 1s;
+            }
+
+            &:nth-child(6) {
+                animation-delay: 1.2s;
+            }
+        }
+    }
+
+    // ── progress ──
+
+    &__progress-track {
+        width: unit((280 / 16), rem);
+        height: 3px;
+        background: fade(@cRed500, 15);
+        z-index: 6;
+        border-radius: 2px;
+        overflow: hidden;
+    }
+
+    &__progress-fill {
+        height: 100%;
+        width: 0;
+        background: linear-gradient(90deg, @cRed500, @cRedOrange300);
+        box-shadow: 0 0 var(--m8) @cRed500;
+        animation: gl-progress (@gl-pct-step * 100) ease-out forwards;
+    }
+
+    // ── hexdump ──
+
+    &__hexdump {
+        position: absolute;
+        display: inline-grid;
+        grid-template-columns: 100%;
+        bottom: var(--m8);
+        left: unit((34 / 16), rem);
+        font-size: var(--fs8);
+        color: @cRed500;
+        letter-spacing: var(--letter-spacing);
+        z-index: 6;
+
+        > span {
+            display: block;
+            opacity: 0;
+            animation: gl-cycle-fade-3 @gl-hexdump-duration infinite;
+            grid-column: 1;
+            grid-row: 1;
+
+            &:nth-child(1) {
+                animation-delay: 0s;
+            }
+
+            &:nth-child(2) {
+                animation-delay: 0.1s;
+            }
+
+            &:nth-child(3) {
+                animation-delay: 0.2s;
+            }
+        }
+    }
+
+    // ── glitch ──
+
+    &__glitch {
+        position: absolute;
+        inset: 0;
+        background: @cRed500;
+        opacity: 0;
+        pointer-events: none;
+        z-index: 11;
+        animation: gl-glitch 60s step-end infinite;
+    }
+
+    &--glich {
+        &__scanlines {
+            background: repeating-linear-gradient(0deg,
+            fade(@cRed500, 2.5) 0px,
+            fade(@cRed500, 2.5) 1px,
+            transparent 1px,
+            transparent 3px);
+        }
+    }
 }
