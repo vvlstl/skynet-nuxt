@@ -22,21 +22,21 @@
     --btn-disabled-icon-color: currentColor;
 
     --btn-border-width: 1px;
-    --btn-height: 3rem;
+    --btn-height: unit((48 / 16), rem);
     --btn-icon-gap: var(--m4);
     --btn-padding: 0 var(--m24);
     --btn-border-radius: 0;
-    --btn-icon-size-container: 1.5rem;
+    --btn-icon-size-container: unit((24 / 16), rem);
     --btn-icon-size: 1rem;
 
-    --btn-box-shadow: calc(-1 * 0.125rem) 0.125rem 0.75rem 0 fade(@cWhite, 10) inset;
+    --btn-box-shadow: calc(-1 * var(--m2)) var(--m2) var(--m12) 0 fade(@cWhite, 10) inset;
 
     --btn-fw: 500;
     --btn-fs: var(--fs16);
     --btn-font: @font;
 
     --btn-text-flex-grow: 0;
-    --btn-blur-size: .1rem;
+    --btn-blur-size: 2px;
 
     .clear-link();
     .clear-btn();
