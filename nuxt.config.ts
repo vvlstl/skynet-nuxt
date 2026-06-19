@@ -1,7 +1,4 @@
 import {fileURLToPath, URL} from 'node:url';
-import {createResolver} from 'nuxt/kit';
-
-const {resolve} = createResolver(import.meta.url);
 
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
@@ -44,13 +41,16 @@ export default defineNuxtConfig({
                 }
             }
         },
-        //TODO добавить tree.js
         build: {
             rollupOptions: {
                 output: {
                     manualChunks: (id: string) => {
                         if (id.includes('gsap')) {
                             return 'vendor-gsap'
+                        }
+
+                        if (id.includes('three')) {
+                            return 'vendor-three'
                         }
                     }
                 },
