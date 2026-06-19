@@ -13,7 +13,7 @@
 			<Transition name="fade">
 				<div
 					v-if="!supported"
-					class="globe__fallback"
+					class="globe__status"
 				>
 					<slot name="fallback"></slot>
 				</div>
@@ -105,50 +105,3 @@
 		})
 	</script>
 
-	<style lang="less" scoped>
-	//TODO унести в less
-		.globe {
-			position: relative;
-			width: 100%;
-			height: 100%;
-			min-height: 320px;
-			touch-action: none;
-
-			&--hidden {
-				opacity: 0;
-				pointer-events: none;
-			}
-
-			&__status {
-				position: absolute;
-				top: 50%;
-				left: 50%;
-				transform: translate(-50%, -50%);
-				z-index: 2;
-				color: #ff2200;
-				font-size: 13px;
-				letter-spacing: 2px;
-				opacity: 0.8;
-				pointer-events: none;
-			}
-
-			&__fallback {
-				position: absolute;
-				inset: 0;
-				z-index: 3;
-				display: flex;
-				align-items: center;
-				justify-content: center;
-				background: radial-gradient(circle at center, rgba(255, 34, 0, 0.15), transparent 70%);
-			}
-
-			&__fallback-text {
-				color: #ff2200;
-				font-family: monospace;
-				font-size: 0.875rem;
-				letter-spacing: 0.05em;
-				text-transform: uppercase;
-			}
-		}
-
-	</style>

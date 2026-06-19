@@ -175,36 +175,3 @@
 	)
 </script>
 
-<style lang="less" scoped>
-//TODO разнести по less
-	.three-scene {
-		position: relative;
-		width: 100%;
-		height: 100%;
-		min-height: 320px;
-		overflow: hidden;
-
-		&--hidden {
-			opacity: 0;
-			pointer-events: none;
-		}
-
-		&__fallback {
-			position: absolute;
-			inset: 0;
-			display: flex;
-			align-items: center;
-			justify-content: center;
-			background: radial-gradient(circle at center, rgba(74, 163, 255, 0.15), transparent 70%);
-		}
-
-		&__fallback-text {
-			color: #4aa3ff;
-			font-family: monospace;
-			font-size: 0.875rem;
-			letter-spacing: 0.05em;
-			text-transform: uppercase;
-		}
-	}
-
-</style>

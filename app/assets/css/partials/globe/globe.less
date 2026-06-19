@@ -1,0 +1,25 @@
+@import "../../_var";
+
+.globe {
+	position: relative;
+	width: 100%;
+	height: 100%;
+	min-height: 320px;
+	touch-action: none;
+
+	&--hidden {
+		opacity: 0;
+		pointer-events: none;
+	}
+
+	&__status {
+		position: absolute;
+		top: 50%;
+		right:15%;
+		transform: translate(-100%, -50%);
+		color: fade(@cRed500, 40);
+		font-size: var(--fs16);
+		letter-spacing: var(--letter-spacing);
+		text-transform: uppercase;
+	}
+}
