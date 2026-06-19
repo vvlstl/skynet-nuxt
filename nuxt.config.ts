@@ -20,6 +20,11 @@ export default defineNuxtConfig({
         '@nuxt/test-utils'
     ],
 
+    hints: {
+        features: {
+            lazyLoad: false
+        }
+    },
 
     css: [
         '~/assets/css/style.less'
