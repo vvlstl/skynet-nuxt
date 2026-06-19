@@ -4,7 +4,8 @@
     position: relative;
     overflow: hidden;
     box-sizing: border-box;
-    padding: 0 var(--page-gutter);
+    padding: var(--default-header-height) var(--page-gutter) 0 var(--page-gutter);
+    margin-top: calc(-1 * var(--default-header-height));
 
     &::before {
         .pseudo();
@@ -19,8 +20,9 @@
         grid-template-columns: 100%;
         gap: var(--grid-gap);
         justify-content: space-between;
-        min-height: 100vh;
+        min-height: calc(100vh - var(--default-header-height));
         box-sizing: border-box;
+        padding: var(--m48) 0;
     }
 
     &__info {
