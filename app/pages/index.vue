@@ -7,13 +7,14 @@
 		@connect="onConnect"
 	/>
 	<TelegramSection/>
-	<Footer/>
 </template>
 
 <script setup lang="ts">
-	import {ref, onMounted} from 'vue'
+	import {onMounted} from 'vue'
 	import {gsap} from 'gsap'
 	import {ScrollTrigger} from 'gsap/ScrollTrigger'
+	import Footer from "~/components/layout/Footer.vue";
+	import Header from "~/components/layout/Header.vue";
 
 	gsap.registerPlugin(ScrollTrigger)
 
