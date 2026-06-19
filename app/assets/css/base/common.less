@@ -8,10 +8,6 @@
     .css-vars();
 }
 
-html, body {
-    scrollbar-gutter: stable;
-}
-
 html {
     height: 100%;
     min-height: 100vh;
@@ -45,6 +41,12 @@ body {
     * {
         font-synthesis: none;
         overflow-anchor: none;
+    }
+
+    .body {
+        &--loaded {
+            scrollbar-gutter: stable;
+        }
     }
 }
 
