@@ -1,0 +1,38 @@
+@import "../_var";
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: var(--m10);
+    text-decoration: none;
+    flex-shrink: 0;
+
+    &__icon {
+        width: unit((48 / 16), rem);
+        height: unit((24 / 16), rem);
+        flex-shrink: 0;
+    }
+
+    &__text {
+        display: flex;
+        flex-direction: column;
+    }
+
+    &__title {
+        font: 700 var(--fs16) / 1 @fontOrbitron;
+        letter-spacing: var(--m4);
+        color: @cWhite;
+        text-transform: uppercase;
+
+        strong {
+            color: @cRed900;
+        }
+    }
+
+    &__subtitle {
+        font-size: var(--fs10);
+        letter-spacing: var(--letter-spacing);
+        color: @cGray500;
+        text-transform: uppercase;
+    }
+}

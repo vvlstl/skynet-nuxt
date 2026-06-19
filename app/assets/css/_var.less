@@ -25,16 +25,7 @@
     --page-gutter: var(--m32);
     --grid-gap: var(--m8);
 
-    --default-header-height: 6.5rem;
-    --default-header-margin: 0rem;
-
-    --fixed-header-height: 2.625rem;
-    --fixed-header-margin: var(--m2);
-
-    --header-height: var(--default-header-height);
-
-    --sticky-position-top: calc(var(--fixed-header-height) + 2 * var(--fixed-header-margin));
-    --header-compensation: 2.875rem;
+    --default-header-height: calc((var(--m18) * 2) + unit((48 / 16), rem));
 
     --bottom-panel-height: 0rem;
 
@@ -319,6 +310,7 @@
 @cGray800: #333;
 @cGray500: #8a8a8a;
 
+@cRed900: #9D0000;
 @cRed500: #ff1b1b;
 @cRed400: #ff4040;
 @cRedOrange: #ff2200;
@@ -328,6 +320,7 @@
 @cRedOrange300: #ff6633;
 @cRedOrange200: #ff6644;
 @cGreen400: #66ff44;
+
 
 @cStroke: fade(@cWhite, 8);
 @cOverlay: fade(@cBlack, 50);
