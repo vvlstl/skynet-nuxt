@@ -66,7 +66,7 @@
 		}
 	})
 
-	const Globe = (await import('~/components/Globe.vue')).default
+	const Globe = (await import('~/components/partials/globe/Globe.vue')).default
 
 	function installRAFMock() {
 		let cb: FrameRequestCallback | null = null
