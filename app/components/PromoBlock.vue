@@ -67,10 +67,16 @@
 			</div>
 			<div class="promo-block__globus">
 				<ClientOnly>
-					<Globe/>
+					<div
+						class="promo-block__globus-fallback"
+						v-if="!showGlobe"
+					>
+						<GlobeLoader/>
+					</div>
+					<Globe v-else/>
 					<template #fallback>
 						<div class="promo-block__globus-fallback">
-							LOADING THE WEB GLOBE...
+							<GlobeLoader/>
 						</div>
 					</template>
 				</ClientOnly>
@@ -81,5 +87,16 @@
 
 <script setup lang="ts">
 
+	const showGlobe = ref<boolean>(false)
+	const MIN_LOADER_DELAY = 2500
+
+	onMounted(() => {
+		setTimeout(() => {
+			showGlobe.value = true
+		}, MIN_LOADER_DELAY)
+	})
+
 	import Btn from "~/components/ui/Btn.vue";
+	import Globe from "~/components/partials/globe/Globe.vue";
+	import GlobeLoader from "~/components/partials/globe/GlobeLoader.vue";
 </script>
