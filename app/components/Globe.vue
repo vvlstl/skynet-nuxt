@@ -10,7 +10,7 @@
 			>
 				{{ statusText }}
 			</div>
-			<Transition name="globe-fade">
+			<Transition name="fade">
 				<div
 					v-if="!supported"
 					class="globe__fallback"
@@ -151,13 +151,4 @@
 			}
 		}
 
-		.globe-fade-enter-active,
-		.globe-fade-leave-active {
-			transition: opacity 0.4s ease;
-		}
-
-		.globe-fade-enter-from,
-		.globe-fade-leave-to {
-			opacity: 0;
-		}
 	</style>
