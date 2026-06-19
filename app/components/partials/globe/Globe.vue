@@ -85,6 +85,7 @@
 			}else {
 				//сдвигаем глобус в парво
 				ctx.root.position.x = 1
+
 			}
 
 			ready.value = true
