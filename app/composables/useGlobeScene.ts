@@ -187,7 +187,7 @@ function buildGraticule(radius: number): THREE.Group {
 			fov = 42,
 			near = 0.1,
 			far = 100,
-			cameraZ = 3.2,
+			cameraZ = 4.2,
 			autoRotateSpeed = 0.0025,
 		} = options
 

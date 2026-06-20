@@ -84,7 +84,7 @@
 				return
 			}else {
 				//сдвигаем глобус в парво
-				ctx.root.position.x = 1
+				ctx.root.position.x = 1.5
 
 			}
 
