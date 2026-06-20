@@ -1,0 +1,44 @@
+@import "../../_var";
+
+.header {
+    position: sticky;
+    top: 0;
+    z-index: @headerZIndex;
+
+    &__inner {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: var(--m18) var(--m32);
+        gap: var(--m24);
+    }
+
+    &__actions {
+        display: flex;
+        align-items: center;
+        gap: var(--m12);
+        flex-shrink: 0;
+    }
+
+    &__menu-btn {
+        --btn-icon-size: unit((20 / 16), rem);;
+    }
+
+    @media @mediaMoreSm {
+        &__menu-btn {
+            display: none;
+        }
+    }
+
+    @media @mediaSm {
+        &__inner {
+            padding: var(--m14) var(--m16);
+        }
+
+        &__btn-bot,
+        &__nav {
+            display: none;
+        }
+    }
+}
+

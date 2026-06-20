@@ -6,7 +6,7 @@
 		:plans="pricingPlans"
 		@connect="onConnect"
 	/>
-	<TelegramSection/>
+<!--	<TelegramSection/>-->
 </template>
 
 <script setup lang="ts">

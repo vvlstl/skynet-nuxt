@@ -63,3 +63,20 @@
     opacity: 0;
     transform: translateX(0);
 }
+
+// --- Slide transition ---
+.slide-enter-from,
+.slide-leave-to {
+    transform: translateX(100%); /* или 100% если меню справа */
+}
+
+
+.slide-enter-active,
+.slide-leave-active {
+    .transit(~'transform', @transitTimeMedium);
+}
+
+.slide-enter-to,
+.slide-leave-from {
+    transform: translateX(0);
+}

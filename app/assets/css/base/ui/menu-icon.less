@@ -1,0 +1,49 @@
+@import "../../_var.less";
+
+.menu-icon {
+    --menu-icon-width: unit((20 / 16), rem);;
+    --menu-icon-height: unit((14 / 16), rem);
+    --menu-icon-line-width: 1px;
+
+    .clear-link();
+    .size(var(--menu-icon-width), var(--menu-icon-height));
+    display: block;
+    position: relative;
+    z-index: 2;
+    transform: translateZ(0);
+
+    i {
+        .size(var(--menu-icon-width), var(--menu-icon-line-width));
+        .transit(transform);
+        position: absolute;
+        top: calc(50% - var(--menu-icon-line-width) / 2);
+        left: 0;
+        display: block;
+        background: currentColor;
+        will-change: transform;
+
+        &:nth-child(1) {
+            transform: translateY(calc(-.5 * var(--menu-icon-height)));
+        }
+
+        &:nth-child(3) {
+            transform: translateY(calc(.5 * var(--menu-icon-height)));
+        }
+    }
+
+    &--cross {
+        i {
+            &:nth-child(1) {
+                transform: rotate(45deg) scaleY(1.5) scaleX(.7);
+            }
+
+            &:nth-child(2) {
+                transform: scale(0);
+            }
+
+            &:nth-child(3) {
+                transform: rotate(-45deg) scaleY(1.5) scaleX(.7);
+            }
+        }
+    }
+}

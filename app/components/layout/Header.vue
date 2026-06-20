@@ -1,46 +1,64 @@
 <template>
 	<header class="header">
 		<div class="header__inner">
-			<!-- Логотип -->
 			<Logo/>
 
-			<!-- Навигация -->
-			<nav class="nav" :class="{ 'nav--open': isMenuOpen }">
-				<a href="#advantages" class="nav__link" @click="closeMenu">Преимущества</a>
-				<a href="#servers" class="nav__link" @click="closeMenu">Серверы</a>
-				<a href="#pricing" class="nav__link" @click="closeMenu">Тарифы</a>
-				<a href="#how-it-works" class="nav__link" @click="closeMenu">Как это работает</a>
-				<a href="#faq" class="nav__link" @click="closeMenu">FAQ</a>
+			<nav class="header__nav">
+				<AnchorsLink :items="navLinks"/>
 			</nav>
 
-			<!-- Кнопка Telegram Bot -->
-			<Btn
-				text="Telegram Bot"
-				:is-bordered="true"
-			>
-				<template #iconLeft>
-								<span class="btn__icon">
-									<Icon name="hugeicons:telegram"/>
-								</span>
-				</template>
-			</Btn>
+			<div class="header__actions">
+				<Btn
+					class="header__btn-bot"
+					text="Telegram Bot"
+					:is-bordered="true"
+				>
+					<template #iconLeft>
+						<span class="btn__icon">
+							<Icon name="hugeicons:telegram"/>
+						</span>
+					</template>
+				</Btn>
 
-			<!-- Бургер для мобилки -->
-			<button class="burger" :class="{ 'burger--active': isMenuOpen }" @click="toggleMenu" aria-label="Меню">
-				<span></span>
-				<span></span>
-				<span></span>
-			</button>
+				<button
+					class="btn btn--square header__menu-btn"
+					@click.prevent="toggleMenu()"
+				>
+					<span class="btn__icon">
+						<MenuIcon :is-cross="isMenuOpen"/>
+					</span>
+				</button>
+			</div>
+
 		</div>
+		<transition name="slide">
+			<BurgerMenu
+				v-if="isMenuOpen"
+				:menu="navLinks"
+				@close="closeMenu"
+				class="header__menu-burger"
+			/>
+		</transition>
 	</header>
 </template>
 
 <script setup lang="ts">
 	import {ref} from 'vue'
 	import Btn from "~/components/ui/Btn.vue";
-	import Logo from "~/components/common/Logo.vue";
+	import Logo from "~/components/Logo.vue";
+	import MenuIcon from "~/components/common/MenuIcon.vue";
+	import BurgerMenu from "~/components/layout/BurgerMenu.vue";
+	import AnchorsLink from "~/components/common/AnchorsLink.vue";
+	import type {TLink} from "~/types/TLink";
 
-	const isMenuOpen = ref(false)
+	const navLinks: TLink[] = [
+		{text: 'Advantages', url: '#advantages'},
+		{text: 'Pricing', url: '#pricing'},
+		{text: 'How it works', url: '#how-it-works'},
+		{text: 'FAQ', url: '#faq'},
+	];
+
+	const isMenuOpen = ref<boolean>(false)
 
 	function toggleMenu() {
 		isMenuOpen.value = !isMenuOpen.value

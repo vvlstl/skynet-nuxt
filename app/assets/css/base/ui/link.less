@@ -1,0 +1,113 @@
+@import "../../_var.less";
+
+/**
+ * Текстовые ссылки
+ */
+:root {
+    --link-color: currentColor;
+    --link-icon-color: currentColor;
+    --link-border-color: currentColor;
+
+    --link-hover-color: color-mix(in hsl, currentColor 80%, transparent);
+    --link-hover-icon-color: currentColor;
+    --link-hover-border-color: color-mix(in hsl, currentColor 60%, transparent);
+
+    --link-selected-color: color-mix(in hsl, currentColor 64%, transparent);
+    --link-selected-icon-color: currentColor;
+    --link-selected-border-color: color-mix(in hsl, currentColor 50%, transparent);
+
+    --link-border-width: 0rem;
+    --link-border-style: solid;
+    --link-gap: var(--m8);
+    --link-icon-size-container: round-rem(16);
+    --link-icon-size: round-rem(14);
+}
+
+.link {
+    .link-common();
+
+    &__icon {
+        .container(var(--link-icon-size-container));
+        position: relative;
+        color: var(--link-icon-color);
+
+        svg {
+            .size(var(--link-icon-size));
+        }
+    }
+
+    &__text {
+        flex: 1;
+        position: relative;
+        text-align: left;
+    }
+
+    // Ссылка с подчёркиванием
+    &--uline,
+    &--hover-uline,
+    &--dashed,
+    &--hover-dashed {
+        .link-uline-common();
+    }
+
+    &--uline,
+    &--hover-uline {
+        text-decoration-line: underline;
+        text-decoration-style: solid;
+    }
+
+    &--dashed,
+    &--hover-dashed {
+        text-decoration-line: underline;
+        text-decoration-style: dashed;
+    }
+
+    &--hover-dashed {
+        .hover({
+            text-decoration-line: underline;
+            text-decoration-style: dashed;
+        }, false, false);
+    }
+
+    &--hover-uline {
+        .hover({
+            text-decoration-line: underline;
+            text-decoration-style: solid;
+        }, false, false);
+    }
+
+    // Выбранная ссылка
+    &--selected,
+    &--current {
+        pointer-events: var(--link-selected-pointer-events, none);
+        color: var(--link-selected-color);
+        text-decoration-color: var(--link-selected-border-color);
+
+        .link {
+            &__icon {
+                color: var(--link-selected-icon-color);
+            }
+        }
+    }
+
+    &--disabled,
+    &:disabled,
+    &[disabled] {
+        opacity: @disabledOpacity;
+        pointer-events: none;
+    }
+
+    &--static {
+        pointer-events: none;
+    }
+
+
+    /**
+     * Цветовые темы ссылок
+     */
+
+    &--white-light {
+        --link-color: fade(@cWhite, 50);
+        --link-hover-color: @cWhite;
+    }
+}
