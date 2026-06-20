@@ -4,8 +4,7 @@
     position: relative;
     overflow: hidden;
     box-sizing: border-box;
-    padding: var(--default-header-height) var(--page-gutter) 0 var(--page-gutter);
-    margin-top: calc(-1 * var(--default-header-height));
+    padding: 0 var(--page-gutter);
 
     &::before {
         .pseudo();
@@ -95,6 +94,9 @@
     }
 
     @media @mediaMoreSm {
+        margin-top: calc(-1 * var(--default-header-height));
+        padding-top: calc(var(--default-header-height));
+
         &__info,
         &__globus {
             grid-column: 1;

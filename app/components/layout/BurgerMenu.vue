@@ -5,7 +5,7 @@
 				v-for="(item, index) in menu"
 				:key="index"
 				:href="item.url"
-				class="burger-menu__link"
+				class="link burger-menu__link"
 				@click.prevent="onClick(item.url)"
 			>
 				{{ item.text }}
@@ -16,21 +16,23 @@
 
 <script setup lang="ts">
 
-import type {TLink} from "~/types/TLink";
+	import type {TLink} from "~/types/TLink";
 
-type TComponentProps = {
-	menu: TLink[];
-};
+	type TComponentProps = {
+		menu: TLink[];
+	};
 
-const emit = defineEmits<{
-	close: [];
-}>();
+	defineProps<TComponentProps>();
 
-function onClick(url: string) {
-	emit('close');
-	const el = document.querySelector(url);
-	if (el) {
-		el.scrollIntoView({ behavior: 'smooth' });
+	const emit = defineEmits<{
+		close: [];
+	}>();
+
+	function onClick(url: string) {
+		emit('close');
+		const el = document.querySelector(url);
+		if (el) {
+			el.scrollIntoView({behavior: 'smooth'});
+		}
 	}
-}
 </script>

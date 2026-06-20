@@ -10,12 +10,13 @@
 			<div class="header__actions">
 				<Btn
 					class="header__btn-bot"
-					text="Telegram Bot"
+					text="LogIn"
+					theme="white"
 					:is-bordered="true"
 				>
 					<template #iconLeft>
 						<span class="btn__icon">
-							<Icon name="hugeicons:telegram"/>
+							<Icon name="hugeicons:user-account"/>
 						</span>
 					</template>
 				</Btn>
