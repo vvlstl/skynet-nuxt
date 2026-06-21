@@ -34,6 +34,16 @@ export default defineNuxtConfig({
         '@': fileURLToPath(new URL('./', import.meta.url))
     },
 
+    icon: {
+        // localApiEndpoint оставляем дефолтным (true) — иконки идут через
+        // собственный server route Nuxt с кэшированием, а не напрямую из браузера
+        serverBundle: {
+            // зашиваем коллекцию в сборку — нет сетевых запросов вообще,
+            // ни в dev, ни в проде
+            collections: ['hugeicons']
+        }
+    },
+
     vite: {
         css: {
             preprocessorOptions: {

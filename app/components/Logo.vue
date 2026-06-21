@@ -1,5 +1,5 @@
 <template>
-	<NuxtLink to="/public" class="logo">
+	<NuxtLink to="/" class="logo">
 		<svg
 			xmlns="http://www.w3.org/2000/svg"
 			viewBox="0 0 47 24"

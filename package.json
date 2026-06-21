@@ -36,6 +36,7 @@
     "world-atlas": "^2.0.2"
   },
   "devDependencies": {
+    "@iconify-json/hugeicons": "^1.2.29",
     "@vitest/coverage-v8": "^4.1.8",
     "@vue/test-utils": "^2.4.10",
     "happy-dom": "^20.9.0",
