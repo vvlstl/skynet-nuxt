@@ -61,7 +61,7 @@
     letter-spacing: var(--letter-spacing);
     text-transform: uppercase;
 
-    &:not(.btn--bordered) &:not(.btn--outline) {
+    &:not(:where(.btn--bordered, .btn--outline)) {
         @hoverRuleset: {
             .btn {
                 &__line {
@@ -93,9 +93,7 @@
                     opacity: 0;
                 }
             }
-            box-shadow: var(--btn-box-shadow);
-            transition-delay: 0.5s;
-            transition-duration: .5s;
+            .btn-hover-shadow();
         }
 
         .hover(@hoverRuleset: @hoverRuleset, @activeRuleset: @activeRuleset);
@@ -348,9 +346,7 @@
         }
 
         @hoverRuleset: {
-            box-shadow: var(--btn-box-shadow);
-            transition-delay: 0.5s;
-            transition-duration: .5s;
+            .btn-hover-shadow();
 
             .btn {
                 &__line {
