@@ -1,5 +1,8 @@
 <template>
-	<header class="header">
+	<header
+		class="header"
+		ref="root"
+	>
 		<div class="header__inner">
 			<Logo/>
 
@@ -60,6 +63,7 @@
 		{text: 'FAQ', url: '#faq'},
 	];
 
+	const root = useTemplateRef<HTMLElement>('root')
 	const isMenuOpen = ref<boolean>(false)
 
 	function toggleMenu() {
@@ -69,4 +73,8 @@
 	function closeMenu() {
 		isMenuOpen.value = false
 	}
+
+	watch(isMenuOpen, () => {
+		lockScroll(isMenuOpen.value, root.value);
+	});
 </script>
