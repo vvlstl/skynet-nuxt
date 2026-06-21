@@ -1,6 +1,6 @@
 <template>
 	<PromoBlock/>
-	<Features :features="features"/>
+	<FeaturesSection :features="features"/>
 	<NetworkSection/>
 	<PricingSection
 		:plans="pricingPlans"
@@ -16,6 +16,7 @@
 	import PromoBlock from "~/components/sections/PromoBlock.vue";
 	import NetworkSection from "~/components/sections/NetworkSection.vue";
 	import PricingSection from "~/components/sections/PricingSection.vue";
+	import FeaturesSection from "~/components/sections/Features.vue";
 
 	gsap.registerPlugin(ScrollTrigger)
 
