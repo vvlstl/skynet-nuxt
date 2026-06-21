@@ -12,7 +12,7 @@
 					class="header__btn-bot"
 					text="LogIn"
 					size="md"
-					theme="white"
+					theme="grey"
 					:is-bordered="true"
 				>
 					<template #iconLeft>

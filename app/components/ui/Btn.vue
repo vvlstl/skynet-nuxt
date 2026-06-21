@@ -28,8 +28,8 @@
 		text: string;
 		isLink?: boolean;
 		theme?: string;
-		isBordered?: boolean;
 		size?: 'xs' | 'sm' | 'md' | 'lg' | 'xl';
+		isBordered?: boolean;
 	};
 
 	defineProps<TComponentProps>();

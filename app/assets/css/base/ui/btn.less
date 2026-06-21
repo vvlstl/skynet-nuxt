@@ -61,7 +61,7 @@
     letter-spacing: var(--letter-spacing);
     text-transform: uppercase;
 
-    &:not(.btn--bordered) {
+    &:not(.btn--bordered) &:not(.btn--outline) {
         @hoverRuleset: {
             .btn {
                 &__line {
@@ -200,6 +200,26 @@
         transition-delay: 0.45s;
     }
 
+    &__corner {
+        .size(var(--btn-fs));
+        position: absolute;
+        bottom: 0;
+        right: 0;
+
+        &:after {
+            .pseudo();
+            .transit();
+            height: calc(var(--btn-border-width) * 2);
+            width: 200%;
+            top: 50%;
+            left: 50%;
+            translate: -45% -50%;
+            transform: rotate(135deg);
+            background-color: var(--btn-border-color);
+        }
+
+    }
+
     &__count {
         opacity: .4;
         margin-left: var(--m4);
@@ -209,6 +229,7 @@
     &--md {
         --btn-height: unit((32 / 16), rem);
         --btn-padding: 0 var(--m12);
+        --btn-fs: var(--fs12);
     }
 
     // Модификаторы стейта
@@ -243,6 +264,17 @@
         --btn-bg-color: transparent;
         --btn-border-color: @cWhite200;
         --btn-hover-border-color: fade(@cWhite, 8);
+    }
+
+    &--grey {
+        --btn-bg-color: @cBlack600;
+        --btn-border-color: @cBlack500;
+        --btn-color: @cWhite100;
+
+        --btn-hover-bg-color: fade(@cRed800, 12);
+        --btn-hover-border-color: @cRed800;
+        --btn-hover-color: @cRed800;
+
     }
 
 
@@ -347,7 +379,27 @@
     }
 
     &--outline {
+        border: var(--btn-border-width) solid var(--btn-border-color);
+        clip-path: polygon(0 0, 100% 0, 100% calc(100% - var(--btn-fs)), calc(100% - var(--btn-fs)) 100%, 0 100%);
 
+        @hoverRuleset: {
+            --btn-icon-color: var(--btn-hover-icon-color);
+
+            color: var(--btn-hover-color);
+            border-color: var(--btn-hover-border-color);
+            background-color: var(--btn-hover-bg-color);
+
+            .btn {
+                &__corner {
+                    &:after {
+                        background-color: var(--btn-hover-border-color);
+                    }
+
+                }
+            }
+        }
+
+        .hover(@hoverRuleset: @hoverRuleset, @activeRuleset: @activeRuleset);
     }
 
 }

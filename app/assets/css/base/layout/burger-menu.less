@@ -5,17 +5,18 @@
     position: fixed;
     top: var(--default-header-height);
     left: 0;
+    box-sizing: border-box;
+    padding: var(--m16) var(--page-gutter);
     background: @cBlack700;
 
     &__nav {
         display: flex;
         flex-direction: column;
+        gap: var(--m8);
     }
 
-    &__link {
-        box-sizing: border-box;
-        padding: var(--m24);
-        color: @cWhite;
-        font-size: var(--fs18);
+    &__btn {
+        text-align: left;
+        justify-content: left;
     }
 }

@@ -1,15 +1,23 @@
 <template>
 	<div class="burger-menu">
 		<nav class="burger-menu__nav">
-			<a
+			<CyberBtn
+				class="burger-menu__btn"
 				v-for="(item, index) in menu"
-				:key="index"
+				:isLink="true"
 				:href="item.url"
-				class="link burger-menu__link"
+				:key="index"
+				:label="item.text"
+				theme="grey"
 				@click.prevent="onClick(item.url)"
 			>
-				{{ item.text }}
-			</a>
+			</CyberBtn>
+			<CyberBtn
+				class="burger-menu__btn"
+				theme="grey"
+				label="LogIn"
+			>
+			</CyberBtn>
 		</nav>
 	</div>
 </template>
@@ -17,6 +25,7 @@
 <script setup lang="ts">
 
 	import type {TLink} from "~/types/TLink";
+	import CyberBtn from "~/components/ui/CyberBtn.vue";
 
 	type TComponentProps = {
 		menu: TLink[];
