@@ -18,11 +18,12 @@
 <!--			@click.prevent.stop="handleClick(item)"-->
 <!--			ref="menuItems"-->
 <!--		/>-->
-		<a
+		<CyberLink
 			v-for="(item, index) in items"
 			:key="index"
-			class="anchors-link__item link"
-			v-html="item.text"
+			class="anchors-link__item"
+			:label="item.text"
+			theme="grey"
 			ref="menuItems"
 		/>
 	</div>
@@ -31,6 +32,7 @@
 <script setup lang="ts">
 	import {computed, onBeforeUnmount, onMounted, ref} from 'vue';
 	import type {TLink} from "~/types/TLink";
+	import CyberLink from "~/components/ui/CyberLink.vue";
 
 	type TAnchor = {
 		hash: string;
