@@ -47,8 +47,8 @@
 <script setup lang="ts">
 	import {ref} from 'vue'
 	import Btn from "~/components/ui/Btn.vue";
-	import Logo from "~/components/Logo.vue";
-	import MenuIcon from "~/components/common/MenuIcon.vue";
+	import Logo from "~/components/common/Logo.vue";
+	import MenuIcon from "~/components/ui/MenuIcon.vue";
 	import BurgerMenu from "~/components/layout/BurgerMenu.vue";
 	import AnchorsLink from "~/components/common/AnchorsLink.vue";
 	import type {TLink} from "~/types/TLink";

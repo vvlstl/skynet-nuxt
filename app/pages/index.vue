@@ -13,8 +13,9 @@
 	import {onMounted} from 'vue'
 	import {gsap} from 'gsap'
 	import {ScrollTrigger} from 'gsap/ScrollTrigger'
-	import Footer from "~/components/layout/Footer.vue";
-	import Header from "~/components/layout/Header.vue";
+	import PromoBlock from "~/components/sections/PromoBlock.vue";
+	import NetworkSection from "~/components/sections/NetworkSection.vue";
+	import PricingSection from "~/components/sections/PricingSection.vue";
 
 	gsap.registerPlugin(ScrollTrigger)
 
