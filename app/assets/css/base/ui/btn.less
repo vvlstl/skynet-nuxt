@@ -207,14 +207,8 @@
 
     // модификаторы размера
     &--md {
-        --btn-height: 2rem;
-        --btn-fs: var(--fs10);
-    }
-
-    &--sm {
-        --btn-height: 1.375rem;
-        --btn-fs: var(--fs10);
-        --btn-padding: 0 var(--m8);
+        --btn-height: unit((32 / 16), rem);
+        --btn-padding: 0 var(--m12);
     }
 
     // Модификаторы стейта
@@ -350,6 +344,10 @@
 
         }
         .hover(@hoverRuleset: @hoverRuleset, @activeRuleset: @activeRuleset);
+    }
+
+    &--outline {
+
     }
 
 }

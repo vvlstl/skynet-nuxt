@@ -4,6 +4,7 @@
 		class="btn"
 		:class="{
 			[`btn--${theme}`]: theme,
+			[`btn--${size}`]: size,
 			'btn--bordered': isBordered,
 		}"
 	>
@@ -28,6 +29,7 @@
 		isLink?: boolean;
 		theme?: string;
 		isBordered?: boolean;
+		size?: 'xs' | 'sm' | 'md' | 'lg' | 'xl';
 	};
 
 	defineProps<TComponentProps>();

@@ -25,7 +25,7 @@
     --page-gutter: var(--m32);
     --grid-gap: var(--m8);
 
-    --default-header-height: calc((var(--m18) * 2) + unit((48 / 16), rem));
+    --default-header-height: calc((var(--m18) * 2) + unit((32 / 16), rem));
 
     --bottom-panel-height: 0rem;
 
@@ -185,10 +185,6 @@
         --br24: 0.875rem;
         --br32: 1rem;
         --br40: 1.25rem;
-
-        --default-header-height: 4.25rem;
-
-        --fixed-header-height: var(--default-header-height);
         --fixed-header-margin: 0rem;
 
         --bottom-panel-height: 3.5rem;
@@ -216,6 +212,7 @@
 
     @media @mediaMd {
         --refRes: 768;
+        --default-header-height: calc((var(--m14) * 2) + unit((32 / 16), rem));
 
         @media @mediaLandscape {
             --refRes: 1024;
@@ -223,7 +220,6 @@
     }
 
     @media @mediaSm {
-        --default-header-height: calc((var(--m14) * 2) + unit((48 / 16), rem));
         --page-scrollbar-width: 0rem;
         --page-gutter: var(--m16);
         --refRes: 480;

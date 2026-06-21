@@ -11,6 +11,7 @@
 				<Btn
 					class="header__btn-bot"
 					text="LogIn"
+					size="md"
 					theme="white"
 					:is-bordered="true"
 				>
@@ -22,7 +23,7 @@
 				</Btn>
 
 				<button
-					class="btn btn--square header__menu-btn"
+					class="btn btn--square btn--md header__menu-btn"
 					@click.prevent="toggleMenu()"
 				>
 					<span class="btn__icon">
