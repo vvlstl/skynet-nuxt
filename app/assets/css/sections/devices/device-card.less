@@ -1,0 +1,85 @@
+@import "../../_var";
+
+.device-card {
+    display: flex;
+    flex-direction: column;
+    gap: var(--m8);
+    box-sizing: border-box;
+    padding: var(--m32);
+    border: 1px solid @cBlack500;
+    border-radius: var(--m4);
+    align-items: center;
+    justify-content: center;
+    color: @cWhite100;
+    animation: glowPulse 4s ease-in-out infinite;
+
+    &:nth-child(1) {
+        animation-delay: 0s;
+
+        .device-card {
+            &__icon,
+            &__title {
+                animation-delay: 0s;
+            }
+        }
+    }
+
+    &:nth-child(2) {
+        animation-delay: 0.8s;
+
+        .device-card {
+            &__icon,
+            &__title {
+                animation-delay: 0.8s;
+            }
+        }
+    }
+
+    &:nth-child(3) {
+        animation-delay: 1.6s;
+
+        .device-card {
+            &__icon,
+            &__title {
+                animation-delay: 1.6s;
+            }
+        }
+    }
+
+    &:nth-child(4) {
+        animation-delay: 2.4s;
+
+        .device-card {
+            &__icon,
+            &__title {
+                animation-delay: 2.4s;
+            }
+        }
+    }
+
+    &:nth-child(5) {
+        animation-delay: 3.2s;
+
+        .device-card {
+            &__icon,
+            &__title {
+                animation-delay: 3.2s;
+            }
+        }
+    }
+
+    &__icon {
+        .container(var(--m24));
+        animation: iconPulse 4s ease-in-out infinite;
+
+        svg, span {
+            .size(100%);
+        }
+    }
+
+    &__title {
+        font: 700 var(--fs18) / 1 @font;
+        letter-spacing: var(--letter-spacing);
+        animation: namePulse 4s ease-in-out infinite;
+    }
+}

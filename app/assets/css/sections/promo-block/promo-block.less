@@ -1,6 +1,8 @@
 @import "../../_var";
 
 .promo-block {
+    --percent-mask: 80%;
+
     position: relative;
     overflow: hidden;
     box-sizing: border-box;
@@ -12,6 +14,7 @@
         background: radial-gradient(circle at 20% 50%, fade(@cRed500, 10) 0%, transparent 50%),
         radial-gradient(circle at 80% 80%, fade(@cRed500, 5) 0%, transparent 50%);
         z-index: 0;
+        mask-image: linear-gradient(to bottom, @cBlack var(--percent-mask), transparent 100%);
     }
 
     &__content {
@@ -19,7 +22,6 @@
         grid-template-columns: 100%;
         gap: var(--grid-gap);
         justify-content: space-between;
-        min-height: calc(100vh - var(--default-header-height));
         box-sizing: border-box;
         padding: var(--m48) 0;
     }
@@ -46,65 +48,6 @@
     &__group-btns {
         display: flex;
         gap: var(--m24);
-    }
-
-    &__node-info {
-        position: relative;
-        display: flex;
-        flex-direction: column;
-        gap: var(--m8);
-        box-sizing: border-box;
-        padding: var(--m12) var(--m8);
-        border: 1px solid fade(@cWhite, 8);
-        border-radius: var(--m4);
-        overflow: hidden;
-
-        &:before {
-            .pseudo();
-            inset: 0;
-            padding: 1px;
-            border-radius: inherit;
-            background: conic-gradient(from var(--angle, 0deg),
-            transparent 0%,
-            transparent 70%,
-            fade(@cWhite, 80) 85%,
-            fade(@cWhite, 30) 90%,
-            transparent 100%);
-            animation: spin 10s linear infinite;
-            z-index: -2;
-
-            -webkit-mask: linear-gradient(@cWhite 0 0) content-box,
-            linear-gradient(@cWhite 0 0);
-            -webkit-mask-composite: xor;
-            mask-composite: exclude;
-        }
-
-        @property --angle {
-            syntax: "<angle>";
-            initial-value: 0deg;
-            inherits: false;
-        }
-    }
-
-    &__node-info-row {
-        display: flex;
-        align-items: center;
-        gap: var(--m4);
-        color: fade(@cWhite, 60);
-    }
-
-    &__node-info-icon {
-        .container(1rem);
-
-        svg, span {
-            .size(100%);
-        }
-    }
-
-    &__node-info-value {
-        text-transform: uppercase;
-        font: 400 var(--fs16) / 1 @font;
-        letter-spacing: var(--letter-spacing);
     }
 
     &__globus {
@@ -146,9 +89,15 @@
         &__description {
             max-width: unit((300 / 16), em);
         }
+
+        &__content {
+            min-height: calc(100vh - var(--default-header-height));
+        }
     }
 
     @media @mediaSm {
+        --percent-mask: 90%;
+
         &__title {
             font-size: var(--fs22);
         }

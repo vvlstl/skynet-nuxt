@@ -1,31 +1,24 @@
 <template>
 	<PromoBlock/>
-	<FeaturesSection :features="features"/>
+	<Devices class="page__section"/>
 	<NetworkSection/>
 	<PricingSection
 		:plans="pricingPlans"
 		@connect="onConnect"
 	/>
-<!--	<TelegramSection/>-->
+	<!--	<TelegramSection/>-->
 </template>
 
 <script setup lang="ts">
 	import {onMounted} from 'vue'
 	import {gsap} from 'gsap'
 	import {ScrollTrigger} from 'gsap/ScrollTrigger'
-	import PromoBlock from "~/components/sections/PromoBlock.vue";
+	import PromoBlock from "~/components/sections/promo-block/PromoBlock.vue";
 	import NetworkSection from "~/components/sections/NetworkSection.vue";
 	import PricingSection from "~/components/sections/PricingSection.vue";
-	import FeaturesSection from "~/components/sections/Features.vue";
+	import Devices from "~/components/sections/devices/Devices.vue";
 
 	gsap.registerPlugin(ScrollTrigger)
-
-	const features = [
-		{icon: '📡', title: 'Глобальная сеть', description: '127 серверов по всему миру'},
-		{icon: '⚡', title: 'Максимальная скорость', description: 'До 10 Гбит/с без ограничений трафика'},
-		{icon: '🔒', title: 'Полная приватность', description: 'Не храним логи, шифрование military-grade'},
-		{icon: '🤖', title: 'Telegram управление', description: 'Покупка и продление за 30 секунд'}
-	]
 
 	const pricingPlans = [
 		{id: '1m', name: 'ACCESS // 1 MONTH', price: '199 ₽', period: 'месяц', cta: 'CONNECT'},

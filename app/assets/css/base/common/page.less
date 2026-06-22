@@ -1,0 +1,27 @@
+@import "../../_var";
+
+.page {
+    position: relative;
+    display: flex;
+    flex-flow: column nowrap;
+    box-sizing: border-box;
+    margin: 0 auto;
+    min-height: calc(100 * var(--vh));
+    width: 100%;
+
+    // стандартный отступ для хлебных крошек
+    &__breadcrumbs {
+    }
+
+    // стандартный отступ для заголовка H1 страницы
+    &__h1 {
+    }
+
+    // стандартный отступ для раздела на странице
+    &__section {
+        &:not(:last-child) {
+            margin-bottom: var(--m48);
+        }
+    }
+
+}

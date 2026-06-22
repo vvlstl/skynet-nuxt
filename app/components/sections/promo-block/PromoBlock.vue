@@ -30,40 +30,7 @@
 						</template>
 					</Btn>
 				</div>
-				<div class="promo-block__node-info">
-					<div class="promo-block__node-info-row">
-						<div class="promo-block__node-info-icon">
-							<Icon name="hugeicons:arrow-right-01"/>
-						</div>
-						<div class="promo-block__node-info-value">
-							STATUS: ONLINE
-						</div>
-					</div>
-					<div class="promo-block__node-info-row">
-						<div class="promo-block__node-info-icon">
-							<Icon name="hugeicons:arrow-right-01"/>
-						</div>
-						<div class="promo-block__node-info-value">
-							NODES: 2
-						</div>
-					</div>
-					<div class="promo-block__node-info-row">
-						<div class="promo-block__node-info-icon">
-							<Icon name="hugeicons:arrow-right-01"/>
-						</div>
-						<div class="promo-block__node-info-value">
-							LATENCY: 157
-						</div>
-					</div>
-					<div class="promo-block__node-info-row">
-						<div class="promo-block__node-info-icon">
-							<Icon name="hugeicons:arrow-right-01"/>
-						</div>
-						<div class="promo-block__node-info-value">
-							PROTOCOL: VLESS
-						</div>
-					</div>
-				</div>
+				<NodeInfo class="promo-block__node-info"/>
 			</div>
 			<div class="promo-block__globus">
 				<ClientOnly>
@@ -83,4 +50,5 @@
 	import Btn from "~/components/ui/Btn.vue";
 	import Globe from "~/components/partials/globe/Globe.vue";
 	import GlobeLoader from "~/components/partials/globe/GlobeLoader.vue";
+	import NodeInfo from "~/components/sections/promo-block/NodeInfo.vue";
 </script>

@@ -26,6 +26,12 @@ export default defineNuxtConfig({
         }
     },
 
+    postcss: {
+        plugins: {
+            autoprefixer: {},
+        },
+    },
+
     css: [
         '~/assets/css/style.less'
     ],
@@ -40,7 +46,7 @@ export default defineNuxtConfig({
         serverBundle: {
             // зашиваем коллекцию в сборку — нет сетевых запросов вообще,
             // ни в dev, ни в проде
-            collections: ['hugeicons']
+            collections: ['hugeicons', 'proicons']
         }
     },
 

@@ -13,16 +13,22 @@
 @import "base/common";
 @import "base/common/transitions";
 @import "base/common/keyframes";
+@import "base/common/logo";
+@import "base/common/anchors-link";
+@import "base/common/page";
+
 @import "base/ui/btn";
 @import "base/ui/link";
 @import "base/ui/menu-icon";
+@import "base/ui/custom-scrollbar";
+
 @import "base/layout/header";
 @import "base/layout/footer";
 @import "base/layout/burger-menu";
-@import "base/common/logo";
-@import "base/common/anchors-link";
-@import "partials/promo-block/promo-block";
-@import "partials/features/features";
+
+/****
+ * partials: Блоки
+ ****/
 @import "partials/network/network";
 @import "partials/pricing/pricing";
 @import "partials/telegram/telegram";
@@ -30,10 +36,10 @@
 @import "partials/globe/globe-loader";
 @import "partials/three-scene/three-scene";
 
-.page--dev {
-    .todo {
-        outline: 1px solid red;
-        background-image: linear-gradient(-45deg, fade(red, 20%) 25%, transparent 25%, transparent 50%, fade(red, 20%) 50%, fade(grey, 20%) 75%, transparent 75%, transparent) !important;
-        background-size: 4px 4px;
-    }
-}
+/****
+ * sections: Секции
+ ****/
+@import "sections/promo-block/promo-block";
+@import "sections/promo-block/node-info";
+@import "sections/devices/devices";
+@import "sections/devices/device-card";

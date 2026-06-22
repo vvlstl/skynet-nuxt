@@ -1,0 +1,43 @@
+@import "../../_var";
+
+.devices {
+    position: relative;
+
+    &__content {
+        display: flex;
+        flex-direction: column;
+        gap: var(--m24);
+    }
+
+    &__title {
+        position: relative;
+        text-transform: uppercase;
+        font: 700 var(--fs32) / 1 @font;
+        letter-spacing: var(--letter-spacing);
+    }
+
+    &__list {
+        display: grid;
+        grid-template-columns: repeat(5, 1fr);
+        gap: var(--m16);
+        overflow: auto;
+    }
+
+    @media @mediaMoreSm {
+        &__item {
+            min-height: unit((150/16), rem);
+        }
+    }
+
+    @media @mediaSm {
+        &__item {
+            aspect-ratio: 1;
+        }
+
+        &__list {
+            margin-left: calc(-1 * var(--page-gutter));
+            margin-right: calc(-1 * var(--page-gutter));
+            padding: 0 var(--page-gutter);
+        }
+    }
+}

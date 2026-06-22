@@ -1,0 +1,60 @@
+@import "../../_var";
+
+.node-info {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: var(--m8);
+    box-sizing: border-box;
+    padding: var(--m12) var(--m8);
+    border: 1px solid fade(@cWhite, 8);
+    border-radius: var(--m4);
+    overflow: hidden;
+
+    &:before {
+        .pseudo();
+        inset: 0;
+        padding: 1px;
+        border-radius: inherit;
+        background: conic-gradient(from var(--angle, 0deg),
+        transparent 0%,
+        transparent 70%,
+        fade(@cWhite, 80) 85%,
+        fade(@cWhite, 30) 90%,
+        transparent 100%);
+        animation: spin 10s linear infinite;
+        z-index: -2;
+
+        -webkit-mask: linear-gradient(@cWhite 0 0) content-box,
+        linear-gradient(@cWhite 0 0);
+        -webkit-mask-composite: xor;
+        mask-composite: exclude;
+    }
+
+    @property --angle {
+        syntax: "<angle>";
+        initial-value: 0deg;
+        inherits: false;
+    }
+
+    &__row {
+        display: flex;
+        align-items: center;
+        gap: var(--m4);
+        color: fade(@cWhite, 60);
+    }
+
+    &__icon {
+        .container(1rem);
+
+        svg, span {
+            .size(100%);
+        }
+    }
+
+    &__value {
+        text-transform: uppercase;
+        font: 400 var(--fs16) / 1 @font;
+        letter-spacing: var(--letter-spacing);
+    }
+}

@@ -1,0 +1,88 @@
+@import "../../_var.less";
+
+/**
+ * Кастомный скроллбар
+ **/
+
+.custom-scrollbar {
+    --scrollbar-track-color: fade(@cBlack, 8);
+    --scrollbar-thumb-color: fade(@cBlack, 24);
+    --scrollbar-size: round-rem(4);
+    --scrollbar-size-ff: thin;
+    --scrollbar-gap: 0rem;
+
+    -webkit-overflow-scrolling: touch; // добавляет скроллу инертность
+
+    @supports not selector(::-webkit-scrollbar) {
+        // FF
+        //noinspection CssUnknownProperty
+        scrollbar-width: var(--scrollbar-size-ff);
+        //noinspection CssUnknownProperty
+        scrollbar-color: var(--scrollbar-thumb-color) var(--scrollbar-track-color);
+    }
+
+    // Chrome
+    &::-webkit-scrollbar {
+        .size(calc(var(--scrollbar-size) + 2 * var(--scrollbar-gap)));
+        cursor: default;
+        border-radius: 999rem;
+    }
+
+    &::-webkit-scrollbar-button {
+        .size(0);
+    }
+
+    &::-webkit-scrollbar-thumb {
+        border: var(--scrollbar-gap) solid var(--scrollbar-track-color);
+        background-clip: padding-box;
+        border-radius: 9999rem;
+
+        &, &:hover, &:active {
+            background: var(--scrollbar-thumb-color);
+        }
+    }
+
+    &::-webkit-scrollbar-track {
+        border: none;
+
+        &, &:hover, &:active {
+            background: var(--scrollbar-track-color);
+        }
+    }
+
+    &::-webkit-scrollbar-track-piece {
+        background: var(--scrollbar-track-color);
+    }
+
+    &::-webkit-scrollbar-corner {
+        background: transparent;
+    }
+}
+
+.custom-scrollbar--hidden {
+    --scrollbar-track-color: transparent;
+    --scrollbar-thumb-color: transparent;
+    --scrollbar-size: 0;
+    ----scrollbar-size-ff: none;
+
+    overflow: -moz-scrollbars-none;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+    scrollbar-color: transparent transparent;
+
+    //noinspection CssUnknownProperty
+    scroll-behavior: smooth;
+
+    &::-webkit-scrollbar {
+        .size(0);
+        display: none;
+    }
+}
+
+/*
+// Пример добавления цветовой темы
+.custom-scrollbar--invert {
+    --scrollbar-track-color: @cBlack;
+    --scrollbar-thumb-color: @cWhite;
+}
+*/
