@@ -111,4 +111,24 @@
     }
 }
 
+@keyframes network-pulse {
+    0%, 100% {
+        box-shadow: 0 0 8px 2px fade(@cRedOrange, 80), 0 0 18px 6px fade(@cRedOrange, 35);
+    }
+    50% {
+        box-shadow: 0 0 12px 4px fade(@cRedOrange, 100), 0 0 26px 10px fade(@cRedOrange, 50);
+    }
+}
+
+@keyframes network-ring {
+    0% {
+        transform: scale(0.4);
+        opacity: 0.9;
+    }
+    100% {
+        transform: scale(1.8);
+        opacity: 0;
+    }
+}
+
 
