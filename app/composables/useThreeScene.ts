@@ -18,16 +18,6 @@ export interface ThreeSceneContext {
 	resize: () => void
 }
 
-const LOG_PREFIX = '[DEBUG][useThreeScene]'
-
-function log(message: string, ...args: unknown[]): void {
-	console.log(LOG_PREFIX, message, ...args)
-}
-
-function logError(message: string, ...args: unknown[]): void {
-	console.error(LOG_PREFIX, message, ...args)
-}
-
 function disposeObject3D(object: THREE.Object3D): void {
 	object.traverse((child) => {
 		const mesh = child as THREE.Mesh
@@ -51,12 +41,10 @@ export function useThreeScene(
 	options: UseThreeSceneOptions = {},
 ): ThreeSceneContext | null {
 	if (!import.meta.client) {
-		log('init skipped: SSR context')
 		return null
 	}
 
 	if (!container) {
-		logError('init failed: container is null')
 		return null
 	}
 
@@ -69,8 +57,6 @@ export function useThreeScene(
 		antialias = true,
 		background = null,
 	} = options
-
-	log('init start', { container, options })
 
 	const width = container.clientWidth || 1
 	const height = container.clientHeight || 1
@@ -88,7 +74,6 @@ export function useThreeScene(
 		renderer = new THREE.WebGLRenderer({ alpha, antialias })
 	}
 	catch (error) {
-		logError('WebGLRenderer init failed', error)
 		return null
 	}
 
@@ -96,29 +81,23 @@ export function useThreeScene(
 	renderer.setSize(width, height)
 	container.appendChild(renderer.domElement)
 
-	log('init done', { width, height, cameraZ })
-
 	const resize = (): void => {
 		const w = container.clientWidth || 1
 		const h = container.clientHeight || 1
 		if (w === 0 || h === 0) {
-			log('resize skipped: zero size')
 			return
 		}
 		camera.aspect = w / h
 		camera.updateProjectionMatrix()
 		renderer.setSize(w, h)
-		log('resize', { w, h })
 	}
 
 	let disposed = false
 	const dispose = (): void => {
 		if (disposed) {
-			log('dispose skipped: already disposed')
 			return
 		}
 		disposed = true
-		log('dispose start')
 
 		disposeObject3D(scene)
 
@@ -127,7 +106,6 @@ export function useThreeScene(
 			renderer.domElement.parentNode.removeChild(renderer.domElement)
 		}
 
-		log('dispose done')
 	}
 
 	return { scene, camera, renderer, dispose, resize }

@@ -37,16 +37,6 @@
 		status: 'loaded' | 'fallback'
 	}
 
-	const LOG_PREFIX = '[DEBUG][worldMap]'
-
-	function log(message: string, ...args: unknown[]): void {
-		console.log(LOG_PREFIX, message, ...args)
-	}
-
-	function logError(message: string, ...args: unknown[]): void {
-		console.error(LOG_PREFIX, message, ...args)
-	}
-
 	function ll2xy(lon: number, lat: number, width: number, height: number): [number, number] {
 		return [
 			((lon + 180) / 360) * width,
@@ -136,7 +126,6 @@
 		fillColor: string,
 		strokeColor: string,
 	): void {
-		log('using fallback rectangles')
 		const blobs = [
 			[100, 130, 260, 200],
 			[430, 80, 280, 280],
@@ -170,7 +159,6 @@
 		const ctx = canvas.getContext('2d')
 
 		if (!ctx) {
-			logError('canvas 2d context unavailable')
 			return { canvas, status: 'fallback' }
 		}
 
@@ -182,7 +170,6 @@
 		const countries = topology.objects?.countries
 
 		if (!countries?.geometries?.length) {
-			logError('topology has no countries, fallback')
 			drawFallback(ctx, width, height, fillColor, strokeColor)
 			return { canvas, status: 'fallback' }
 		}
@@ -211,11 +198,9 @@
 				ctx.stroke()
 			}
 
-			log('topology decoded', { countries: countries.geometries.length })
 			return { canvas, status: 'loaded' }
 		}
 		catch (error) {
-			logError('topology decode failed', error)
 			drawFallback(ctx, width, height, fillColor, strokeColor)
 			return { canvas, status: 'fallback' }
 		}
