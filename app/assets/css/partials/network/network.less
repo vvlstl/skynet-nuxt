@@ -37,7 +37,7 @@
 
     &__title {
         color: @cWhite100;
-        font: 700 var(--fs18) / 1.4 @fontOrbitron;
+        font: 700 var(--fs32) / 1.4 @font;
         letter-spacing: var(--letter-spacing);
         text-transform: uppercase;
     }
@@ -113,6 +113,7 @@
         white-space: nowrap;
         transform: translate(var(--m14), calc(-1 * var(--m6)));
         text-shadow: 0 0 var(--m4) fade(@cBlack, 80);
+        pointer-events: none;
 
         &--left {
             transform: translate(calc(-100% - var(--m14)), calc(-1 * var(--m6)));

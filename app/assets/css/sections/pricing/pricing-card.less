@@ -1,0 +1,67 @@
+@import "../../_var";
+
+.pricing-card {
+    --shape-offset: 24px;
+    --shape-upper-left: 0 var(--shape-offset), var(--shape-offset) 0;
+    --shape-upper-right: calc(100% - var(--shape-offset)) 0, 100% var(--shape-offset);
+    --shape-lower-right: 100% calc(100% - var(--shape-offset)), calc(100% - var(--shape-offset)) 100%;
+    --shape-lower-left: var(--shape-offset) 100%, 0 calc(100% - var(--shape-offset));
+    --octagon: polygon(var(--shape-upper-left), var(--shape-upper-right), var(--shape-lower-right), var(--shape-lower-left));
+    --border-color: @cGray800;
+    --bg-color: @cBlack850;
+    --inset: 1px;
+
+    position: relative;
+    box-sizing: border-box;
+    padding: var(--m32);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: var(--m24);
+    color: @cWhite;
+    background-color: var(--border-color);
+    clip-path: var(--octagon);
+
+    &:before {
+        .pseudo();
+        inset: var(--inset);
+        background-color: var(--bg-color);
+        clip-path: var(--octagon);
+        z-index: 0;
+        pointer-events: none;
+    }
+
+    &__title {
+        position: relative;
+        font: 400 var(--fs24) / 1 @font;
+        letter-spacing: var(--letter-spacing);
+        text-transform: uppercase;
+        z-index: 1;
+    }
+
+    &__price {
+        position: relative;
+        font: 400 var(--fs56) / 1 @font;
+        z-index: 1;
+    }
+
+    &__info {
+        position: relative;
+        z-index: 1;
+
+        ul {
+            padding: 0;
+            margin: 0;
+        }
+
+        li {
+            position: relative;
+            font-size: var(--fs16);
+        }
+    }
+
+    &__btn {
+        width: 100%;
+    }
+}

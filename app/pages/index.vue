@@ -3,8 +3,8 @@
 	<Devices class="page__section"/>
 	<NetworkSection/>
 	<PricingSection
+		id="pricing-section"
 		:plans="pricingPlans"
-		@connect="onConnect"
 	/>
 	<!--	<TelegramSection/>-->
 </template>
@@ -15,7 +15,7 @@
 	import {ScrollTrigger} from 'gsap/ScrollTrigger'
 	import PromoBlock from "~/components/sections/promo-block/PromoBlock.vue";
 	import NetworkSection from "~/components/sections/NetworkSection.vue";
-	import PricingSection from "~/components/sections/PricingSection.vue";
+	import PricingSection from "~/components/sections/pricing/PricingSection.vue";
 	import Devices from "~/components/sections/devices/Devices.vue";
 
 	gsap.registerPlugin(ScrollTrigger)
@@ -25,11 +25,6 @@
 		{id: '3m', name: 'ACCESS // 3 MONTHS', price: '499 ₽', period: 'месяц', cta: 'CONNECT', highlight: true},
 		{id: '12m', name: 'ACCESS // 12 MONTHS', price: '1490 ₽', period: 'месяц', cta: 'CONNECT', bestValue: true}
 	]
-
-	const onConnect = (plan: any) => {
-		console.log('Selected plan:', plan)
-		alert(`Selected ${plan.name} for ${plan.price}`)
-	}
 
 	onMounted(() => {
 		gsap.from('.hero__title', {
