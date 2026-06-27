@@ -1,0 +1,35 @@
+@import "../../_var";
+
+.label {
+    --bg-color: @cRed500;
+    --color-shadow: @cRed900;
+    --txt-color: @cWhite;
+    --btn-icon-size: 1rem;
+
+    display: inline-flex;
+    gap: var(--m4);
+    align-items: center;
+    justify-content: center;
+    box-sizing: border-box;
+    padding: var(--m6) var(--m24);
+    border-radius: var(--br8);
+    color: var(--txt-color);
+    background-color: var(--bg-color);
+    box-shadow: 0 0 var(--m4) color-mix(in srgb, var(--color-shadow) 6%, transparent);
+    overflow: hidden;
+
+    &__icon {
+        .container(var(--btn-icon-size));
+        overflow: hidden;
+
+        svg, span {
+            .size(var(--btn-icon-size));
+        }
+    }
+
+    &__value {
+        font: 400 var(--fs16) / 1 @font;
+        letter-spacing: var(--letter-spacing);
+        text-transform: uppercase;
+    }
+}
