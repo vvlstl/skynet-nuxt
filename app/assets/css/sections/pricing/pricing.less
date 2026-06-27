@@ -1,9 +1,12 @@
+@import "../../_var";
+
 .pricing {
+    box-sizing: border-box;
 
     &__content {
         display: flex;
         flex-direction: column;
-        gap: var(--m24);
+        gap: var(--m48);
     }
 
     &__title {
@@ -11,15 +14,37 @@
         text-transform: uppercase;
         font: 700 var(--fs32) / 1 @font;
         letter-spacing: var(--letter-spacing);
+        text-align: center;
     }
 
     &__list {
         display: flex;
         gap: var(--m48);
-        justify-content: center;
+        box-sizing: border-box;
+        padding: var(--m48) 0;
+        margin: calc(-1 * var(--m48)) auto;
+        overflow: auto;
     }
 
     &__item {
         flex-shrink: 0;
+        min-width: unit((280 / 16), rem);
+        max-width: unit((280 / 16), rem);
+    }
+
+    @media @mediaMd {
+        &__list {
+            gap: var(--m24);
+            padding: var(--m48) var(--page-gutter);
+            margin-left: calc(-1 * var(--page-gutter));
+            margin-right: calc(-1 * var(--page-gutter));
+        }
+    }
+
+    @media @mediaSm {
+        &__item {
+            min-width: unit((250 / 16), rem);
+            max-width: unit((250 / 16), rem);
+        }
     }
 }

@@ -3,7 +3,7 @@
 		<div class="content-container">
 			<div class="pricing__content">
 				<h2 class="pricing__title">Pricing</h2>
-				<div class="pricing__list">
+				<div class="pricing__list custom-scrollbar custom-scrollbar--hidden">
 					<PricingCard
 						class="pricing__item"
 						v-for="(item, index) in items"
@@ -41,6 +41,7 @@
 					'No restrictions',
 					'24/7 support',
 				],
+				isPopular: true,
 			},
 			{
 				title: 'ACCESS // 3 MONTH',

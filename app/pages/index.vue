@@ -1,10 +1,11 @@
 <template>
 	<PromoBlock/>
 	<Devices class="page__section"/>
-	<NetworkSection/>
+	<NetworkSection class="page__section"/>
 	<PricingSection
 		id="pricing-section"
 		:plans="pricingPlans"
+		class="page__section"
 	/>
 	<!--	<TelegramSection/>-->
 </template>
