@@ -1,6 +1,8 @@
-# Skynet Nuxt
+# Skynet VPN
 
-> Фронтенд-приложение на Nuxt 4 для AI Factory. Верстка UI-компонентов и страниц.
+> Фронтенд-лендинг продукта Skynet VPN на Nuxt 4 с 3D-визуализацией серверов на Three.js.
+
+Адаптивная вёрстка лендинга с секциями PromoBlock, Devices, NetworkSection (карта серверов), Pricing и HowItWorks. Glassmorphism-хедер с реактивным скрытием при скролле, скрамбл-эффекты на навигации, анимации появления через GSAP ScrollTrigger.
 
 ## Быстрый старт
 
@@ -20,25 +22,36 @@ npm run generate
 
 ## Ключевые возможности
 
-- **Nuxt 4** — современный фреймворк с SSR и файловой маршрутизацией
-- **Vue 3** — реактивный UI с Composition API
+- **Nuxt 4 + Vue 3** — SSR-ready, файловая маршрутизация, Composition API
+- **Three.js** — 3D-глобус с серверами на трёхмерной карте мира
 - **Less/BEM** — модульная вёрстка с переменными и примесями
-- **GSAP** — анимации и интерактивность
+- **GSAP** — анимации появления секций и переходы
+- **Glassmorphism Header** — blur + backdrop-filter, скрытие при скролле вниз
+- **Hash-навигация** — переход к секциям с подсветкой активного якоря
 - **Vitest** — тестирование компонентов и страниц
-- **Docker** — контейнеризация для разработки и деплоя
 
 ## Пример
 
 ```vue
-<!-- app/components/Hero.vue -->
+<!-- app/components/layout/Header.vue -->
 <script setup lang="ts">
-const title = 'Skynet Nuxt'
+import {usePageScroll} from '~/composables/usePageScroll'
+
+const isFixed = ref(false)
+const isHidden = ref(false)
+const {scrollY} = usePageScroll()
+
+function onScroll() {
+  isFixed.value = scrollY.value > 0
+  isHidden.value = isFixed.value && scrollTop.value < scrollY.value
+}
 </script>
 
 <template>
-  <section class="hero">
-    <h1 class="hero__title">{{ title }}</h1>
-  </section>
+  <header :class="{'header--fixed': isFixed, 'header--hidden': isHidden}">
+    <Logo/>
+    <AnchorsLink :items="navLinks"/>
+  </header>
 </template>
 ```
 
