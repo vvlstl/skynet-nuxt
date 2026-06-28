@@ -18,9 +18,7 @@
     // Layout
     --content-max-width: 100rem; // Максимальная ширина контента
     --page-max-width: calc(var(--content-max-width) + 2 * var(--page-gutter));
-    --page-width-sizes-base: ~'min(100vw, var(--page-max-width))';
     --content-width: ~'min(100% - 2 * var(--page-gutter), var(--content-max-width))'; // Текущая ширина контента
-    --page-width: calc(100vw - var(--sw)); // Ширина страницы без учета скроллбара
 
     --page-gutter: var(--m32);
     --grid-gap: var(--m8);
@@ -30,7 +28,6 @@
     --bottom-panel-height: 0rem;
 
     --icon-size: 1.5rem;
-    --icon-size-lg: 2rem;
 
     --page-bg-color: @cBlack900;
     --page-text-color: @cWhite;
@@ -39,26 +36,14 @@
     --fs8: 0.5rem;
     --fs10: 0.625rem;
     --fs12: 0.75rem;
-    --fs13: 0.8125rem;
     --fs14: 0.875rem;
-    --fs15: 0.9375rem;
     --fs16: 1rem;
     --fs18: 1.125rem;
-    --fs20: 1.25rem;
     --fs22: 1.375rem;
     --fs24: 1.5rem;
-    --fs26: 1.625rem;
-    .responsive(--fs26, 26 / 16rem, .98);
-    --fs28: 1.75rem;
-    .responsive(--fs28, 28 / 16rem, .96);
-    --fs30: 1.875rem;
-    .responsive(--fs30, 30 / 16rem, .94);
     --fs32: 2rem;
-    .responsive(--fs32, 32 / 16rem, .94);
-    --fs36: 2.25rem;
-    .responsive(--fs36, 36 / 16rem, .94);
     --fs40: 2.5rem;
-    .responsive(--fs40, 40 / 16rem, .92);
+    --fs48: 3rem;
     --fs56: 3.5rem;
     .responsive(--fs56, 56 / 16rem, .91);
 
@@ -66,12 +51,10 @@
 
     // Вертикальные отступы
     --m2: 0.125rem;
-    --m3: 0.1875rem;
     --m4: 0.25rem;
     --m6: 0.375rem;
     --m8: 0.5rem;
     --m10: 0.625rem;
-    --m11: 0.6875rem;
     --m12: 0.75rem;
     --m14: 0.875rem;
     --m16: 1rem;
@@ -79,72 +62,16 @@
     --m20: 1.25rem;
     --m22: 1.375rem;
     --m24: 1.5rem;
-    --m26: 1.625rem;
     --m28: 1.75rem;
-    --m30: 1.875rem;
     --m32: 2rem;
-    --m34: 2.125rem;
     --m36: 2.25rem;
     .responsive(--m36, 36 / 16rem, .98);
-    --m37: 2.3125rem;
-    .responsive(--m37, 37 / 16rem, .98);
-    --m38: 2.375rem;
-    .responsive(--m38, 38 / 16rem, .96);
     --m40: 2.5rem;
     .responsive(--m40, 40 / 16rem, .94);
-    --m42: 2.625rem;
-    .responsive(--m42, 42 / 16rem, .94);
-    --m46: 2.875rem;
-    .responsive(--m46, 46 / 16rem, .94);
     --m48: 3rem;
     .responsive(--m48, 48 / 16rem, .94);
-    --m50: 3.125rem;
-    .responsive(--m50, 50 / 16rem, .94);
-    --m54: 3.375rem;
-    .responsive(--m54, 54 / 16rem, .92);
-    --m56: 3.5rem;
-    .responsive(--m56, 56 / 16rem, .92);
-    --m58: 3.625rem;
-    .responsive(--m58, 58 / 16rem, .92);
-    --m60: 3.75rem;
-    .responsive(--m60, 60 / 16rem, .92);
-    --m66: 4.125rem;
-    .responsive(--m66, 66 / 16rem, .92);
     --m64: 4rem;
     .responsive(--m64, 64 / 16rem, .92);
-    --m68: 4.25rem;
-    .responsive(--m68, 68 / 16rem, .92);
-    --m70: 4.375rem;
-    .responsive(--m70, 70 / 16rem, .9);
-    --m72: 4.5rem;
-    .responsive(--m72, 72 / 16rem, .92);
-    --m78: 4.875rem;
-    .responsive(--m78, 78 / 16rem, .92);
-    --m80: 5rem;
-    .responsive(--m80, 80 / 16rem, .9);
-    --m88: 5.5rem;
-    .responsive(--m88, 88 / 16rem, .9);
-    --m90: 5.625rem;
-    .responsive(--m90, 90 / 16rem, .9);
-    --m92: 5.75rem;
-    .responsive(--m92, 92 / 16rem, .9);
-    --m94: 5.875rem;
-    .responsive(--m94, 94 / 16rem, .9);
-    --m100: 6.25rem;
-    .responsive(--m100, 100 / 16rem, .9);
-    --m116: 7.25rem;
-    .responsive(--m116, 116 / 16rem, .9);
-    --m120: 7.5rem;
-    .responsive(--m120, 120 / 16rem, .9);
-    --m136: 8.5rem;
-    .responsive(--m136, 136 / 16rem, .9);
-    --m154: 9.625rem;
-    .responsive(--m154, 154 / 16rem, .9);
-    --m160: 10rem;
-    .responsive(--m160, 160 / 16rem, .9);
-    --m170: 10.625rem;
-    .responsive(--m170, 170 / 16rem, .9);
-
 
     // Поля ввода
     --input-height: 3rem;
@@ -171,24 +98,9 @@
     // border-radius, которые адаптивятся
     --br4: 0.25rem;
     --br8: 0.5rem;
-    --br10: 0.625rem;
-    --br12: 0.75rem;
-    --br16: 1rem;
-    --br22: 1.375rem;
-    --br24: 1.5rem;
-    --br32: 2rem;
-    --br40: 2.5rem;
 
     @media @mediaMobile {
-        --br16: 0.625rem;
-        --br22: 0.75rem;
-        --br24: 0.875rem;
-        --br32: 1rem;
-        --br40: 1.25rem;
-        --fixed-header-margin: 0rem;
-
         --bottom-panel-height: 3.5rem;
-
         --input-font-size: 0.75rem; // fix zoom на ios при фокусе в поле
     }
 
@@ -220,7 +132,6 @@
     }
 
     @media @mediaSm {
-        --page-scrollbar-width: 0rem;
         --page-gutter: var(--m16);
         --refRes: 480;
 
@@ -303,7 +214,6 @@
 @cBlack900: #050505;
 @cBlack800: #0f0f0f;
 @cBlack850: #0a0a0a;
-@cBlack700: #111;
 @cBlack600: #1a1a1a;
 @cBlack500: #2a2a2a;
 
@@ -319,7 +229,6 @@
 @cRed500: #ff1b1b;
 @cRed400: #ff4040;
 @cRedOrange: #ff2200;
-@cRedOrange500: #ff3300;
 @cRedOrange450: #ff4422;
 @cRedOrange400: #ff5533;
 @cRedOrange300: #ff6633;
@@ -355,6 +264,3 @@
 @transitEase: ease;
 
 @headerZIndex: 100;
-@menuZIndex: 100;
-@fixedZIndex: 50;
-@overlayZIndex: 200;

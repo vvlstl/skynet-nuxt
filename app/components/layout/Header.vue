@@ -61,7 +61,6 @@
 	import AnchorsLink from "~/components/common/AnchorsLink.vue";
 	import type {TLink} from "~/types/TLink";
 	import {usePageScroll} from "~/composables/usePageScroll";
-	import {eventBus} from "~/utils/eventBus";
 
 	const navLinks: TLink[] = [
 		{text: 'Advantages', url: '#advantages'},
@@ -74,19 +73,12 @@
 	const isMenuOpen = ref<boolean>(false);
 	const isFixed = ref<boolean>(false);
 	const isHidden = ref<boolean>(false);
-	const forceShowHeader = ref<boolean>(false);
 	const isFirstScroll = ref<boolean>(true);
 	const scrollTop = ref<number>(0);
 
 	const {scrollY} = usePageScroll();
 
 	function onScroll() {
-		if (forceShowHeader.value) {
-			forceShowHeader.value = false;
-			scrollTop.value = scrollY.value;
-			return;
-		}
-
 		if (isFirstScroll.value) {
 			isFirstScroll.value = false;
 			isFixed.value = scrollY.value > 0;
@@ -105,11 +97,6 @@
 		onScroll();
 	}
 
-	const handleShowHeader = () => {
-		isHidden.value = false;
-		forceShowHeader.value = true;
-	};
-
 	function toggleMenu() {
 		isMenuOpen.value = !isMenuOpen.value
 	}
@@ -122,12 +109,10 @@
 
 	onMounted(() => {
 		window?.addEventListener('scroll', onScroll, {passive: true});
-		eventBus.on('show-header', handleShowHeader);
 	});
 
 	onBeforeUnmount(() => {
 		window?.removeEventListener('scroll', onScroll);
-		eventBus.off('show-header', handleShowHeader);
 	});
 
 	watch(isMenuOpen, () => {

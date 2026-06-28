@@ -29,44 +29,6 @@
 	]
 
 	onMounted(() => {
-		gsap.from('.hero__title', {
-			duration: 1,
-			y: 50,
-			opacity: 0,
-			ease: 'power4.out'
-		})
-
-		gsap.from('.hero__subtitle', {
-			duration: 1,
-			y: 30,
-			opacity: 0,
-			delay: 0.3,
-			ease: 'power4.out'
-		})
-
-		gsap.from('.hero__buttons', {
-			duration: 0.8,
-			y: 20,
-			opacity: 0,
-			delay: 0.6,
-			ease: 'power4.out'
-		})
-
-		const featureCards = document.querySelectorAll('.features__card')
-		featureCards.forEach((card, index) => {
-			gsap.from(card, {
-				scrollTrigger: {
-					trigger: '.features',
-					start: 'top 80%'
-				},
-				duration: 0.8,
-				y: 50,
-				opacity: 0,
-				delay: index * 0.1,
-				ease: 'power3.out'
-			})
-		})
-
 		gsap.from('.network', {
 			scrollTrigger: {
 				trigger: '.network',
@@ -92,17 +54,6 @@
 		gsap.from('.how-it-works', {
 			scrollTrigger: {
 				trigger: '.how-it-works',
-				start: 'top 80%'
-			},
-			duration: 1,
-			y: 50,
-			opacity: 0,
-			ease: 'power3.out'
-		})
-
-		gsap.from('.telegram', {
-			scrollTrigger: {
-				trigger: '.telegram',
 				start: 'top 80%'
 			},
 			duration: 1,
