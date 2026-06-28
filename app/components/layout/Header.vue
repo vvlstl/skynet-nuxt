@@ -12,7 +12,21 @@
 			<Logo/>
 
 			<nav class="header__nav">
-				<AnchorsLink :items="navLinks"/>
+				<ClientOnly>
+					<AnchorsLink :items="navLinks"/>
+					<template #fallback>
+						<CyberLink
+							v-for="(fallbackLink, index) in navLinks"
+							:key="index"
+							:label="fallbackLink.text"
+							theme="grey"
+						/>
+					</template>
+				</ClientOnly>
+				<CyberLink
+					label="Support"
+					theme="grey"
+				/>
 			</nav>
 
 			<div class="header__actions">
@@ -61,12 +75,12 @@
 	import AnchorsLink from "~/components/common/AnchorsLink.vue";
 	import type {TLink} from "~/types/TLink";
 	import {usePageScroll} from "~/composables/usePageScroll";
+	import CyberLink from "~/components/ui/CyberLink.vue";
+	import GlobeLoader from "~/components/partials/globe/GlobeLoader.vue";
 
 	const navLinks: TLink[] = [
-		{text: 'Advantages', url: '#advantages'},
 		{text: 'Pricing', url: '#pricing'},
 		{text: 'How it works', url: '#how-it-works'},
-		{text: 'FAQ', url: '#faq'},
 	];
 
 	const root = useTemplateRef<HTMLElement>('root');

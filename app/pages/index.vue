@@ -1,13 +1,16 @@
 <template>
 	<PromoBlock/>
 	<Devices class="page__section"/>
-	<NetworkSection class="page__section"/>
+	<NetworkSection/>
 	<PricingSection
-		id="pricing-section"
+		id="pricing"
 		:plans="pricingPlans"
 		class="page__section"
 	/>
-	<HowItWorks class="page__section"/>
+	<HowItWorks
+		id="how-it-works"
+		class="page__section"
+	/>
 </template>
 
 <script setup lang="ts">

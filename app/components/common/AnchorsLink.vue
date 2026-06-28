@@ -4,26 +4,19 @@
 		:class="`anchors-link--${stateContainer}`"
 		ref="scrollContainer"
 	>
-<!--		<a-->
-<!--			v-for="(item, index) in anchors"-->
-<!--			:key="index"-->
-<!--			class="anchors-link__item link"-->
-<!--			:class="{-->
-<!--                'link&#45;&#45;current': currentIndex === index,-->
-<!--                [`link&#45;&#45;${themeLink}`]: themeLink,-->
-<!--                [`${blockName}__anchors-link-item`]: blockName-->
-<!--            }"-->
-<!--			:href="item.hash"-->
-<!--			v-html="item.name"-->
-<!--			@click.prevent.stop="handleClick(item)"-->
-<!--			ref="menuItems"-->
-<!--		/>-->
 		<CyberLink
-			v-for="(item, index) in items"
+			v-for="(item, index) in anchors"
 			:key="index"
 			class="anchors-link__item"
-			:label="item.text"
+			:class="{
+		       'link--current': currentIndex === index,
+		       [`link--${themeLink}`]: themeLink,
+		       [`${blockName}__anchors-link-item`]: blockName
+		    }"
+			:label="item.name"
+			:href="item.hash"
 			theme="grey"
+			@click.prevent.stop="handleClick(item)"
 			ref="menuItems"
 		/>
 	</div>
