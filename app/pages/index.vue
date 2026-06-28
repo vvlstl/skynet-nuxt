@@ -4,7 +4,6 @@
 	<NetworkSection/>
 	<PricingSection
 		id="pricing"
-		:plans="pricingPlans"
 		class="page__section"
 	/>
 	<HowItWorks
@@ -24,12 +23,6 @@
 	import HowItWorks from "~/components/sections/how-it-works/HowItWorks.vue";
 
 	gsap.registerPlugin(ScrollTrigger)
-
-	const pricingPlans = [
-		{id: '1m', name: 'ACCESS // 1 MONTH', price: '199 ₽', period: 'месяц', cta: 'CONNECT'},
-		{id: '3m', name: 'ACCESS // 3 MONTHS', price: '499 ₽', period: 'месяц', cta: 'CONNECT', highlight: true},
-		{id: '12m', name: 'ACCESS // 12 MONTHS', price: '1490 ₽', period: 'месяц', cta: 'CONNECT', bestValue: true}
-	]
 
 	onMounted(() => {
 		gsap.from('.network', {
@@ -61,17 +54,6 @@
 			},
 			duration: 1,
 			y: 50,
-			opacity: 0,
-			ease: 'power3.out'
-		})
-
-		gsap.from('.footer-logo', {
-			scrollTrigger: {
-				trigger: '.footer',
-				start: 'top 80%'
-			},
-			duration: 1,
-			y: 30,
 			opacity: 0,
 			ease: 'power3.out'
 		})
