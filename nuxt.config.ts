@@ -11,6 +11,17 @@ export default defineNuxtConfig({
         }
     },
 
+    // Базовый URL для GitHub Pages: https://vvlstl.github.io/skynet-nuxt/
+    // Влияет только на production-сборку, dev-сервер запускается как обычно.
+    app: {
+        baseURL: '/skynet-nuxt/'
+    },
+
+    // Статический экспорт для GitHub Pages
+    nitro: {
+        preset: 'static'
+    },
+
     modules: [
         '@nuxt/eslint',
         '@nuxt/image',
