@@ -1,6 +1,11 @@
 <template>
 	<header
 		class="header"
+		:class="{
+			'header--fixed': isFixed,
+			'header--hidden': isHidden,
+			'header--open-menu': isMenuOpen,
+		}"
 		ref="root"
 	>
 		<div class="header__inner">
@@ -26,7 +31,7 @@
 				</Btn>
 
 				<button
-					class="btn btn--square btn--md header__menu-btn"
+					class="btn btn--square btn--transparent btn--md header__menu-btn"
 					@click.prevent="toggleMenu()"
 				>
 					<span class="btn__icon">
@@ -48,13 +53,15 @@
 </template>
 
 <script setup lang="ts">
-	import {ref} from 'vue'
+	import {ref, onMounted, onBeforeUnmount} from 'vue'
 	import Btn from "~/components/ui/Btn.vue";
 	import Logo from "~/components/common/Logo.vue";
 	import MenuIcon from "~/components/ui/MenuIcon.vue";
 	import BurgerMenu from "~/components/layout/BurgerMenu.vue";
 	import AnchorsLink from "~/components/common/AnchorsLink.vue";
 	import type {TLink} from "~/types/TLink";
+	import {usePageScroll} from "~/composables/usePageScroll";
+	import {eventBus} from "~/utils/eventBus";
 
 	const navLinks: TLink[] = [
 		{text: 'Advantages', url: '#advantages'},
@@ -63,8 +70,45 @@
 		{text: 'FAQ', url: '#faq'},
 	];
 
-	const root = useTemplateRef<HTMLElement>('root')
-	const isMenuOpen = ref<boolean>(false)
+	const root = useTemplateRef<HTMLElement>('root');
+	const isMenuOpen = ref<boolean>(false);
+	const isFixed = ref<boolean>(false);
+	const isHidden = ref<boolean>(false);
+	const forceShowHeader = ref<boolean>(false);
+	const isFirstScroll = ref<boolean>(true);
+	const scrollTop = ref<number>(0);
+
+	const {scrollY} = usePageScroll();
+
+	function onScroll() {
+		if (forceShowHeader.value) {
+			forceShowHeader.value = false;
+			scrollTop.value = scrollY.value;
+			return;
+		}
+
+		if (isFirstScroll.value) {
+			isFirstScroll.value = false;
+			isFixed.value = scrollY.value > 0;
+			scrollTop.value = scrollY.value;
+			return;
+		}
+
+		isFixed.value = scrollY.value > 0;
+		isHidden.value = isFixed.value && scrollTop.value < scrollY.value;
+		scrollTop.value = scrollY.value;
+	}
+
+	function onResize() {
+		if (document.body.classList.contains('lock-scroll')) return;
+
+		onScroll();
+	}
+
+	const handleShowHeader = () => {
+		isHidden.value = false;
+		forceShowHeader.value = true;
+	};
 
 	function toggleMenu() {
 		isMenuOpen.value = !isMenuOpen.value
@@ -73,6 +117,18 @@
 	function closeMenu() {
 		isMenuOpen.value = false
 	}
+
+	useResizeObserver(onResize, 100, true, true);
+
+	onMounted(() => {
+		window?.addEventListener('scroll', onScroll, {passive: true});
+		eventBus.on('show-header', handleShowHeader);
+	});
+
+	onBeforeUnmount(() => {
+		window?.removeEventListener('scroll', onScroll);
+		eventBus.off('show-header', handleShowHeader);
+	});
 
 	watch(isMenuOpen, () => {
 		lockScroll(isMenuOpen.value, root.value);

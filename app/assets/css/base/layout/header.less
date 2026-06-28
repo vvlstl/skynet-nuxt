@@ -1,11 +1,11 @@
 @import "../../_var";
 
 .header {
-    position: sticky;
-    top: 0;
+    .transit(~'background-color', @transitTimeMedium);
     z-index: @headerZIndex;
 
     &__inner {
+        .transit(~'backdrop-filter, background-color, transform, box-shadow', @transitTimeMedium);
         display: flex;
         align-items: center;
         justify-content: space-between;
@@ -24,6 +24,31 @@
         --btn-icon-size: unit((20 / 16), rem);;
     }
 
+    &--fixed {
+        position: sticky;
+        top: 0;
+
+        .header {
+            &__inner {
+                backdrop-filter: blur(var(--m40)) saturate(180%);
+                background-color: fade(@cBlack900, 80);
+                box-shadow: 0 1px 1px fade(@cWhite, 8);
+            }
+        }
+    }
+
+    &--hidden {
+        .header {
+            &__inner {
+                transform: translateY(-100%);
+            }
+        }
+    }
+
+    &--open-menu {
+        background-color: @cBlack900;
+    }
+
     @media @mediaMoreMd {
         &__menu-btn {
             display: none;
@@ -38,6 +63,15 @@
         &__btn-bot,
         &__nav {
             display: none;
+        }
+
+        &--fixed {
+            .header {
+                &__inner {
+                    backdrop-filter: none;
+                    background-color: @cBlack900;
+                }
+            }
         }
     }
 }
