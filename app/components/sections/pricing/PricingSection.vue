@@ -2,7 +2,7 @@
 	<section class="pricing">
 		<div class="content-container">
 			<div class="pricing__content">
-				<h2 class="pricing__title">Pricing</h2>
+				<SectionHead title="PRICING"/>
 				<div class="pricing__list custom-scrollbar custom-scrollbar--hidden">
 					<PricingCard
 						class="pricing__item"
@@ -19,6 +19,7 @@
 <script setup lang="ts">
 	import type {TPricingCard} from "~/types/pricing/TPricingCard";
 	import PricingCard from "~/components/sections/pricing/PricingCard.vue";
+	import SectionHead from "~/components/common/SectionHead.vue";
 
 	const items = computed((): TPricingCard[] => {
 		return [

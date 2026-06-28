@@ -2,9 +2,7 @@
 	<div class="devices">
 		<div class="content-container">
 			<div class="devices__content">
-				<div class="devices__title">
-					SUPPORT FOR ALL DEVICES
-				</div>
+				<SectionHead title="SUPPORT FOR ALL DEVICES"/>
 				<div class="devices__list custom-scrollbar custom-scrollbar--hidden">
 					<DeviceCard
 						class="devices__item"
@@ -22,6 +20,7 @@
 
 	import DeviceCard from "~/components/sections/devices/DeviceCard.vue";
 	import type {TDeviceCard} from "~/types/device/TDeviceCard";
+	import SectionHead from "~/components/common/SectionHead.vue";
 
 	const items = computed((): TDeviceCard[] => {
 		return [

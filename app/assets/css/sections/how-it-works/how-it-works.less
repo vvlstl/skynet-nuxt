@@ -1,0 +1,200 @@
+@import "../../_var";
+
+.how-it-works {
+    position: relative;
+    overflow: hidden;
+
+    &__content {
+        display: flex;
+        flex-direction: column;
+        gap: var(--m48);
+    }
+
+    &__grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: var(--m32);
+    }
+
+    &__terminal {
+        display: flex;
+        flex-direction: column;
+        gap: var(--m24);
+        position: relative;
+        background: @cBlack850;
+        border: 1px solid @cStroke;
+        border-radius: var(--br4);
+        box-sizing: border-box;
+        padding: var(--m28);
+        min-height: unit((340 / 16), rem);
+        overflow: hidden;
+    }
+
+    &__globe {
+        position: absolute;
+        right: var(--m28);
+        top: 0;
+        width: unit((230 / 16), rem);
+        height: unit((230 / 16), rem);
+        opacity: .55;
+        pointer-events: none;
+        transform: rotate(-23.5deg);
+
+        ellipse[data-meridian] {
+            transform-box: fill-box;
+            transform-origin: center;
+            animation: globeMeridian 6s ease-in-out infinite;
+
+            &:nth-of-type(1) {
+                animation-delay: 0s;
+            }
+
+            &:nth-of-type(2) {
+                animation-delay: -1.2s;
+            }
+
+            &:nth-of-type(3) {
+                animation-delay: -2.4s;
+            }
+
+            &:nth-of-type(4) {
+                animation-delay: -3.6s;
+            }
+
+            &:nth-of-type(5) {
+                animation-delay: -4.8s;
+            }
+        }
+    }
+
+    &__log {
+        position: relative;
+        z-index: 1;
+        display: flex;
+        flex-direction: column;
+        gap: var(--m16);
+    }
+
+    &__log-item {
+        font-size: var(--fs12);
+        letter-spacing: 1px;
+        text-transform: uppercase;
+        display: flex;
+        align-items: flex-start;
+        gap: var(--m8);
+    }
+
+    &__log-arrow {
+        .container(1rem);
+        color: @cRed500;
+        overflow: hidden;
+
+        svg, span {
+            .size(100%);
+        }
+    }
+
+    &__log-label {
+        color: @cGray300;
+    }
+
+    &__log-status {
+        display: block;
+        color: @cGreen400;
+        font-size: var(--fs12);
+        letter-spacing: var(--letter-spacing);
+    }
+
+    &__result {
+        margin-top: auto;
+        position: relative;
+        display: flex;
+        align-items: flex-start;
+        gap: var(--m8);
+        border-radius: var(--br4);
+        border: 1px solid fade(@cRed900, 30);
+        box-sizing: border-box;
+        padding: var(--m16) var(--m18);
+        font-size: var(--fs14);
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        z-index: 1;
+        background: fade(@cRed500, 2);
+        color: @cRed400;
+    }
+
+    &__result-line-icon {
+        .container(1rem);
+        color: @cRed500;
+        overflow: hidden;
+
+        svg, span {
+            .size(100%);
+        }
+    }
+
+    &__result-line {
+        max-width: unit((200 / 14), em);
+    }
+
+    &__steps {
+        display: flex;
+        flex-direction: column;
+        gap: var(--m16);
+    }
+
+    &__step {
+        display: flex;
+        align-items: flex-start;
+        gap: var(--m18);
+        border: 1px solid @cStroke;
+        border-radius: var(--br4);
+        padding: var(--m20) var(--m22);
+        background: @cBlack850;
+    }
+
+    &__step-info{
+        display: flex;
+        flex-direction: column;
+        gap: var(--m8);
+    }
+
+    &__step-icon {
+        --container-size: unit((48 / 16), rem);
+        .container(var(--container-size));
+        border: 1px solid fade(@cRed900, 40);
+        border-radius: var(--br4);
+        color: fade(@cRed500, 80);
+
+        svg, span {
+            --icon-size: unit((32 / 16), rem);
+            .size(var(--icon-size));
+        }
+    }
+
+    &__step-title {
+        font: 700 var(--fs14) / 1 @fontOrbitron;
+        letter-spacing: var(--letter-spacing);
+        text-transform: uppercase;
+        color: @cWhite;
+    }
+
+    &__step-desc {
+        margin: 0;
+        font: 400 var(--fs14) / 1.4 @font;
+        letter-spacing: var(--letter-spacing);
+        color: fade(@cGray300, 40);
+    }
+
+    @media @mediaMd {
+        &__grid {
+            grid-template-columns: 100%;
+        }
+    }
+
+    @media @mediaSm {
+        &__globe {
+            right: -10%;
+        }
+    }
+}

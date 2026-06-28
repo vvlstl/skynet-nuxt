@@ -7,7 +7,7 @@
 		:plans="pricingPlans"
 		class="page__section"
 	/>
-	<!--	<TelegramSection/>-->
+	<HowItWorks class="page__section"/>
 </template>
 
 <script setup lang="ts">
@@ -18,6 +18,7 @@
 	import NetworkSection from "~/components/sections/NetworkSection.vue";
 	import PricingSection from "~/components/sections/pricing/PricingSection.vue";
 	import Devices from "~/components/sections/devices/Devices.vue";
+	import HowItWorks from "~/components/sections/how-it-works/HowItWorks.vue";
 
 	gsap.registerPlugin(ScrollTrigger)
 
@@ -80,6 +81,17 @@
 		gsap.from('.pricing', {
 			scrollTrigger: {
 				trigger: '.pricing',
+				start: 'top 80%'
+			},
+			duration: 1,
+			y: 50,
+			opacity: 0,
+			ease: 'power3.out'
+		})
+
+		gsap.from('.how-it-works', {
+			scrollTrigger: {
+				trigger: '.how-it-works',
 				start: 'top 80%'
 			},
 			duration: 1,

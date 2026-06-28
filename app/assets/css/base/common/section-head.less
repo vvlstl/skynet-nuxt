@@ -1,0 +1,28 @@
+@import "../../_var";
+
+.section-head {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--m18);
+
+    &__line {
+        flex: 1;
+        max-width: unit((340 / 16), rem);
+        height: 1px;
+        background: linear-gradient(90deg, transparent, @cStroke);
+
+        &--is-right {
+            background: linear-gradient(90deg, @cStroke, transparent);
+        }
+    }
+
+    &__title {
+        margin: 0;
+        text-transform: uppercase;
+        white-space: nowrap;
+        font: 400 var(--fs32) / 1 @font;
+        letter-spacing: var(--letter-spacing);
+        color: @cWhite;
+    }
+}
