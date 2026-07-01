@@ -84,6 +84,10 @@ export default defineNuxtConfig({
                         if (id.includes('three')) {
                             return 'vendor-three'
                         }
+
+                        if (id.includes('d3') || id.includes('topojson-client') || id.includes('world-atlas')) {
+                            return 'vendor-d3'
+                        }
                     }
                 },
             },

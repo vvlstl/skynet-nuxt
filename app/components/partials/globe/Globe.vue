@@ -22,15 +22,15 @@
 </template>
 
 <script setup lang="ts">
-	import * as THREE from 'three'
 	import {useGlobeScene} from '~/composables/useGlobeScene'
 	import {useResizeObserver} from '~/composables/useResizeObserver'
 	import type {GlobeSceneContext, UseGlobeSceneOptions} from '~/composables/useGlobeScene'
+	import type {ColorRepresentation} from 'three'
 
 	type TComponentProps = {
 		visible?: boolean
 		lazy?: boolean
-		background?: THREE.ColorRepresentation | null
+		background?: ColorRepresentation | null
 		options?: UseGlobeSceneOptions
 	}
 
