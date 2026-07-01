@@ -14,8 +14,6 @@
 
 <script setup lang="ts">
 	import {onMounted, defineAsyncComponent} from 'vue'
-	import {gsap} from 'gsap'
-	import {ScrollTrigger} from 'gsap/ScrollTrigger'
 	import PromoBlock from "~/components/sections/promo-block/PromoBlock.vue";
 	import PricingSection from "~/components/sections/pricing/PricingSection.vue";
 	import Devices from "~/components/sections/devices/Devices.vue";
@@ -23,9 +21,11 @@
 
 	const NetworkSection = defineAsyncComponent(() => import('~/components/sections/NetworkSection.vue'))
 
-	gsap.registerPlugin(ScrollTrigger)
+	onMounted(async () => {
+		const {gsap} = await import('gsap')
+		const {ScrollTrigger} = await import('gsap/ScrollTrigger')
+		gsap.registerPlugin(ScrollTrigger)
 
-	onMounted(() => {
 		gsap.from('.network', {
 			scrollTrigger: {
 				trigger: '.network',
