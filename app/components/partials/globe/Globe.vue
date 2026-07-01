@@ -24,17 +24,19 @@
 <script setup lang="ts">
 	import * as THREE from 'three'
 	import {useGlobeScene} from '~/composables/useGlobeScene'
-	import {useResizeObserver} from '~/composables/useResizeObserver' // путь поправьте под свой проект
+	import {useResizeObserver} from '~/composables/useResizeObserver'
 	import type {GlobeSceneContext, UseGlobeSceneOptions} from '~/composables/useGlobeScene'
 
 	type TComponentProps = {
 		visible?: boolean
+		lazy?: boolean
 		background?: THREE.ColorRepresentation | null
 		options?: UseGlobeSceneOptions
 	}
 
 	const props = withDefaults(defineProps<TComponentProps>(), {
 		visible: true,
+		lazy: true,
 		options: () => ({}),
 	})
 
@@ -47,6 +49,7 @@
 
 	let ctx: GlobeSceneContext | null = null
 	let resizeObserver: ResizeObserver | undefined
+	let viewportObserver: IntersectionObserver | undefined
 
 	function probeWebGL(): boolean {
 		try {
@@ -67,11 +70,7 @@
 		ctx?.resize();
 	}
 
-	onMounted(async () => {
-		if (!import.meta.client) {
-			return
-		}
-
+	async function initGlobe(): Promise<void> {
 		if (!containerRef.value) {
 			supported.value = false
 			return
@@ -100,18 +99,46 @@
 		resizeObserver = useResizeObserver(
 			onResize,
 			100,
-			false, // callOnInit — на старте ресайз не нужен, ctx только что создан с актуальными размерами
-			false, // setUpOnMounted — мы уже внутри onMounted, поэтому false, иначе оно повесится на onMounted ещё раз
+			false,
+			false,
 		)
 
 		ctx.start()
+	}
+
+	onMounted(() => {
+		if (!import.meta.client) {
+			return
+		}
+
+		if (!props.lazy) {
+			initGlobe()
+			return
+		}
+
+		// Ленивая инициализация: Three.js сцена создаётся только когда элемент попадает в viewport
+		viewportObserver = new IntersectionObserver(
+			(entries) => {
+				if (entries[0]?.isIntersecting) {
+					viewportObserver?.disconnect()
+					viewportObserver = undefined
+					initGlobe()
+				}
+			},
+			{rootMargin: '200px'},
+		)
+
+		if (containerRef.value) {
+			viewportObserver.observe(containerRef.value)
+		}
 	})
 
 	onBeforeUnmount(() => {
+		viewportObserver?.disconnect()
+		viewportObserver = undefined
 		resizeObserver?.disconnect()
 		resizeObserver = undefined
 		ctx?.dispose()
 		ctx = null
 	})
 </script>
-

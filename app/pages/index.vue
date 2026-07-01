@@ -13,14 +13,15 @@
 </template>
 
 <script setup lang="ts">
-	import {onMounted} from 'vue'
+	import {onMounted, defineAsyncComponent} from 'vue'
 	import {gsap} from 'gsap'
 	import {ScrollTrigger} from 'gsap/ScrollTrigger'
 	import PromoBlock from "~/components/sections/promo-block/PromoBlock.vue";
-	import NetworkSection from "~/components/sections/NetworkSection.vue";
 	import PricingSection from "~/components/sections/pricing/PricingSection.vue";
 	import Devices from "~/components/sections/devices/Devices.vue";
 	import HowItWorks from "~/components/sections/how-it-works/HowItWorks.vue";
+
+	const NetworkSection = defineAsyncComponent(() => import('~/components/sections/NetworkSection.vue'))
 
 	gsap.registerPlugin(ScrollTrigger)
 

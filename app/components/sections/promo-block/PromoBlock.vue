@@ -47,8 +47,10 @@
 </template>
 
 <script setup lang="ts">
+	import {defineAsyncComponent} from 'vue'
 	import Btn from "~/components/ui/Btn.vue";
-	import Globe from "~/components/partials/globe/Globe.vue";
 	import GlobeLoader from "~/components/partials/globe/GlobeLoader.vue";
 	import NodeInfo from "~/components/sections/promo-block/NodeInfo.vue";
+
+	const Globe = defineAsyncComponent(() => import('~/components/partials/globe/Globe.vue'))
 </script>
