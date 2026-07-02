@@ -1,60 +1,12 @@
-<template>
-	<section class="network">
-		<div class="network__info-panel">
-			<div class="network__info-panel-header">
-				<h1 class="network__title">Global network of<br>servers</h1>
-				<div class="network__divider"></div>
-				<p class="network__description">Our servers are running 24/7 all over the world.</p>
-			</div>
-			<div class="network__stats">
-				<div class="network__stat-row">
-					<span>ACTIVE NODES:</span>
-					<span class="network__stat-value">127</span>
-				</div>
-				<div class="network__stat-row">
-					<span>ONLINE:</span>
-					<span class="network__stat-value">100%</span>
-				</div>
-			</div>
-		</div>
-
-		<div class="network__map-area">
-			<ClientOnly>
-				<svg
-					v-if="svgReady"
-					class="network__map-svg"
-					:viewBox="`0 0 ${mapWidth} ${mapHeight}`"
-					preserveAspectRatio="xMidYMid slice"
-					xmlns="http://www.w3.org/2000/svg"
-				>
-					<defs>
-						<pattern id="network-dots" :width="6" :height="6" patternUnits="userSpaceOnUse">
-							<circle cx="1" cy="1" r="0.6" fill="rgba(120,30,30,0.6)"/>
-						</pattern>
-					</defs>
-					<g id="network-countries" ref="svgCountriesRef" fill="url(#network-dots)"
-					   stroke="rgba(150,40,40,0.35)"
-					   stroke-width="0.4"></g>
-					<g id="network-links" ref="svgLinksRef" fill="none" stroke="rgba(255,34,0,0.55)"
-					   stroke-width="1"></g>
-				</svg>
-				<div id="network-nodes-layer" ref="nodesLayerRef"></div>
-				<template #fallback>
-					<div class="network__loader">
-						<GlobeLoader/>
-					</div>
-				</template>
-			</ClientOnly>
-		</div>
-	</section>
-</template>
-
 <script setup lang="ts">
 	import {ref, onMounted, nextTick, useTemplateRef} from 'vue'
+	import {useI18n} from '~/composables/useI18n'
 	import * as d3 from 'd3'
 	import {feature} from 'topojson-client'
 	import world from 'world-atlas/countries-110m.json'
 	import GlobeLoader from "~/components/partials/globe/GlobeLoader.vue";
+
+	const {t} = useI18n()
 
 	const mapWidth = 800
 	const mapHeight = 420
@@ -181,3 +133,54 @@
 		drawLinksAndNodes()
 	})
 </script>
+
+<template>
+	<section class="network">
+		<div class="network__info-panel">
+			<div class="network__info-panel-header">
+				<h1 class="network__title" v-html="t('network.global_network').replace('<br>', '<br>')"></h1>
+				<div class="network__divider"></div>
+				<p class="network__description">{{ t('network.description') }}</p>
+			</div>
+			<div class="network__stats">
+				<div class="network__stat-row">
+					<span>{{ t('network.active_nodes') }}</span>
+					<span class="network__stat-value">127</span>
+				</div>
+				<div class="network__stat-row">
+					<span>{{ t('network.online') }}</span>
+					<span class="network__stat-value">100%</span>
+				</div>
+			</div>
+		</div>
+
+		<div class="network__map-area">
+			<ClientOnly>
+				<svg
+					v-if="svgReady"
+					class="network__map-svg"
+					:viewBox="`0 0 ${mapWidth} ${mapHeight}`"
+					preserveAspectRatio="xMidYMid slice"
+					xmlns="http://www.w3.org/2000/svg"
+				>
+					<defs>
+						<pattern id="network-dots" :width="6" :height="6" patternUnits="userSpaceOnUse">
+							<circle cx="1" cy="1" r="0.6" fill="rgba(120,30,30,0.6)"/>
+						</pattern>
+					</defs>
+					<g id="network-countries" ref="svgCountriesRef" fill="url(#network-dots)"
+					   stroke="rgba(150,40,40,0.35)"
+					   stroke-width="0.4"></g>
+					<g id="network-links" ref="svgLinksRef" fill="none" stroke="rgba(255,34,0,0.55)"
+					   stroke-width="1"></g>
+				</svg>
+				<div id="network-nodes-layer" ref="nodesLayerRef"></div>
+				<template #fallback>
+					<div class="network__loader">
+						<GlobeLoader/>
+					</div>
+				</template>
+			</ClientOnly>
+		</div>
+	</section>
+</template>

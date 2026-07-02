@@ -35,6 +35,7 @@ pricing:
       - No restrictions
       - 24/7 support
     popular: POPULAR
+    connect: CONNECT
   three_months:
     title: ACCESS // 3 MONTH
     price: 800
@@ -46,12 +47,42 @@ pricing:
 
 devices:
   title: DEVICES
+  support_all: SUPPORT FOR ALL DEVICES
 
 network:
   title: NETWORK
+  global_network: Global network of servers
+  description: Our servers are running 24/7 all over the world.
+  active_nodes: ACTIVE NODES
+  online: ONLINE
 
 how_it_works:
   title: HOW IT WORKS
+  authorization: AUTHORIZATION
+  success: SUCCESS
+  plan_selected: PLAN SELECTED
+  payment_confirmed: PAYMENT CONFIRMED
+  vpn_config: VPN CONFIG GENERATED
+  connection_established: CONNECTION ESTABLISHED WELCOME TO NETWORK
+  step1_title: Start
+  step1_desc: Find our bot in Telegram and click "/start" or log in here
+  step2_title: Choose a tariff and pay
+  step2_desc: Select the appropriate tariff and make the payment.
+  step3_title: Get access
+  step3_desc: Instantly get the VPN configuration and it's ready to use.
+
+logo:
+  title: SKYNET VPN
+  subtitle: NETWORK CONTROL
+
+node_info:
+  status_online: STATUS ONLINE
+  nodes: NODES
+  latency: LATENCY
+  protocol: PROTOCOL
+
+burger_menu:
+  login: LogIn
 
 footer:
   copyright: "© {year} SKYNET VPN. ALL RIGHTS RESERVED"
@@ -60,3 +91,4 @@ footer:
 
 common:
   all_rights_reserved: ALL RIGHTS RESERVED
+

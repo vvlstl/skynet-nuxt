@@ -35,6 +35,7 @@ pricing:
       - Без ограничений
       - Поддержка 24/7
     popular: ПОПУЛЯРНО
+    connect: ПОДКЛЮЧИТЬСЯ
   three_months:
     title: ДОСТУП // 3 МЕСЯЦА
     price: 800
@@ -46,12 +47,42 @@ pricing:
 
 devices:
   title: УСТРОЙСТВА
+  support_all: ПОДДЕРЖКА ВСЕХ УСТРОЙСТВ
 
 network:
   title: СЕТЬ
+  global_network: Глобальная сеть серверов
+  description: Наши серверы работают 24/7 по всему миру.
+  active_nodes: АКТИВНЫХ УЗЛОВ
+  online: В СЕТИ
 
 how_it_works:
   title: КАК ЭТО РАБОТАЕТ
+  authorization: АВТОРИЗАЦИЯ
+  success: УСПЕШНО
+  plan_selected: ТАРИФ ВЫБРАН
+  payment_confirmed: ПЛАТЕЖ ПОДТВЕРЖДЕН
+  vpn_config: VPN КОНФИГ СОЗДАН
+  connection_established: СОЕДИНЕНИЕ УСТАНОВЛЕНО ДОБРО ПОЖАЛОВАТЬ В СЕТЬ
+  step1_title: Начало
+  step1_desc: Найди нашего бота в Telegram и нажми "/start" или войди здесь
+  step2_title: Выбери тариф и оплати
+  step2_desc: Выбери подходящий тариф и сделай платеж.
+  step3_title: Получи доступ
+  step3_desc: Мгновенно получи VPN конфиг и готово к использованию.
+
+logo:
+  title: SKYNET VPN
+  subtitle: УПРАВЛЕНИЕ СЕТЬЮ
+
+node_info:
+  status_online: СТАТУС ОНЛАЙН
+  nodes: УЗЛЫ
+  latency: ЗАДЕРЖКА
+  protocol: ПРОТОКОЛ
+
+burger_menu:
+  login: Вход
 
 footer:
   copyright: "© {year} SKYNET VPN. ВСЕ ПРАВА ЗАЩИЩЕНЫ"
@@ -60,3 +91,4 @@ footer:
 
 common:
   all_rights_reserved: ВСЕ ПРАВА ЗАЩИЩЕНЫ
+

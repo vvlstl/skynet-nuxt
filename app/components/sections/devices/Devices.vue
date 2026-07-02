@@ -1,26 +1,10 @@
-<template>
-	<div class="devices">
-		<div class="content-container">
-			<div class="devices__content">
-				<SectionHead title="SUPPORT FOR ALL DEVICES"/>
-				<div class="devices__list custom-scrollbar custom-scrollbar--hidden">
-					<DeviceCard
-						class="devices__item"
-						v-for="(item, index) in items"
-						:key="index"
-						:item="item"
-					/>
-				</div>
-			</div>
-		</div>
-	</div>
-</template>
-
 <script setup lang="ts">
-
+	import {useI18n} from '~/composables/useI18n'
 	import DeviceCard from "~/components/sections/devices/DeviceCard.vue";
 	import type {TDeviceCard} from "~/types/device/TDeviceCard";
 	import SectionHead from "~/components/common/SectionHead.vue";
+
+	const {t} = useI18n()
 
 	const items = computed((): TDeviceCard[] => {
 		return [
@@ -47,3 +31,21 @@
 		];
 	});
 </script>
+
+<template>
+	<div class="devices">
+		<div class="content-container">
+			<div class="devices__content">
+				<SectionHead :title="t('devices.support_all')"/>
+				<div class="devices__list custom-scrollbar custom-scrollbar--hidden">
+					<DeviceCard
+						class="devices__item"
+						v-for="(item, index) in items"
+						:key="index"
+						:item="item"
+					/>
+				</div>
+			</div>
+		</div>
+	</div>
+</template>
