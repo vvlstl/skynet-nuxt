@@ -24,7 +24,7 @@
 					</template>
 				</ClientOnly>
 				<CyberLink
-					label="Support"
+					:label="t('header.actions.support')"
 					theme="grey"
 				/>
 			</nav>
@@ -32,7 +32,7 @@
 			<div class="header__actions">
 				<Btn
 					class="header__btn-bot"
-					text="LogIn"
+					:text="t('header.actions.login')"
 					size="md"
 					theme="grey"
 					:is-bordered="true"
@@ -67,7 +67,8 @@
 </template>
 
 <script setup lang="ts">
-	import {ref, onMounted, onBeforeUnmount} from 'vue'
+	import {ref, onMounted, onBeforeUnmount, computed} from 'vue'
+	import {useI18n} from '~/composables/useI18n'
 	import Btn from "~/components/ui/Btn.vue";
 	import Logo from "~/components/common/Logo.vue";
 	import MenuIcon from "~/components/ui/MenuIcon.vue";
@@ -78,10 +79,12 @@
 	import CyberLink from "~/components/ui/CyberLink.vue";
 	import GlobeLoader from "~/components/partials/globe/GlobeLoader.vue";
 
-	const navLinks: TLink[] = [
-		{text: 'Pricing', url: '#pricing'},
-		{text: 'How it works', url: '#how-it-works'},
-	];
+	const {t} = useI18n()
+
+	const navLinks = computed((): TLink[] => [
+		{text: t('header.nav.pricing'), url: '#pricing'},
+		{text: t('header.nav.how_it_works'), url: '#how-it-works'},
+	]);
 
 	const root = useTemplateRef<HTMLElement>('root');
 	const isMenuOpen = ref<boolean>(false);

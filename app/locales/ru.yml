@@ -1,0 +1,62 @@
+header:
+  logo: SKYNET VPN
+  nav:
+    pricing: Тарифы
+    how_it_works: Как это работает
+  actions:
+    login: Вход
+    support: Поддержка
+
+promo:
+  title: УПРАВЛЕНИЕ СЕТЬЮ БЕЗ ОГРАНИЧЕНИЙ
+  description: |
+    БЕЗОПАСНОЕ СОЕДИНЕНИЕ.
+    ВЫСОКАЯ СКОРОСТЬ.
+    ДОСТУП К ЛЮБЫМ СЕРВИСАМ.
+  activate: АКТИВИРОВАТЬ ДОСТУП
+  telegram_bot: Telegram Bot
+
+pricing:
+  title: ТАРИФЫ
+  week:
+    title: ДОСТУП // 1 НЕДЕЛЯ
+    price: 100
+    features:
+      - Высокая скорость
+      - 127+ серверов
+      - Без ограничений
+      - Поддержка 24/7
+  month:
+    title: ДОСТУП // 1 МЕСЯЦ
+    price: 300
+    features:
+      - Высокая скорость
+      - 127+ серверов
+      - Без ограничений
+      - Поддержка 24/7
+    popular: ПОПУЛЯРНО
+  three_months:
+    title: ДОСТУП // 3 МЕСЯЦА
+    price: 800
+    features:
+      - Высокая скорость
+      - 127+ серверов
+      - Без ограничений
+      - Поддержка 24/7
+
+devices:
+  title: УСТРОЙСТВА
+
+network:
+  title: СЕТЬ
+
+how_it_works:
+  title: КАК ЭТО РАБОТАЕТ
+
+footer:
+  copyright: "© {year} SKYNET VPN. ВСЕ ПРАВА ЗАЩИЩЕНЫ"
+  privacy_policy: ПОЛИТИКА КОНФИДЕНЦИАЛЬНОСТИ
+  user_agreements: ПОЛЬЗОВАТЕЛЬСКОЕ СОГЛАШЕНИЕ
+
+common:
+  all_rights_reserved: ВСЕ ПРАВА ЗАЩИЩЕНЫ
