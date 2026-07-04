@@ -64,6 +64,29 @@ jobs:
         env:
           NUXT_APP_BASE_URL: /skynet-nuxt/
 
+      # [FIX] GitHub Pages по умолчанию запускает Jekyll обработку, которая
+      # удаляет файлы и папки начинающиеся с `_` (_nuxt/, _payload.json).
+      # .nojekyll отключает Jekyll и сохраняет статику Nuxt как есть.
+      - name: Disable Jekyll processing
+        run: touch ./.output/public/.nojekyll
+
+      - name: Verify artifact integrity
+        run: |
+          echo "[FIX] Build output contents:"
+          ls -la ./.output/public/
+          echo "[FIX] .nojekyll exists: $([ -f ./.output/public/.nojekyll ] && echo yes || echo no)"
+          echo "[FIX] Total size: $(du -sh ./.output/public/ | cut -f1)"
+
+          if [ ! -f ./.output/public/.nojekyll ]; then
+            echo "::error::.nojekyll missing — GitHub Pages deploy will fail"
+            exit 1
+          fi
+          if [ ! -d ./.output/public/_nuxt ]; then
+            echo "::error::_nuxt/ directory missing — build output is incomplete"
+            exit 1
+          fi
+          echo "[FIX] Artifact integrity check passed"
+
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
