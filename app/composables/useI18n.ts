@@ -24,7 +24,6 @@ export function useI18n() {
       if (process.client) {
         localStorage.setItem(STORAGE_KEY, lang)
       }
-      console.log(`[i18n] Language switched to: ${lang}`)
     }
   }
 
@@ -45,7 +44,6 @@ export function useI18n() {
     const savedLang = localStorage.getItem(STORAGE_KEY) as LocaleKey | null
     if (savedLang && (savedLang === 'en' || savedLang === 'ru')) {
       switchLang(savedLang)
-      console.log(`[i18n] Language restored from localStorage: ${savedLang}`)
     }
   }
 

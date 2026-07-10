@@ -6,10 +6,13 @@
 
     &__inner {
         .transit(~'backdrop-filter, background-color, transform, box-shadow', @transitTimeMedium);
+        padding: var(--m18) var(--m32);
+    }
+
+    &__content {
         display: flex;
         align-items: center;
         justify-content: space-between;
-        padding: var(--m18) var(--m32);
         gap: var(--m24);
     }
 

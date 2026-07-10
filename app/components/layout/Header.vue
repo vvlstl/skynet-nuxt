@@ -9,60 +9,64 @@
 		ref="root"
 	>
 		<div class="header__inner">
-			<Logo/>
+			<div class="content-container">
+				<div class="header__content">
+					<Logo/>
 
-			<nav class="header__nav">
-				<ClientOnly>
-					<AnchorsLink :items="navLinks"/>
-					<template #fallback>
+					<nav class="header__nav">
+						<ClientOnly>
+							<AnchorsLink :items="navLinks"/>
+							<template #fallback>
+								<CyberLink
+									v-for="(fallbackLink, index) in navLinks"
+									:key="index"
+									:label="fallbackLink.text"
+									theme="grey"
+								/>
+							</template>
+						</ClientOnly>
 						<CyberLink
-							v-for="(fallbackLink, index) in navLinks"
-							:key="index"
-							:label="fallbackLink.text"
+							:label="t('header.actions.support')"
 							theme="grey"
 						/>
-					</template>
-				</ClientOnly>
-				<CyberLink
-					:label="t('header.actions.support')"
-					theme="grey"
-				/>
-			</nav>
+					</nav>
 
-			<div class="header__actions">
-				<Btn
-					class="header__btn-bot"
-					:text="t('header.actions.login')"
-					size="md"
-					theme="grey"
-					:is-bordered="true"
-				>
-					<template #iconLeft>
+					<div class="header__actions">
+						<Btn
+							class="header__btn-bot"
+							:text="t('header.actions.login')"
+							size="md"
+							theme="grey"
+							:is-bordered="true"
+						>
+							<template #iconLeft>
 						<span class="btn__icon">
 							<Icon name="hugeicons:user-account"/>
 						</span>
-					</template>
-				</Btn>
+							</template>
+						</Btn>
 
-				<button
-					class="btn btn--square btn--transparent btn--md header__menu-btn"
-					@click.prevent="toggleMenu()"
-				>
+						<button
+							class="btn btn--square btn--transparent btn--md header__menu-btn"
+							@click.prevent="toggleMenu()"
+						>
 					<span class="btn__icon">
 						<MenuIcon :is-cross="isMenuOpen"/>
 					</span>
-				</button>
-			</div>
+						</button>
+					</div>
 
+				</div>
+				<transition name="slide">
+					<BurgerMenu
+						v-if="isMenuOpen"
+						:menu="navLinks"
+						@close="closeMenu"
+						class="header__menu-burger"
+					/>
+				</transition>
+			</div>
 		</div>
-		<transition name="slide">
-			<BurgerMenu
-				v-if="isMenuOpen"
-				:menu="navLinks"
-				@close="closeMenu"
-				class="header__menu-burger"
-			/>
-		</transition>
 	</header>
 </template>
 

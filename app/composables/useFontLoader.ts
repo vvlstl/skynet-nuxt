@@ -46,11 +46,6 @@ function buildFontIndex() {
             url,
         })
     }
-
-    console.log('[FontLoader] Indexed local fonts:', {
-        families: Array.from(fontFamilyMap.keys()),
-        total: Object.keys(fontModules).length,
-    })
 }
 
 // Парсит имя файла шрифта в формате `<Family>-<WeightName>.woff2`.
@@ -146,7 +141,6 @@ export function useFontLoader() {
         const fontKey = `${familyKey}:${weights.join(',')}`
 
         if (loadedFonts.has(fontKey)) {
-            console.log(`[FontLoader] Font already loaded: ${name}`)
             return
         }
 
@@ -178,13 +172,6 @@ export function useFontLoader() {
 
                 injectFontFace(file)
                 injectedCount++
-                console.log('[FontLoader] Injected @font-face', {
-                    family: file.family,
-                    weight: file.weight,
-                    style: file.style,
-                    requested: targetWeight,
-                    file: file.filePath,
-                })
             }
 
             if (injectedCount === 0) {
@@ -193,9 +180,6 @@ export function useFontLoader() {
             }
 
             loadedFonts.add(fontKey)
-            console.log(
-                `[FontLoader] Loaded local font: ${name} (weights: ${weights.join(', ')})`,
-            )
         } catch (error) {
             console.error(`[FontLoader] Error loading font ${name}:`, error)
         }

@@ -60,7 +60,6 @@
 	const storageKey = 'font-switcher-selection'
 
 	onMounted(() => {
-		console.log('[FontSwitcher] Mounted')
 
 		// Загрузить из localStorage
 		const stored = localStorage.getItem(storageKey)
@@ -70,7 +69,6 @@
 				selectedHeading.value = heading
 				selectedBody.value = body
 				applyFonts(heading, body)
-				console.log('[FontSwitcher] Restored from localStorage:', {heading, body})
 			} catch (e) {
 				console.error('[FontSwitcher] Error parsing localStorage:', e)
 			}
@@ -95,26 +93,22 @@
 
 		// Сохранить в localStorage
 		localStorage.setItem(storageKey, JSON.stringify({heading, body}))
-		console.log('[FontSwitcher] Applied fonts:', {heading, body})
 	}
 
 	function onHeadingChange(value: string) {
 		selectedHeading.value = value
 		applyFonts(value, selectedBody.value)
-		console.log('[FontSwitcher] Changing heading font to:', value)
 	}
 
 	function onBodyChange(value: string) {
 		selectedBody.value = value
 		applyFonts(selectedHeading.value, value)
-		console.log('[FontSwitcher] Changing body font to:', value)
 	}
 
 	function resetFonts() {
 		selectedHeading.value = defaultHeading.value
 		selectedBody.value = defaultBody.value
 		applyFonts(defaultHeading.value, defaultBody.value)
-		console.log('[FontSwitcher] Reset to default fonts')
 	}
 </script>
 
