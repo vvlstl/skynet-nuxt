@@ -24,7 +24,6 @@
         justify-content: space-between;
         box-sizing: border-box;
         padding: var(--m48) 0;
-        max-height: unit((700 / 16), rem);
     }
 
     &__info {
@@ -65,6 +64,12 @@
         height: 100%;
     }
 
+    @media @mediaMoreSm and @mediaXxl {
+        &__content {
+            min-height: calc(100vh - var(--default-header-height));
+        }
+    }
+
     @media @mediaMoreSm {
         margin-top: calc(-1 * var(--default-header-height));
         padding-top: calc(var(--default-header-height));
@@ -89,10 +94,6 @@
 
         &__description {
             max-width: unit((300 / 16), em);
-        }
-
-        &__content {
-            min-height: calc(100vh - var(--default-header-height));
         }
     }
 

@@ -1,21 +1,41 @@
 @import "../../_var";
 
 .network {
-    .column-property(--panel, @count: 3, @total: 12);
-    .column-property(--map, @count: 9, @total: 12);
-
-    display: grid;
-    grid-template-columns: var(--panel) var(--map);
-    overflow: hidden;
     position: relative;
-    background: @cBlack800;
+    overflow: hidden;
 
-    &::before {
+    &:before{
         .pseudo();
-        inset: 0;
-        background-image: repeating-linear-gradient(0deg, fade(@cWhite, 2.5) 0px, transparent 1px, transparent 28px),
-        repeating-linear-gradient(90deg, fade(@cWhite, 2.5) 0px, transparent 1px, transparent 28px);
+        top: 0;
+        left: 0;
+        bottom: 0;
+        width: 50%;
+        background: @cBlack800;
         pointer-events: none;
+        z-index: 0;
+    }
+
+    &:after{
+        .pseudo();
+        top: 0;
+        right: 0;
+        bottom: 0;
+        width: 50%;
+        background: @cBlack850;
+        pointer-events: none;
+        z-index: 0;
+    }
+
+    &__content {
+        .column-property(--panel, @count: 3, @total: 12, @columnGap: 0px);
+        .column-property(--map, @count: 9, @total: 12, @columnGap: 0px);
+
+        margin-right: calc(-1 * var(--page-gutter));
+        margin-left: calc(-1 * var(--page-gutter));
+        padding: 0 var(--page-gutter);
+
+        display: grid;
+        grid-template-columns: var(--panel) var(--map);
     }
 
     &__info-panel {
@@ -24,9 +44,18 @@
         flex-direction: column;
         gap: var(--m18);
         box-sizing: border-box;
-        padding: var(--m36) var(--m32);
-        z-index: 2;
+        padding: var(--m36) var(--m32) var(--m36) 0;
         border-right: 1px solid @cStroke;
+        background: @cBlack800;
+        z-index: 1;
+
+        &::before {
+            .pseudo();
+            inset: 0;
+            background-image: repeating-linear-gradient(0deg, fade(@cWhite, 2.5) 0px, transparent 1px, transparent 28px),
+            repeating-linear-gradient(90deg, fade(@cWhite, 2.5) 0px, transparent 1px, transparent 28px);
+            pointer-events: none;
+        }
     }
 
     &__info-panel-header {
@@ -80,6 +109,7 @@
     &__map-area {
         position: relative;
         background: @cBlack850;
+        z-index: 1;
     }
 
     &__map-svg {
@@ -128,7 +158,9 @@
     }
 
     @media @mediaMd {
-        grid-template-columns: 1fr;
+        &__content {
+            grid-template-columns: 100%;
+        }
 
         &__info-panel {
             flex-direction: row;
