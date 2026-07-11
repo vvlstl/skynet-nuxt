@@ -1,12 +1,9 @@
 <script setup lang="ts">
 	import {ref, onMounted, nextTick, useTemplateRef} from 'vue'
-	import {useI18n} from '~/composables/useI18n'
 	import * as d3 from 'd3'
 	import {feature} from 'topojson-client'
 	import world from 'world-atlas/countries-110m.json'
 	import GlobeLoader from "~/components/partials/globe/GlobeLoader.vue";
-
-	const {t} = useI18n()
 
 	const mapWidth = 800
 	const mapHeight = 420
@@ -138,17 +135,17 @@
 	<section class="network">
 		<div class="network__info-panel">
 			<div class="network__info-panel-header">
-				<h1 class="network__title" v-html="t('network.global_network').replace('<br>', '<br>')"></h1>
+				<h1 class="network__title">Global network of<br>servers</h1>
 				<div class="network__divider"></div>
-				<p class="network__description">{{ t('network.description') }}</p>
+				<p class="network__description">Our servers are running 24/7 all over the world.</p>
 			</div>
 			<div class="network__stats">
 				<div class="network__stat-row">
-					<span>{{ t('network.active_nodes') }}</span>
+					<span>ACTIVE NODES:</span>
 					<span class="network__stat-value">127</span>
 				</div>
 				<div class="network__stat-row">
-					<span>{{ t('network.online') }}</span>
+					<span>ONLINE:</span>
 					<span class="network__stat-value">100%</span>
 				</div>
 			</div>

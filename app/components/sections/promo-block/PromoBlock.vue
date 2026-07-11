@@ -1,11 +1,9 @@
 <script setup lang="ts">
 	import {defineAsyncComponent} from 'vue'
-	import {useI18n} from '~/composables/useI18n'
 	import Btn from "~/components/ui/Btn.vue";
 	import GlobeLoader from "~/components/partials/globe/GlobeLoader.vue";
 	import NodeInfo from "~/components/sections/promo-block/NodeInfo.vue";
 
-	const {t} = useI18n()
 	const Globe = defineAsyncComponent(() => import('~/components/partials/globe/Globe.vue'))
 </script>
 
@@ -15,13 +13,15 @@
 			<div class="promo-block__content">
 				<div class="promo-block__info">
 					<div class="promo-block__title">
-						{{ t('promo.title') }}
+						CONTROL ABOVE&nbsp;THE&nbsp;NETWORK WITHOUT&nbsp;RESTRICTIONS
 					</div>
 					<div class="promo-block__description">
-						{{ t('promo.description') }}
+						SECURE CONNECTION.<br>
+						HIGH SPEED.<br>
+						ACCESS TO ANY SERVICES.
 					</div>
 					<div class="promo-block__group-btns">
-						<Btn :text="t('promo.activate')">
+						<Btn text="ACTIVATE ACCESS">
 							<template #iconRight>
 								<span class="btn__icon">
 									<Icon name="hugeicons:arrow-down-right-01"/>
@@ -29,7 +29,7 @@
 							</template>
 						</Btn>
 						<Btn
-							:text="t('promo.telegram_bot')"
+							text="Telegram Bot"
 							theme="white"
 							:is-bordered="true"
 						>
