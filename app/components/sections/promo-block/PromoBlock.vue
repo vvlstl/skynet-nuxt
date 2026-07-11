@@ -4,7 +4,7 @@
 			<div class="promo-block__content">
 				<div class="promo-block__info">
 					<div class="promo-block__title">
-						CONTROL ABOVE&nbsp;THE&nbsp;NETWORK WITHOUT&nbsp;RESTRICTIONS
+						CONTROL ABOVE THE NETWORK WITHOUT RESTRICTIONS
 					</div>
 					<div class="promo-block__description">
 						SECURE CONNECTION.<br>
