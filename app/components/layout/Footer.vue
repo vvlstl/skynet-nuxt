@@ -1,9 +1,3 @@
-<script setup lang="ts">
-	import CyberLink from "~/components/ui/CyberLink.vue";
-
-	const currentYear: number = new Date().getFullYear();
-</script>
-
 <template>
 	<footer class="footer">
 		<div class="content-container">
@@ -27,3 +21,9 @@
 		</div>
 	</footer>
 </template>
+
+<script setup lang="ts">
+	import CyberLink from "~/components/ui/CyberLink.vue";
+
+	const currentYear: number = new Date().getFullYear();
+</script>

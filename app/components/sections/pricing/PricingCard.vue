@@ -12,7 +12,7 @@
 
 		<div class="pricing-card__wrap">
 			<div class="pricing-card__title">{{ item.title }}</div>
-			<div class="pricing-card__price">{{ item.price }}</div>
+			<div class="pricing-card__price">{{ item.price }}$</div>
 			<div class="pricing-card__info">
 				<ul>
 					<li

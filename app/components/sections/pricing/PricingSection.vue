@@ -1,3 +1,21 @@
+<template>
+	<section class="pricing">
+		<div class="content-container">
+			<div class="pricing__content">
+				<SectionHead title="PRICING"/>
+				<div class="pricing__list custom-scrollbar custom-scrollbar--hidden">
+					<PricingCard
+						class="pricing__item"
+						v-for="(item, index) in items"
+						:key="index"
+						:item="item"
+					/>
+				</div>
+			</div>
+		</div>
+	</section>
+</template>
+
 <script setup lang="ts">
 	import {computed} from 'vue'
 	import type {TPricingCard} from "~/types/pricing/TPricingCard";
@@ -40,21 +58,3 @@
 		];
 	});
 </script>
-
-<template>
-	<section class="pricing">
-		<div class="content-container">
-			<div class="pricing__content">
-				<SectionHead title="PRICING"/>
-				<div class="pricing__list custom-scrollbar custom-scrollbar--hidden">
-					<PricingCard
-						class="pricing__item"
-						v-for="(item, index) in items"
-						:key="index"
-						:item="item"
-					/>
-				</div>
-			</div>
-		</div>
-	</section>
-</template>
