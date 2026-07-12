@@ -4,15 +4,13 @@
 			<div class="promo-block__content">
 				<div class="promo-block__info">
 					<div class="promo-block__title">
-						CONTROL ABOVE THE NETWORK WITHOUT RESTRICTIONS
+						{{ t('promo-block.title') }}
 					</div>
 					<div class="promo-block__description">
-						SECURE CONNECTION.<br>
-						HIGH SPEED.<br>
-						ACCESS TO ANY SERVICES.
+						{{ t('promo-block.description') }}
 					</div>
 					<div class="promo-block__group-btns">
-						<Btn text="ACTIVATE ACCESS">
+						<Btn :text="t('promo-block.btn-activate')">
 							<template #iconRight>
 								<span class="btn__icon">
 									<Icon name="hugeicons:arrow-down-right-01"/>
@@ -54,5 +52,6 @@
 	import GlobeLoader from "~/components/partials/globe/GlobeLoader.vue";
 	import NodeInfo from "~/components/sections/promo-block/NodeInfo.vue";
 
-	const Globe = defineAsyncComponent(() => import('~/components/partials/globe/Globe.vue'))
+	const Globe = defineAsyncComponent(() => import('~/components/partials/globe/Globe.vue'));
+	const {t} = useI18n()
 </script>

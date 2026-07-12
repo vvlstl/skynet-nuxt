@@ -43,6 +43,7 @@
         font: 700 var(--fs16) / 1.4 @fontBender;
         text-transform: uppercase;
         letter-spacing: var(--letter-spacing);
+        white-space: pre-line;
     }
 
     &__group-btns {
@@ -89,7 +90,9 @@
         }
 
         &__title {
+            font-feature-settings: "calt" 0, "liga" 0, "dlig" 0;
             max-width: unit((680 / 16), rem);
+            white-space: pre-line;
         }
 
         &__description {

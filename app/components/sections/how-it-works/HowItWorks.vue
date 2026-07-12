@@ -2,7 +2,7 @@
 	<section class="how-it-works">
 		<div class="content-container">
 			<div class="how-it-works__content">
-				<SectionHead title="HOW IT WORKS"/>
+				<SectionHead :title="t('how-it-works.title')"/>
 
 				<div class="how-it-works__grid">
 					<div class="how-it-works__terminal">
@@ -40,8 +40,8 @@
 									<Icon name="hugeicons:arrow-right-01"/>
 								</span>
 								<div class="how-it-works__log-info">
-									<span class="how-it-works__log-label">AUTHORIZATION</span>
-									<span class="how-it-works__log-status">SUCCESS</span>
+									<span class="how-it-works__log-label">{{ t('how-it-works.log.authorization') }}</span>
+									<span class="how-it-works__log-status">{{ t('how-it-works.log.status') }}</span>
 								</div>
 							</div>
 							<div class="how-it-works__log-item">
@@ -49,8 +49,8 @@
 									<Icon name="hugeicons:arrow-right-01"/>
 								</span>
 								<div class="how-it-works__log-info">
-									<span class="how-it-works__log-label">PLAN SELECTED</span>
-									<span class="how-it-works__log-status">SUCCESS</span>
+									<span class="how-it-works__log-label">{{ t('how-it-works.log.plan') }}</span>
+									<span class="how-it-works__log-status">{{ t('how-it-works.log.status') }}</span>
 								</div>
 							</div>
 							<div class="how-it-works__log-item">
@@ -58,8 +58,8 @@
 									<Icon name="hugeicons:arrow-right-01"/>
 								</span>
 								<div class="how-it-works__log-info">
-									<span class="how-it-works__log-label">PAYMENT CONFIRMED</span>
-									<span class="how-it-works__log-status">SUCCESS</span>
+									<span class="how-it-works__log-label">{{ t('how-it-works.log.payment') }}</span>
+									<span class="how-it-works__log-status">{{ t('how-it-works.log.status') }}</span>
 								</div>
 							</div>
 							<div class="how-it-works__log-item">
@@ -67,8 +67,8 @@
 									<Icon name="hugeicons:arrow-right-01"/>
 								</span>
 								<div class="how-it-works__log-info">
-									<span class="how-it-works__log-label">VPN CONFIG GENERATED</span>
-									<span class="how-it-works__log-status">SUCCESS</span>
+									<span class="how-it-works__log-label">{{ t('how-it-works.log.config') }}</span>
+									<span class="how-it-works__log-status">{{ t('how-it-works.log.status') }}</span>
 								</div>
 							</div>
 						</div>
@@ -78,7 +78,7 @@
 								<Icon name="hugeicons:arrow-right-01"/>
 							</div>
 							<span class="how-it-works__result-line">
-								CONNECTION ESTABLISHED WELCOME TO NETWORK
+								{{ t('how-it-works.log.result') }}
 							</span>
 						</div>
 					</div>
@@ -90,10 +90,10 @@
 							</div>
 							<div class="how-it-works__step-info">
 								<p class="how-it-works__step-title">
-									Start
+									{{ t('how-it-works.steps.start.title') }}
 								</p>
 								<p class="how-it-works__step-desc">
-									Find our bot in Telegram and click "/start" or log in here
+									{{ t('how-it-works.steps.start.desc') }}
 								</p>
 							</div>
 						</div>
@@ -103,9 +103,9 @@
 								<Icon name="hugeicons:sticky-note-01"/>
 							</div>
 							<div class="how-it-works__step-info">
-								<p class="how-it-works__step-title">Choose a tariff and pay</p>
+								<p class="how-it-works__step-title">{{ t('how-it-works.steps.tariff.title') }}</p>
 								<p class="how-it-works__step-desc">
-									Select the appropriate tariff and make the payment.
+									{{ t('how-it-works.steps.tariff.desc') }}
 								</p>
 							</div>
 						</div>
@@ -115,9 +115,9 @@
 								<Icon name="hugeicons:cloud-download"/>
 							</div>
 							<div class="how-it-works__step-info">
-								<p class="how-it-works__step-title">Get access</p>
+								<p class="how-it-works__step-title">{{ t('how-it-works.steps.access.title') }}</p>
 								<p class="how-it-works__step-desc">
-									Instantly get the VPN configuration and it's ready to use.
+									{{ t('how-it-works.steps.access.desc') }}
 								</p>
 							</div>
 						</div>
@@ -130,4 +130,6 @@
 
 <script setup lang="ts">
 	import SectionHead from "~/components/common/SectionHead.vue";
+
+	const {t} = useI18n()
 </script>

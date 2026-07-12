@@ -34,6 +34,7 @@
         color: @cWhite;
         background-color: var(--border-color);
         clip-path: var(--octagon);
+        height: 100%;
 
         &:before {
             .pseudo();
@@ -50,6 +51,7 @@
         font: 400 var(--fs24) / 1 @font;
         letter-spacing: var(--letter-spacing);
         text-transform: uppercase;
+        text-align: center;
         z-index: 1;
     }
 
@@ -89,6 +91,7 @@
     }
 
     &__btn {
+        margin-top: auto;
         width: 100%;
     }
 
@@ -104,6 +107,12 @@
                     box-shadow: inset 0 0 unit((35 /16), rem) fade(@cRed500, 25);
                 }
             }
+        }
+    }
+
+    @media @mediaSm {
+        &__wrap {
+            padding: var(--m32) var(--m20);
         }
     }
 }

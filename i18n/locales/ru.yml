@@ -5,3 +5,69 @@ header:
   howItWorks: Как это работает
   support: Поддержка
   login: Войти
+
+promo-block:
+  title: |-
+    КОНТРОЛЬ НАД СЕТЬЮ
+    БЕЗ ОГРАНИЧЕНИЙ
+  description: |-
+    БЕЗОПАСНОЕ ПОДКЛЮЧЕНИЕ.
+    ВЫСОКАЯ СКОРОСТЬ.
+    ДОСТУП К ЛЮБЫМ СЕРВИСАМ.
+  btn-activate:
+    ПОЛУЧИТЬ ДОСТУП
+
+devices:
+  title: ПОДДЕРЖКА ВСЕХ УСТРОЙСТВ
+
+
+network:
+  title: |-
+    Глобальная сеть
+    серверов
+  description: Наши серверы работают в режиме 24/7 по всему миру.
+
+pricing:
+  title: ЦЕНЫ
+  card:
+    week:
+      title: ДОСТУП / 1&nbsp;НЕДЕЛЯ
+    month:
+      title: ДОСТУП / 1&nbsp;МЕСЯЦ
+    quarter:
+      title: ДОСТУП / 3&nbsp;МЕСЯЦА
+  list:
+    speed: Высокая скорость
+    servers: 127+ серверов
+    restrictions: Без ограничений
+    support: Поддержка 24/7
+  label:
+    popular: ПОПУЛЯРНЫЙ
+  btn:
+    connect: ПОДКЛЮЧИТЬ
+
+how-it-works:
+  title: КАК ЭТО РАБОТАЕТ
+  log:
+    authorization: АВТОРИЗАЦИЯ
+    plan: ТАРИФ ВЫБРАН
+    payment: ОПЛАТА ПОДТВЕРЖДЕНА
+    config: VPN-КОНФИГ СГЕНЕРИРОВАН
+    status: УСПЕШНО
+    result: СОЕДИНЕНИЕ УСТАНОВЛЕНО ДОБРО ПОЖАЛОВАТЬ В СЕТЬ
+  steps:
+    start:
+      title: Начало
+      desc: Найдите нашего бота в Telegram и нажмите «/start» или авторизуйтесь здесь
+    tariff:
+      title: Выберите тариф и оплатите
+      desc: Подходящий тариф и произведите оплату
+    access:
+      title: Получите доступ
+      desc: Мгновенно получите VPN-конфигурацию — всё готово к использованию
+
+footer:
+  rights: © {year} SKYNET VPN. ВСЕ ПРАВА ЗАЩИЩЕНЫ
+  link:
+    privacy: ПОЛИТИКА КОНФИДЕНЦИАЛЬНОСТИ
+    agreement: ПОЛЬЗОВАТЕЛЬСКИЕ СОГЛАШЕНИЯ

@@ -86,7 +86,7 @@
 	import {usePageScroll} from "~/composables/usePageScroll";
 	import CyberLink from "~/components/ui/CyberLink.vue";
 
-	const { t, locale} = useI18n()
+	const {t, locale} = useI18n()
 
 	const navLinks = computed((): TLink[] => [
 		{text: t('header.pricing'), url: '#pricing'},

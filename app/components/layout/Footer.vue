@@ -3,17 +3,17 @@
 		<div class="content-container">
 			<div class="footer__content">
 				<div class="footer__right">
-					© {{ currentYear }} SKYNET VPN. ALL RIGHTS RESERVED
+					{{ t('footer.rights', {year: currentYear}) }}
 				</div>
 				<div class="footer__left">
 					<CyberLink
 						class="footer__link"
-						label="PRIVACY POLICY"
+						:label="t('footer.link.privacy')"
 						theme="grey"
 					/>
 					<CyberLink
 						class="footer__link"
-						label="USER AGREEMENTS"
+						:label="t('footer.link.agreement')"
 						theme="grey"
 					/>
 				</div>
@@ -24,6 +24,8 @@
 
 <script setup lang="ts">
 	import CyberLink from "~/components/ui/CyberLink.vue";
+
+	const {t} = useI18n()
 
 	const currentYear: number = new Date().getFullYear();
 </script>

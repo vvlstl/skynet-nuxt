@@ -4,9 +4,9 @@
 			<div class="network__content">
 				<div class="network__info-panel">
 					<div class="network__info-panel-header">
-						<h1 class="network__title">Global network of<br>servers</h1>
+						<h1 class="network__title"> {{ t('network.title') }} </h1>
 						<div class="network__divider"></div>
-						<p class="network__description">Our servers are running 24/7 all over the world.</p>
+						<p class="network__description"> {{ t('network.description') }} </p>
 					</div>
 					<div class="network__stats">
 						<div class="network__stat-row">
@@ -30,7 +30,12 @@
 							xmlns="http://www.w3.org/2000/svg"
 						>
 							<defs>
-								<pattern id="network-dots" :width="6" :height="6" patternUnits="userSpaceOnUse">
+								<pattern
+									id="network-dots"
+									:width="6"
+									:height="6"
+									patternUnits="userSpaceOnUse"
+								>
 									<circle cx="1" cy="1" r="0.6" fill="rgba(120,30,30,0.6)"/>
 								</pattern>
 								<filter id="node-glow" x="-100%" y="-100%" width="300%" height="300%">
@@ -69,6 +74,8 @@
 	import {feature} from 'topojson-client'
 	import world from 'world-atlas/countries-110m.json'
 	import GlobeLoader from "~/components/partials/globe/GlobeLoader.vue";
+
+	const {t} = useI18n()
 
 	const mapWidth = 800
 	const mapHeight = 420

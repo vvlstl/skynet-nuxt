@@ -1,3 +1,21 @@
+<template>
+	<div class="devices">
+		<div class="content-container">
+			<div class="devices__content">
+				<SectionHead :title="t('devices.title')"/>
+				<div class="devices__list custom-scrollbar custom-scrollbar--hidden">
+					<DeviceCard
+						class="devices__item"
+						v-for="(item, index) in items"
+						:key="index"
+						:item="item"
+					/>
+				</div>
+			</div>
+		</div>
+	</div>
+</template>
+
 <script setup lang="ts">
 	import DeviceCard from "~/components/sections/devices/DeviceCard.vue";
 	import type {TDeviceCard} from "~/types/device/TDeviceCard";
@@ -27,22 +45,6 @@
 			}
 		];
 	});
-</script>
 
-<template>
-	<div class="devices">
-		<div class="content-container">
-			<div class="devices__content">
-				<SectionHead title="SUPPORT FOR ALL DEVICES"/>
-				<div class="devices__list custom-scrollbar custom-scrollbar--hidden">
-					<DeviceCard
-						class="devices__item"
-						v-for="(item, index) in items"
-						:key="index"
-						:item="item"
-					/>
-				</div>
-			</div>
-		</div>
-	</div>
-</template>
+	const {t} = useI18n()
+</script>

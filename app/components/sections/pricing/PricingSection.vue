@@ -2,7 +2,7 @@
 	<section class="pricing">
 		<div class="content-container">
 			<div class="pricing__content">
-				<SectionHead title="PRICING"/>
+				<SectionHead :title="t('pricing.title')"/>
 				<div class="pricing__list custom-scrollbar custom-scrollbar--hidden">
 					<PricingCard
 						class="pricing__item"
@@ -22,38 +22,30 @@
 	import PricingCard from "~/components/sections/pricing/PricingCard.vue";
 	import SectionHead from "~/components/common/SectionHead.vue";
 
+	const {t} = useI18n()
 	const items = computed((): TPricingCard[] => {
+		const list = [
+			t('pricing.list.speed'),
+			t('pricing.list.servers'),
+			t('pricing.list.restrictions'),
+			t('pricing.list.support'),
+		]
 		return [
 			{
-				title: 'ACCESS // 1 WEEK',
+				title: t('pricing.card.week.title'),
 				price: 100,
-				list: [
-					'High speed',
-					'127+ servers',
-					'No restrictions',
-					'24/7 support',
-				],
+				list,
 			},
 			{
-				title: 'ACCESS // 1 MONTH',
+				title: t('pricing.card.month.title'),
 				price: 300,
-				list: [
-					'High speed',
-					'127+ servers',
-					'No restrictions',
-					'24/7 support',
-				],
+				list,
 				isPopular: true,
 			},
 			{
-				title: 'ACCESS // 3 MONTH',
+				title: t('pricing.card.quarter.title'),
 				price: 800,
-				list: [
-					'High speed',
-					'127+ servers',
-					'No restrictions',
-					'24/7 support',
-				],
+				list,
 			}
 		];
 	});

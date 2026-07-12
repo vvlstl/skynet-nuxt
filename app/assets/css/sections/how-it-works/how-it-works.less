@@ -145,15 +145,16 @@
 
     &__step {
         display: flex;
-        align-items: flex-start;
+        align-items: center;
         gap: var(--m18);
         border: 1px solid @cStroke;
         border-radius: var(--br4);
         padding: var(--m20) var(--m22);
         background: @cBlack850;
+        flex: 1 1 auto;
     }
 
-    &__step-info{
+    &__step-info {
         display: flex;
         flex-direction: column;
         gap: var(--m8);
@@ -196,5 +197,10 @@
         &__globe {
             right: -10%;
         }
+
+        &__step {
+            align-items: flex-start;
+        }
+
     }
 }

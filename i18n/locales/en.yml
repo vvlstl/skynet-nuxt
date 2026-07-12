@@ -5,3 +5,68 @@ header:
   howItWorks: How it works
   support: Support
   login: LogIn
+
+promo-block:
+  title: |-
+    CONTROL ABOVE THE NETWORK 
+    WITHOUT RESTRICTIONS
+  description: |-
+    SECURE CONNECTION.
+    HIGH SPEED.
+    ACCESS TO ANY SERVICES.
+  btn-activate:
+    ACTIVATE ACCESS
+
+devices:
+  title: SUPPORT FOR ALL DEVICES
+
+network:
+  title: |- 
+    Global network of
+    servers
+  description: Our servers are running 24/7 all over the world.
+
+pricing:
+  title: PRICING
+  card:
+    week:
+      title: ACCESS / 1&nbsp;WEEK
+    month:
+      title: ACCESS / 1&nbsp;MONTH
+    quarter:
+      title: ACCESS / 3&nbsp;MONTH
+  list:
+    speed: High speed
+    servers: 127+ servers
+    restrictions: No restrictions
+    support: 24/7 support
+  label:
+    popular: POPULAR
+  btn:
+    connect: CONNECT
+
+how-it-works:
+  title: HOW IT WORKS
+  log:
+    authorization: AUTHORIZATION
+    plan: PLAN SELECTED
+    payment: PAYMENT CONFIRMED
+    config: VPN CONFIG GENERATED
+    status: SUCCESS
+    result: CONNECTION ESTABLISHED WELCOME TO NETWORK
+  steps:
+    start:
+      title: Start
+      desc: Find our bot in Telegram and click "/start" or log in here
+    tariff:
+      title: Choose a tariff and pay
+      desc: Select the appropriate tariff and make the payment.
+    access:
+      title: Get access
+      desc: Instantly get the VPN configuration and it's ready to use.
+
+footer:
+  rights: © {year} SKYNET VPN. ALL RIGHTS RESERVED
+  link:
+    privacy: PRIVACY POLICY
+    agreement: USER AGREEMENTS

@@ -4,35 +4,9 @@
     position: relative;
     overflow: hidden;
 
-    &:before{
-        .pseudo();
-        top: 0;
-        left: 0;
-        bottom: 0;
-        width: 50%;
-        background: @cBlack800;
-        pointer-events: none;
-        z-index: 0;
-    }
-
-    &:after{
-        .pseudo();
-        top: 0;
-        right: 0;
-        bottom: 0;
-        width: 50%;
-        background: @cBlack850;
-        pointer-events: none;
-        z-index: 0;
-    }
-
     &__content {
-        .column-property(--panel, @count: 3, @total: 12, @columnGap: 0px);
-        .column-property(--map, @count: 9, @total: 12, @columnGap: 0px);
-
-        margin-right: calc(-1 * var(--page-gutter));
-        margin-left: calc(-1 * var(--page-gutter));
-        padding: 0 var(--page-gutter);
+        .column-property(--panel, @count: 3, @total: 12);
+        .column-property(--map, @count: 9, @total: 12);
 
         display: grid;
         grid-template-columns: var(--panel) var(--map);
@@ -69,6 +43,7 @@
         font: 700 var(--fs32) / 1.4 @font;
         letter-spacing: var(--letter-spacing);
         text-transform: uppercase;
+        white-space: pre-line;
     }
 
     &__divider {
@@ -140,6 +115,36 @@
         height: 100%;
     }
 
+    @media @mediaMoreMd {
+        &:before {
+            .pseudo();
+            top: 0;
+            left: 0;
+            bottom: 0;
+            width: 50%;
+            background: @cBlack800;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        &:after {
+            .pseudo();
+            top: 0;
+            right: 0;
+            bottom: 0;
+            width: 50%;
+            background: @cBlack850;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        &__content {
+            margin-right: calc(-1 * var(--page-gutter));
+            margin-left: calc(-1 * var(--page-gutter));
+            padding: 0 var(--page-gutter);
+        }
+    }
+
     @media @mediaMd {
         &__content {
             grid-template-columns: 100%;
@@ -149,6 +154,15 @@
             flex-direction: row;
             border-right: none;
             border-bottom: 1px solid @cStroke;
+            margin-right: calc(-1 * var(--page-gutter));
+            margin-left: calc(-1 * var(--page-gutter));
+            padding: var(--m36) var(--page-gutter);
+        }
+
+        &__map-area {
+            margin-right: calc(-1 * var(--page-gutter));
+            margin-left: calc(-1 * var(--page-gutter));
+            padding: 0 var(--page-gutter);
         }
 
         &__stats {

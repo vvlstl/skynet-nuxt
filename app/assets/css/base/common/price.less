@@ -1,0 +1,12 @@
+@import "../../_var";
+
+.price {
+    font-family: @font;
+    letter-spacing: var(--letter-spacing);
+    white-space: nowrap;
+
+    &--old {
+        color: var(--old-price-color, fade(@cGray800, 64));
+        text-decoration: line-through;
+    }
+}

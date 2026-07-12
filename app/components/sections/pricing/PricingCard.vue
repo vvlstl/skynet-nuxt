@@ -6,13 +6,13 @@
 		<Label
 			v-if="item.isPopular"
 			class="pricing-card__label"
-			value="POPULAR"
+			:value="t('pricing.label.popular')"
 			icon="hugeicons:star"
 		/>
 
 		<div class="pricing-card__wrap">
-			<div class="pricing-card__title">{{ item.title }}</div>
-			<div class="pricing-card__price">{{ item.price }}$</div>
+			<div class="pricing-card__title" v-html="item.title"/>
+			<Price :value="item.price" class="pricing-card__price"/>
 			<div class="pricing-card__info">
 				<ul>
 					<li
@@ -25,7 +25,7 @@
 			</div>
 			<Btn
 				class="pricing-card__btn"
-				text="CONNECT"
+				:text="t('pricing.btn.connect')"
 				:theme="!item.isPopular ? 'white' : undefined"
 				:isBordered="true"
 			/>
@@ -38,6 +38,9 @@
 	import Btn from "~/components/ui/Btn.vue";
 	import type {TPricingCard} from "~/types/pricing/TPricingCard";
 	import Label from "~/components/ui/Label.vue";
+	import Price from "~/components/common/Price.vue";
+
+	const {t} = useI18n()
 
 	type TComponentProps = {
 		item: TPricingCard;
