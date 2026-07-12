@@ -113,10 +113,12 @@
 
 @keyframes network-pulse {
     0%, 100% {
-        box-shadow: 0 0 8px 2px fade(@cRedOrange, 80), 0 0 18px 6px fade(@cRedOrange, 35);
+        filter: drop-shadow(0 0 4px fade(@cRedOrange, 90));
+        opacity: 1;
     }
     50% {
-        box-shadow: 0 0 12px 4px fade(@cRedOrange, 100), 0 0 26px 10px fade(@cRedOrange, 50);
+        filter: drop-shadow(0 0 10px fade(@cRedOrange, 100));
+        opacity: 0.8;
     }
 }
 

@@ -26,21 +26,31 @@
 							v-if="svgReady"
 							class="network__map-svg"
 							:viewBox="`0 0 ${mapWidth} ${mapHeight}`"
-							preserveAspectRatio="xMidYMid slice"
+							preserveAspectRatio="xMidYMid meet"
 							xmlns="http://www.w3.org/2000/svg"
 						>
 							<defs>
 								<pattern id="network-dots" :width="6" :height="6" patternUnits="userSpaceOnUse">
 									<circle cx="1" cy="1" r="0.6" fill="rgba(120,30,30,0.6)"/>
 								</pattern>
+								<filter id="node-glow" x="-100%" y="-100%" width="300%" height="300%">
+									<feGaussianBlur stdDeviation="3" result="blur"/>
+									<feMerge>
+										<feMergeNode in="blur"/>
+										<feMergeNode in="SourceGraphic"/>
+									</feMerge>
+								</filter>
 							</defs>
-							<g id="network-countries" ref="svgCountriesRef" fill="url(#network-dots)"
+							<g id="network-countries" ref="svgCountriesRef"
+							   fill="url(#network-dots)"
 							   stroke="rgba(150,40,40,0.35)"
 							   stroke-width="0.4"></g>
-							<g id="network-links" ref="svgLinksRef" fill="none" stroke="rgba(255,34,0,0.55)"
+							<g id="network-links" ref="svgLinksRef"
+							   fill="none"
+							   stroke="rgba(255,34,0,0.55)"
 							   stroke-width="1"></g>
+							<g id="network-nodes" ref="svgNodesRef"></g>
 						</svg>
-						<div id="network-nodes-layer" ref="nodesLayerRef"></div>
 						<template #fallback>
 							<div class="network__loader">
 								<GlobeLoader/>
@@ -65,7 +75,7 @@
 	const svgReady = ref(false)
 	const svgCountriesRef = useTemplateRef<SVGGElement>('svgCountriesRef')
 	const svgLinksRef = useTemplateRef<SVGGElement>('svgLinksRef')
-	const nodesLayerRef = useTemplateRef<HTMLDivElement>('nodesLayerRef')
+	const svgNodesRef = useTemplateRef<SVGGElement>('svgNodesRef')
 
 	type LabelSide = 'right' | 'left'
 
@@ -101,14 +111,16 @@
 	const path = d3.geoPath(projection)
 
 	function project(c: City): { x: number; y: number } {
-		const p = projection([c.lon, c.lat])
+		const p = projection([c.lon, c.lat])!
 		return {x: p[0], y: p[1]}
 	}
 
+	const SVG_NS = 'http://www.w3.org/2000/svg'
+
 	function drawLinksAndNodes(): void {
 		const linksG = svgLinksRef.value
-		const nodesLayer = nodesLayerRef.value
-		if (!linksG || !nodesLayer) {
+		const nodesG = svgNodesRef.value
+		if (!linksG || !nodesG) {
 			console.error('[ERROR][NetworkSection] Map SVG elements not found')
 			return
 		}
@@ -125,7 +137,7 @@
 			}
 			const mx = (p1.x + p2.x) / 2
 			const my = (p1.y + p2.y) / 2 - 30
-			const el = document.createElementNS('http://www.w3.org/2000/svg', 'path')
+			const el = document.createElementNS(SVG_NS, 'path')
 			el.setAttribute('d', `M${p1.x},${p1.y} Q${mx},${my} ${p2.x},${p2.y}`)
 			linksG.appendChild(el)
 		})
@@ -136,21 +148,37 @@
 				console.warn(`[WARN][NetworkSection] City not projected: ${c.name}`)
 				return
 			}
-			const xPct = (p.x / mapWidth) * 100
-			const yPct = (p.y / mapHeight) * 100
 
-			const node = document.createElement('div')
-			node.className = 'network__node'
-			node.style.left = `${xPct}%`
-			node.style.top = `${yPct}%`
-			nodesLayer.appendChild(node)
+			// Анимированное кольцо (бывший ::after)
+			const ring = document.createElementNS(SVG_NS, 'circle')
+			ring.setAttribute('cx', String(p.x))
+			ring.setAttribute('cy', String(p.y))
+			ring.setAttribute('r', '10')
+			ring.setAttribute('fill', 'none')
+			ring.setAttribute('stroke', 'rgba(255,80,0,0.5)')
+			ring.setAttribute('stroke-width', '1')
+			ring.setAttribute('class', 'network-ring')
+			nodesG.appendChild(ring)
 
-			const label = document.createElement('div')
-			label.className = c.labelSide === 'left' ? 'network__label network__label--left' : 'network__label'
-			label.style.left = `${xPct}%`
-			label.style.top = `${yPct}%`
-			label.textContent = c.name
-			nodesLayer.appendChild(label)
+			// Центральная точка с glow
+			const dot = document.createElementNS(SVG_NS, 'circle')
+			dot.setAttribute('cx', String(p.x))
+			dot.setAttribute('cy', String(p.y))
+			dot.setAttribute('r', '5')
+			dot.setAttribute('fill', 'rgba(255,27,27,0.9)')
+			dot.setAttribute('class', 'network-dot')
+			nodesG.appendChild(dot)
+
+			// Лейбл
+			const isLeft = c.labelSide === 'left'
+			const labelX = isLeft ? p.x - 14 : p.x + 14
+			const text = document.createElementNS(SVG_NS, 'text')
+			text.setAttribute('x', String(labelX))
+			text.setAttribute('y', String(p.y - 6))
+			text.setAttribute('text-anchor', isLeft ? 'end' : 'start')
+			text.setAttribute('class', 'network-label')
+			text.textContent = c.name
+			nodesG.appendChild(text)
 		})
 	}
 
@@ -177,7 +205,7 @@
 		}>).forEach((f) => {
 			const d = path(f)
 			if (!d) return
-			const el = document.createElementNS('http://www.w3.org/2000/svg', 'path')
+			const el = document.createElementNS(SVG_NS, 'path')
 			el.setAttribute('d', d)
 			g.appendChild(el)
 		})

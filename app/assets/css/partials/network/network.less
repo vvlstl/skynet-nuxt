@@ -115,39 +115,22 @@
     &__map-svg {
         .size(100%);
         display: block;
-    }
 
-    &__node {
-        .size(var(--m10));
-        position: absolute;
-        border-radius: 50%;
-        background: @cRedOrange;
-        box-shadow: 0 0 var(--m8) var(--m2) fade(@cRedOrange, 80), 0 0 var(--m18) var(--m6) fade(@cRedOrange, 35);
-        transform: translate(-50%, -50%);
-        animation: network-pulse 2.2s infinite ease-in-out;
-    }
+        .network-dot {
+            animation: network-pulse 2.2s infinite ease-in-out;
+        }
 
-    &__node::after {
-        .pseudo();
-        inset: calc(-1 * var(--m10));
-        border: 1px solid fade(@cRedOrange, 50);
-        border-radius: 50%;
-        animation: network-ring 2.2s infinite ease-out;
-    }
+        .network-ring {
+            transform-box: fill-box;
+            transform-origin: center;
+            animation: network-ring 2.2s infinite ease-out;
+        }
 
-    &__label {
-        position: absolute;
-        color: @cGray300;
-        font-size: var(--fs11, var(--fs10));
-        letter-spacing: var(--letter-spacing);
-        white-space: nowrap;
-        transform: translate(var(--m14), calc(-1 * var(--m6)));
-        text-shadow: 0 0 var(--m4) fade(@cBlack, 80);
-        pointer-events: none;
-
-        &--left {
-            transform: translate(calc(-100% - var(--m14)), calc(-1 * var(--m6)));
-            text-align: right;
+        .network-label {
+            fill: @cGray300;
+            font-size: 11px;
+            font-family: @font;
+            letter-spacing: var(--letter-spacing);
         }
     }
 
