@@ -15,7 +15,10 @@
 
 					<nav class="header__nav">
 						<ClientOnly>
-							<AnchorsLink :items="navLinks"/>
+							<AnchorsLink
+								:key="locale"
+								:items="navLinks"
+							/>
 							<template #fallback>
 								<CyberLink
 									v-for="(fallbackLink, index) in navLinks"
@@ -83,7 +86,7 @@
 	import {usePageScroll} from "~/composables/usePageScroll";
 	import CyberLink from "~/components/ui/CyberLink.vue";
 
-	const { t } = useI18n()
+	const { t, locale} = useI18n()
 
 	const navLinks = computed((): TLink[] => [
 		{text: t('header.pricing'), url: '#pricing'},
