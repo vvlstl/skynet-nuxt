@@ -28,8 +28,29 @@ export default defineNuxtConfig({
         '@nuxt/icon',
         '@nuxt/hints',
         '@nuxt/scripts',
-        '@nuxt/test-utils'
+        '@nuxt/test-utils',
+        '@nuxtjs/i18n'
     ],
+
+    i18n: {
+        locales: [
+            {
+                code: 'en',
+                iso: 'en-US',
+                file: 'en.yml',
+                name: 'English'
+            },
+            {
+                code: 'ru',
+                iso: 'ru-RU',
+                file: 'ru.yml',
+                name: 'Русский'
+            }
+        ],
+        lazy: true,
+        langDir: 'locales/',
+        defaultLocale: 'ru'
+    },
 
     hints: {
         features: {

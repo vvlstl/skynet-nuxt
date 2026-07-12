@@ -26,15 +26,17 @@
 							</template>
 						</ClientOnly>
 						<CyberLink
-							label="Support"
+							:label="t('header.support')"
 							theme="grey"
 						/>
 					</nav>
 
 					<div class="header__actions">
+						<CommonLanguageSwitcher/>
+
 						<Btn
 							class="header__btn-bot"
-							text="LogIn"
+							:text="t('header.login')"
 							size="md"
 							theme="grey"
 							:is-bordered="true"
@@ -81,9 +83,11 @@
 	import {usePageScroll} from "~/composables/usePageScroll";
 	import CyberLink from "~/components/ui/CyberLink.vue";
 
+	const { t } = useI18n()
+
 	const navLinks = computed((): TLink[] => [
-		{text: 'Pricing', url: '#pricing'},
-		{text: 'How it works', url: '#how-it-works'},
+		{text: t('header.pricing'), url: '#pricing'},
+		{text: t('header.howItWorks'), url: '#how-it-works'},
 	]);
 
 	const root = useTemplateRef<HTMLElement>('root');
