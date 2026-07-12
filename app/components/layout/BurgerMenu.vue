@@ -15,7 +15,13 @@
 			<CyberBtn
 				class="burger-menu__btn"
 				theme="grey"
-				label="LogIn"
+				:label="t('header.support')"
+			>
+			</CyberBtn>
+			<CyberBtn
+				class="burger-menu__btn"
+				theme="grey"
+				:label="t('header.login')"
 			>
 			</CyberBtn>
 		</nav>
@@ -32,6 +38,8 @@
 	};
 
 	defineProps<TComponentProps>();
+
+	const {t} = useI18n()
 
 	const emit = defineEmits<{
 		close: [];
