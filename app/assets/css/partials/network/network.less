@@ -115,6 +115,16 @@
         height: 100%;
     }
 
+    @media @mediaMoreXxl {
+        &:before {
+            mask-image: linear-gradient(to left, @cBlack 85%, transparent 100%);
+        }
+
+        &:after {
+            mask-image: linear-gradient(to right, @cBlack 85%, transparent 100%);
+        }
+    }
+
     @media @mediaMoreMd {
         &:before {
             .pseudo();
