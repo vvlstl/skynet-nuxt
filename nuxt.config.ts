@@ -36,13 +36,13 @@ export default defineNuxtConfig({
         locales: [
             {
                 code: 'en',
-                iso: 'en-US',
+                language: 'en-US',
                 file: 'en.yml',
                 name: 'English'
             },
             {
                 code: 'ru',
-                iso: 'ru-RU',
+                language: 'ru-RU',
                 file: 'ru.yml',
                 name: 'Русский'
             }

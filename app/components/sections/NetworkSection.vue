@@ -4,7 +4,7 @@
 			<div class="network__content">
 				<div class="network__info-panel">
 					<div class="network__info-panel-header">
-						<h1 class="network__title"> {{ t('network.title') }} </h1>
+						<h2 class="network__title"> {{ t('network.title') }} </h2>
 						<div class="network__divider"></div>
 						<p class="network__description"> {{ t('network.description') }} </p>
 					</div>

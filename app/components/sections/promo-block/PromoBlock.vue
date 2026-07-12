@@ -3,9 +3,9 @@
 		<div class="content-container">
 			<div class="promo-block__content">
 				<div class="promo-block__info">
-					<div class="promo-block__title">
+					<h1 class="promo-block__title">
 						{{ t('promo-block.title') }}
-					</div>
+					</h1>
 					<div class="promo-block__description">
 						{{ t('promo-block.description') }}
 					</div>
