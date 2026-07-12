@@ -10,7 +10,10 @@
 						{{ t('promo-block.description') }}
 					</div>
 					<div class="promo-block__group-btns">
-						<Btn :text="t('promo-block.btn-activate')">
+						<Btn
+							:text="t('promo-block.btn-activate')"
+							@click.prevent="clickBtn"
+						>
 							<template #iconRight>
 								<span class="btn__icon">
 									<Icon name="hugeicons:arrow-down-right-01"/>
@@ -54,4 +57,12 @@
 
 	const Globe = defineAsyncComponent(() => import('~/components/partials/globe/Globe.vue'));
 	const {t} = useI18n()
+
+	function clickBtn() {
+		const block = document.getElementById('pricing');
+
+		if (!block) return
+
+		block.scrollIntoView({behavior: 'smooth'});
+	}
 </script>
