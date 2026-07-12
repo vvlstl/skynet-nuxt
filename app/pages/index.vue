@@ -15,11 +15,14 @@
 <script setup lang="ts">
 	import {onMounted, defineAsyncComponent} from 'vue'
 	import PromoBlock from "~/components/sections/promo-block/PromoBlock.vue";
-	import PricingSection from "~/components/sections/pricing/PricingSection.vue";
-	import Devices from "~/components/sections/devices/Devices.vue";
-	import HowItWorks from "~/components/sections/how-it-works/HowItWorks.vue";
 
+	// LCP-критичная секция (PromoBlock) импортируется статически.
+	// Остальные секции оборачиваются в defineAsyncComponent —
+	// они уходят в отдельные чанки и не блокируют initial render.
+	const Devices = defineAsyncComponent(() => import('~/components/sections/devices/Devices.vue'))
 	const NetworkSection = defineAsyncComponent(() => import('~/components/sections/NetworkSection.vue'))
+	const PricingSection = defineAsyncComponent(() => import('~/components/sections/pricing/PricingSection.vue'))
+	const HowItWorks = defineAsyncComponent(() => import('~/components/sections/how-it-works/HowItWorks.vue'))
 
 	onMounted(async () => {
 		const {gsap} = await import('gsap')

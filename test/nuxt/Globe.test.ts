@@ -104,6 +104,49 @@
 		}
 	}
 
+	function installIntersectionObserverMock(options: {
+		isIntersecting: boolean
+	}) {
+		let capturedCb: IntersectionObserverCallback | null = null
+		const observe = vi.fn(function (this: unknown) {})
+		class IO {
+			readonly root = null
+			readonly rootMargin = ''
+			readonly thresholds: readonly number[] = []
+			takeRecords = vi.fn(() => [])
+			observe = vi.fn((cb?: unknown) => {
+				// сразу триггерим callback с заданным флагом isIntersecting
+				setTimeout(() => {
+					capturedCb?.(
+						[
+							{
+								isIntersecting: options.isIntersecting,
+								target: document.createElement('div'),
+								intersectionRatio: 0,
+								intersectionRect: {} as DOMRectReadOnly,
+								boundingClientRect: {} as DOMRectReadOnly,
+								rootBounds: null,
+								time: 0,
+							} as unknown as IntersectionObserverEntry,
+						] as readonly IntersectionObserverEntry[],
+						this as unknown as IntersectionObserver,
+					)
+				})
+			})
+			unobserve = vi.fn()
+			disconnect = vi.fn()
+			constructor(cb: IntersectionObserverCallback) {
+				capturedCb = cb
+			}
+		}
+		void observe
+		const original = globalThis.IntersectionObserver
+		globalThis.IntersectionObserver = IO as unknown as typeof IntersectionObserver
+		return () => {
+			globalThis.IntersectionObserver = original
+		}
+	}
+
 	function installWebGLProbeMock() {
 		const w = window as unknown as { WebGLRenderingContext?: unknown }
 		const hadCtx = 'WebGLRenderingContext' in w
@@ -166,7 +209,7 @@
 
 		it('initializes globe context and starts animation on mount', async () => {
 			await mountSuspended(Globe, { props: { visible: true } })
-			await new Promise(resolve => setTimeout(resolve, 0))
+			await new Promise(resolve => setTimeout(resolve, 50))
 
 			expect(logSpy.mock.calls.some(call => String(call[1]).includes('mounted'))).toBe(true)
 			expect(startSpy).toHaveBeenCalled()
@@ -174,7 +217,7 @@
 
 		it('disposes context and stops animation on unmount', async () => {
 			const wrapper = await mountSuspended(Globe, { props: { visible: true } })
-			await new Promise(resolve => setTimeout(resolve, 0))
+			await new Promise(resolve => setTimeout(resolve, 50))
 			await wrapper.vm.$nextTick()
 
 			wrapper.unmount()
@@ -183,4 +226,21 @@
 			expect(disposeSpy).toHaveBeenCalled()
 			expect(logSpy.mock.calls.some(call => String(call[1]).includes('unmount'))).toBe(true)
 		})
+
+		it('не вызывает useGlobeScene при lazy=true и отсутствии пересечения с viewport', async () => {
+			const restoreIO = installIntersectionObserverMock({isIntersecting: false})
+			const {useGlobeScene} = await import('~/composables/useGlobeScene')
+			const sceneSpy = vi.mocked(useGlobeScene)
+			sceneSpy.mockClear()
+
+			await mountSuspended(Globe, {props: {visible: true, lazy: true}})
+
+			// даём отложенному колбэку IntersectionObserver шанс выполниться
+			await new Promise(resolve => setTimeout(resolve, 10))
+
+			expect(sceneSpy).not.toHaveBeenCalled()
+
+			restoreIO()
+		})
+
 	})

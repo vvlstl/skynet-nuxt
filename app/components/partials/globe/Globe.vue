@@ -106,6 +106,22 @@
 		ctx.start()
 	}
 
+	// Откладываем тяжёлую инициализацию Three.js сцены до простоя главного
+	// потока — снимает блокировку TBT при попадании Globe в viewport.
+	// Fallback на setTimeout для браузеров без requestIdleCallback.
+	function scheduleGlobeInit(): void {
+		if (typeof window.requestIdleCallback === 'function') {
+			window.requestIdleCallback(() => {
+				void initGlobe()
+			}, {timeout: 2000})
+			return
+		}
+
+		window.setTimeout(() => {
+			void initGlobe()
+		}, 0)
+	}
+
 	onMounted(() => {
 		if (!import.meta.client) {
 			return
@@ -116,16 +132,18 @@
 			return
 		}
 
-		// Ленивая инициализация: Three.js сцена создаётся только когда элемент попадает в viewport
+		// Ленивая инициализация: Three.js сцена создаётся только когда элемент
+		// попадает в viewport. rootMargin=0px — не предзагружаем Globe заранее,
+		// чтобы не блокировать главный поток на above-fold рендере.
 		viewportObserver = new IntersectionObserver(
 			(entries) => {
 				if (entries[0]?.isIntersecting) {
 					viewportObserver?.disconnect()
 					viewportObserver = undefined
-					initGlobe()
+					scheduleGlobeInit()
 				}
 			},
-			{rootMargin: '200px'},
+			{rootMargin: '0px'},
 		)
 
 		if (containerRef.value) {
