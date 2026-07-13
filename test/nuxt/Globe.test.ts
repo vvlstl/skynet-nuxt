@@ -114,7 +114,7 @@
 			readonly rootMargin = ''
 			readonly thresholds: readonly number[] = []
 			takeRecords = vi.fn(() => [])
-			observe = vi.fn((cb?: unknown) => {
+			observe = vi.fn(() => {
 				// сразу триггерим callback с заданным флагом isIntersecting
 				setTimeout(() => {
 					capturedCb?.(
