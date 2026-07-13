@@ -25,41 +25,57 @@
 	const HowItWorks = defineAsyncComponent(() => import('~/components/sections/how-it-works/HowItWorks.vue'))
 
 	onMounted(async () => {
-		const {gsap} = await import('gsap')
-		const {ScrollTrigger} = await import('gsap/ScrollTrigger')
+		const {gsap} = await import("gsap")
+		const {ScrollTrigger} = await import("gsap/ScrollTrigger")
 		gsap.registerPlugin(ScrollTrigger)
 
-		gsap.from('.network', {
+		gsap.from(".network", {
 			scrollTrigger: {
-				trigger: '.network',
-				start: 'top 80%'
+				trigger: ".network",
+				start: "top 80%"
 			},
 			duration: 1,
 			scale: 0.8,
 			opacity: 0,
-			ease: 'power3.out'
+			ease: "power3.out"
 		})
 
-		gsap.from('.pricing', {
+		gsap.from(".pricing", {
 			scrollTrigger: {
-				trigger: '.pricing',
-				start: 'top 80%'
+				trigger: ".pricing",
+				start: "top 80%"
 			},
 			duration: 1,
 			y: 50,
 			opacity: 0,
-			ease: 'power3.out'
+			ease: "power3.out"
 		})
 
-		gsap.from('.how-it-works', {
+		gsap.from(".how-it-works", {
 			scrollTrigger: {
-				trigger: '.how-it-works',
-				start: 'top 80%'
+				trigger: ".how-it-works",
+				start: "top 80%"
 			},
 			duration: 1,
 			y: 50,
 			opacity: 0,
-			ease: 'power3.out'
+			ease: "power3.out"
 		})
+
+		// Prefetch ниже-fold секций в idle: подгружаем чанки PricingSection
+		// и HowItWorks после того как GSAP анимации зарегистрированы, чтобы
+		// не задерживать TTI. Компромисс: небольшой лишний трафик взамен
+		// на мгновенный рендер при скролле.
+		if (typeof window.requestIdleCallback === "function") {
+			window.requestIdleCallback(() => {
+				void import("~/components/sections/pricing/PricingSection.vue")
+				void import("~/components/sections/how-it-works/HowItWorks.vue")
+			}, {timeout: 5000})
+		} else {
+			window.setTimeout(() => {
+				void import("~/components/sections/pricing/PricingSection.vue")
+				void import("~/components/sections/how-it-works/HowItWorks.vue")
+			}, 1000)
+		}
 	})
 </script>
