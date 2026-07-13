@@ -17,9 +17,42 @@ export default defineNuxtConfig({
         baseURL: '/skynet-nuxt/'
     },
 
-    // Статический экспорт для GitHub Pages
+    // Статический экспорт для GitHub Pages.
+    // compressPublicAssets пред-сжимает статику gzip+brotli на этапе
+    // `nuxt generate`. GitHub Pages отдаёт brotli только если файл
+    // `.br` существует рядом с оригиналом и Accept-Encoding позволяет.
+    // routeRules с Cache-Control на GH Pages не применяются (статический
+    // хостинг игнорирует генерируемые заголовки), но остаются для future
+    // self-hosted deploy и для локального preview.
+    // minify сжимает HTML в .output/public — снимает ~20-30% размера:
+    // лишние пробелы, переносы, комментарии.
     nitro: {
-        preset: 'static'
+        preset: 'static',
+        minify: true,
+        compressPublicAssets: {
+            gzip: true,
+            brotli: true,
+        },
+        routeRules: {
+            '/_nuxt/**': {
+                headers: {
+                    'Cache-Control': 'public, max-age=31536000, immutable',
+                },
+            },
+            '/fonts/**': {
+                headers: {
+                    'Cache-Control': 'public, max-age=31536000, immutable',
+                },
+            },
+        },
+    },
+
+    features: {
+        // Отключаем инлайн SSR-стилей: Nuxt 4 по умолчанию встраивает
+        // критический CSS в HTML, что раздувает index.html (audit 134 KB).
+        // На GitHub Pages HTTP/2 внешний CSS-файл выгоднее — кэшируется
+        // отдельно и не дублируется на каждой prerendered странице.
+        inlineStyles: false,
     },
 
     modules: [
@@ -89,7 +122,7 @@ export default defineNuxtConfig({
                     javascriptEnabled: true,
                     globalVars: {
                         imagePath: '~/assets/images/',
-                        fontPath: '~/assets/fonts/'
+                        fontPath: '/skynet-nuxt/fonts/'
                     }
                 }
             }

@@ -151,8 +151,10 @@
 
 //noinspection LessUnresolvedVariable
 @imagePath: '~/assets/images/';
+// Шрифты лежат в public/fonts/ — отдаются статически по baseURL,
+// что даёт стабильный URL без хеша и позволяет rel=preload в useHead.
 //noinspection LessUnresolvedVariable
-@fontPath: '~/assets/fonts/';
+@fontPath: '/skynet-nuxt/fonts/';
 
 /**
  * Сетка

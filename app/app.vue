@@ -18,13 +18,24 @@
 		return match?.language ?? locale.value
 	})
 
+	// Bender объявлен как LCP-критичный шрифт для заголовков, Bender-Black
+	// используется в декоре, Zector — для nav labels. preload с
+	// crossorigin=anonymous обязателен для font/woff2, иначе браузер
+	// скачает шрифт повторно при парсинге @font-face.
+	const fontBase = '/skynet-nuxt/fonts/'
+	const fontPreloads = computed(() => ([
+		{ rel: 'preload', href: `${fontBase}Bender-Bold.woff2`, as: 'font', type: 'font/woff2', crossorigin: 'anonymous' },
+		{ rel: 'preload', href: `${fontBase}Bender-Black.woff2`, as: 'font', type: 'font/woff2', crossorigin: 'anonymous' },
+		{ rel: 'preload', href: `${fontBase}Zector-Regular.woff2`, as: 'font', type: 'font/woff2', crossorigin: 'anonymous' },
+	]))
+
 	const headData = computed(() => ({
 		htmlAttrs: {
 			lang: htmlLang.value,
 			dir: i18nHead.value.htmlAttrs?.dir
 		},
 		title: t('meta.title'),
-		link: [...(i18nHead.value.link ?? [])],
+		link: [...(i18nHead.value.link ?? []), ...fontPreloads.value],
 		meta: [...(i18nHead.value.meta ?? [])]
 	}))
 
