@@ -139,4 +139,38 @@
     100% { transform: scaleX(1); }
 }
 
+@keyframes demoAccessSweep {
+    0%, 100% {
+        opacity: 0;
+        transform: scaleX(0);
+    }
+
+    30%, 70% {
+        opacity: 1;
+        transform: scaleX(1);
+    }
+}
+
+@keyframes demoAccessPulse {
+    0% {
+        border-color: fade(@cRed500, 60);
+        inset: -4px;
+    }
+
+    100% {
+        border-color: fade(@cRed500, 0);
+        inset: -20px;
+    }
+}
+
+@keyframes demoAccessScroll {
+    0% {
+        margin-left: 0;
+    }
+
+    100% {
+        margin-left: -50%;
+    }
+}
+
 

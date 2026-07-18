@@ -1,7 +1,11 @@
 <template>
 	<PromoBlock/>
 	<Devices class="page__section"/>
-	<NetworkSection/>
+	<NetworkSection class="page__section"/>
+	<DemoAccess
+		id="demo-access"
+		class="page__section"
+	/>
 	<PricingSection
 		id="pricing"
 		class="page__section"
@@ -27,6 +31,7 @@
 	const Devices = defineAsyncComponent(() => import('~/components/sections/devices/Devices.vue'))
 	const NetworkSection = defineAsyncComponent(() => import('~/components/sections/NetworkSection.vue'))
 	const GlobalManifest = defineAsyncComponent(() => import('~/components/sections/global-manifest/GlobalManifest.vue'))
+	const DemoAccess = defineAsyncComponent(() => import('~/components/sections/demo-access/DemoAccess.vue'))
 	const PricingSection = defineAsyncComponent(() => import('~/components/sections/pricing/PricingSection.vue'))
 	const HowItWorks = defineAsyncComponent(() => import('~/components/sections/how-it-works/HowItWorks.vue'))
 
@@ -53,6 +58,17 @@
 			},
 			duration: 1,
 			y: 30,
+			opacity: 0,
+			ease: "power3.out"
+		})
+
+		gsap.from(".demo-access", {
+			scrollTrigger: {
+				trigger: ".demo-access",
+				start: "top 80%"
+			},
+			duration: 1,
+			y: 50,
 			opacity: 0,
 			ease: "power3.out"
 		})
@@ -89,11 +105,13 @@
 			window.requestIdleCallback(() => {
 				void import("~/components/sections/pricing/PricingSection.vue")
 				void import("~/components/sections/how-it-works/HowItWorks.vue")
+				void import("~/components/sections/demo-access/DemoAccess.vue")
 			}, {timeout: 5000})
 		} else {
 			window.setTimeout(() => {
 				void import("~/components/sections/pricing/PricingSection.vue")
 				void import("~/components/sections/how-it-works/HowItWorks.vue")
+				void import("~/components/sections/demo-access/DemoAccess.vue")
 			}, 1000)
 		}
 	})

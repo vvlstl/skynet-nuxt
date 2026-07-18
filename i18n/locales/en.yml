@@ -4,6 +4,7 @@ meta:
   title: SKYNET VPN — control above the network without restrictions
 
 header:
+  test-drive: Test drive
   pricing: Pricing
   howItWorks: How it works
   support: Support
@@ -89,6 +90,37 @@ how-it-works:
     access:
       title: NETWORK ENTRY
       desc: Import the generated VLESS key in one click. You are online. The borders are erased.
+
+demo-access:
+  title: DEMO VPN ACCESS
+  subtitle: GET A TEMPORARY KEY AND VERIFY THE QUALITY OF THE SERVICE
+  desc: Hold the button for 3 seconds — get a VLESS demo key to test the service. Key is valid for 6 hours.
+  step1:
+    title: HOLD THE BUTTON
+    desc: Press and hold for 3 seconds to activate
+  step2:
+    title: COPY THE KEY
+    desc: Click the Copy Key button
+  step3:
+    title: CONNECT TO VPN
+    desc: Follow the connection instructions
+  step4:
+    title: SUBSCRIBE
+    desc: Open the bot for full access
+  terminal:
+    head: SKYNET.VPN // DEMO_SESSION
+    ticker-idle: 'NODE_SCAN: 127/127   UPLINK: READY   PROTOCOL: VLESS+REALITY   STATUS: AWAITING_AUTH   LATENCY: 12ms'
+    ticker-active: 'KEY_GENERATED: OK   SESSION_START   TTL: 6H   NODE: node01.skynet.net   PROTOCOL: VLESS+REALITY   ENC: XTLS'
+  label:
+    hold: HOLD TO ACTIVATE
+    activated: KEY ACTIVATED
+    copy: COPY
+    copied: COPIED
+  stats:
+    hours: UP TO 6 HOURS
+    speed: 100 MBIT/S
+    protocol: VLESS / REALITY
+  note: The demo key is issued once for 6 hours. For permanent access, open the Telegram bot.
 
 footer:
   rights: © {year} SKYNET VPN. ALL RIGHTS RESERVED

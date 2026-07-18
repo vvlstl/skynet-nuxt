@@ -4,6 +4,7 @@ meta:
   title: SKYNET VPN — контроль над сетью без ограничений
 
 header:
+  test-drive: Тест-драйв
   pricing: Цены
   howItWorks: Как это работает
   support: Поддержка
@@ -92,6 +93,37 @@ how-it-works:
     access:
       title: ВЫХОД В СЕТЬ
       desc: Импортируй сгенерированный VLESS-ключ в один клик. Ты онлайн. Границы стёрты.
+
+demo-access:
+  title: ДЕМО-ДОСТУП К VPN
+  subtitle: ПОЛУЧИТЕ ВРЕМЕННЫЙ КЛЮЧ И УБЕДИТЕСЬ В КАЧЕСТВЕ СЕРВИСА
+  desc: Удерживайте кнопку 3 секунды — получите демо-ключ VLESS для проверки сервиса. Ключ действует 6 часов.
+  step1:
+    title: УДЕРЖИВАЙТЕ КНОПКУ
+    desc: Нажмите и удерживайте 3 секунды для активации
+  step2:
+    title: СКОПИРУЙТЕ КЛЮЧ
+    desc: Нажмите кнопку «Скопировать ключ»
+  step3:
+    title: ПОДКЛЮЧИТЕСЬ К VPN
+    desc: Следуйте инструкции по подключению
+  step4:
+    title: ОФОРМИТЕ ПОДПИСКУ
+    desc: Перейдите в бот для полного доступа
+  terminal:
+    head: SKYNET.VPN // DEMO_SESSION
+    ticker-idle: 'NODE_SCAN: 127/127   UPLINK: READY   PROTOCOL: VLESS+REALITY   STATUS: AWAITING_AUTH   LATENCY: 12ms'
+    ticker-active: 'KEY_GENERATED: OK   SESSION_START   TTL: 6H   NODE: node01.skynet.net   PROTOCOL: VLESS+REALITY   ENC: XTLS'
+  label:
+    hold: УДЕРЖИВАЙТЕ ДЛЯ АКТИВАЦИИ
+    activated: КЛЮЧ АКТИВИРОВАН
+    copy: COPY
+    copied: COPIED
+  stats:
+    hours: ДО 6 ЧАСОВ
+    speed: 100 МБИТ/С
+    protocol: VLESS / REALITY
+  note: Демо-ключ выдаётся один раз на 6 часов. Для постоянного доступа перейдите в Telegram-бот.
 
 footer:
   rights: © {year} SKYNET VPN. ВСЕ ПРАВА ЗАЩИЩЕНЫ

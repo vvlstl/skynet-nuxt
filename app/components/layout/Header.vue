@@ -89,6 +89,7 @@
 	const {t, locale} = useI18n()
 
 	const navLinks = computed((): TLink[] => [
+		{text: t('header.test-drive'), url: '#demo-access'},
 		{text: t('header.pricing'), url: '#pricing'},
 		{text: t('header.howItWorks'), url: '#how-it-works'},
 	]);
