@@ -1,0 +1,45 @@
+@import "../../_var";
+
+.global-manifest {
+    position: relative;
+    box-sizing: border-box;
+
+    &__content {
+        position: relative;
+        max-width: calc(var(--content-max-width) * 0.75);
+        margin: 0 auto;
+        padding: var(--m32) var(--m24);
+        border-left: 2px solid fade(@cRed500, 80);
+        background: linear-gradient(180deg, fade(@cBlack850, 60) 0%, fade(@cBlack850, 0) 100%);
+    }
+
+    &__title {
+        .title-block(var(--fs32));
+
+        margin: 0 0 var(--m16);
+        color: @cWhite;
+        text-transform: uppercase;
+        text-shadow: 0 0 var(--m8) fade(@cRed500, 40);
+    }
+
+    &__text {
+        margin: 0;
+        font: 400 var(--fs16) / 1.6 @font;
+        letter-spacing: var(--letter-spacing);
+        color: fade(@cWhite, 80);
+    }
+
+    @media @mediaSm {
+        &__content {
+            padding: var(--m24) var(--m16);
+        }
+
+        &__title {
+            font-size: var(--fs24);
+        }
+
+        &__text {
+            font-size: var(--fs14);
+        }
+    }
+}

@@ -11,12 +11,12 @@ header:
 
 promo-block:
   title: |-
-    CONTROL ABOVE THE NETWORK 
-    WITHOUT RESTRICTIONS
+    YOUR NETWORK
+    YOUR RULES
   description: |-
-    SECURE CONNECTION.
-    HIGH SPEED.
-    ACCESS TO ANY SERVICES.
+    Say NO to the advancing Cheburnet. 
+    SKYNET VPN — your personal teleport to the free global network. 
+    No censorship, no throttling, no stupid restrictions
   btn-activate:
     ACTIVATE ACCESS
 
@@ -24,25 +24,45 @@ devices:
   title: SUPPORT FOR ALL DEVICES
 
 network:
-  title: |- 
-    Global network of
-    servers
-  description: Our servers are running 24/7 all over the world.
+  title: |-
+    DECENTRALIZED
+    ARCHITECTURE
+  description: |-
+    127 autonomous Nodes worldwide. If regulators block one gateway, SKYNET instantly
+    reroutes traffic through backup channels. This network cannot be shut down from outside.
+
+manifest:
+  title: SAY "NO" TO CHEBURNET
+  text: |-
+    The Internet is being turned into a closed pen with three permitted sites and
+    endless throttling. We did not create SKYNET for you to put up with limitations.
+    We use next-generation VLESS protocols that disguise your traffic as ordinary,
+    safe web surfing. To the censors, you simply do not exist on the network.
+    Stay part of the global world, no matter what happens outside.
 
 pricing:
-  title: PRICING
+  title: CHANNEL SELECTION
   card:
     week:
-      title: ACCESS / 1&nbsp;WEEK
+      title: TEST DRIVE / ENTRY GATEWAY
+      list:
+        test: Quick test drive of the SKYNET architecture
+        access: Full access to the secure VLESS protocol
+        instant: Perfect for instant connectivity check outside Cheburnet
     month:
-      title: ACCESS / 1&nbsp;MONTH
+      title: CYBER CITIZEN / NETWORK CITIZEN
+      list:
+        priority: Priority channel with no speed drops
+        encryption: Military-grade encryption
+        nolog: Zero logging (absolute absence of digital traces)
+        dpi: Deep packet inspection immunity (DPI-bypass)
     quarter:
-      title: ACCESS / 3&nbsp;MONTH
-  list:
-    speed: High speed
-    servers: 127+ servers
-    restrictions: No restrictions
-    support: 24/7 support
+      title: NET RUNNER / UNLIMITED ACCESS
+      list:
+        max: Maximum priority on all global nodes
+        autonomy: Full autonomy from Cheburnet for 90 days
+        savings: Significant savings compared to the monthly plan
+        support: Dedicated 24/7 emergency support line
   label:
     popular: POPULAR
   btn:
@@ -56,17 +76,19 @@ how-it-works:
     payment: PAYMENT CONFIRMED
     config: VPN CONFIG GENERATED
     status: SUCCESS
-    result: CONNECTION ESTABLISHED WELCOME TO NETWORK
+    result: |-
+      CONNECTION ESTABLISHED. 
+      WELCOME TO THE FREE INTERNET.
   steps:
     start:
-      title: Start
-      desc: Find our bot in Telegram and click "/start" or log in here
+      title: PROTOCOL ACTIVATION
+      desc: Launch the bot in Telegram with the `/start` command — this is your personal control terminal.
     tariff:
-      title: Choose a tariff and pay
-      desc: Select the appropriate tariff and make the payment.
+      title: CHANNEL SELECTION
+      desc: Determine the level of autonomy you need (key validity period) and make an instant secure payment.
     access:
-      title: Get access
-      desc: Instantly get the VPN configuration and it's ready to use.
+      title: NETWORK ENTRY
+      desc: Import the generated VLESS key in one click. You are online. The borders are erased.
 
 footer:
   rights: © {year} SKYNET VPN. ALL RIGHTS RESERVED

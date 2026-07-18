@@ -22,11 +22,11 @@
 
     &__item {
         flex-shrink: 0;
-        min-width: unit((280 / 16), rem);
-        max-width: unit((280 / 16), rem);
+        min-width: unit((320 / 16), rem);
+        max-width: unit((320 / 16), rem);
     }
 
-    @media @mediaMd {
+    @media @mediaLg {
         &__list {
             gap: var(--m24);
             padding: var(--m48) var(--page-gutter);
@@ -37,8 +37,8 @@
 
     @media @mediaSm {
         &__item {
-            min-width: unit((250 / 16), rem);
-            max-width: unit((250 / 16), rem);
+            min-width: unit((280 / 16), rem);
+            max-width: unit((280 / 16), rem);
         }
     }
 }

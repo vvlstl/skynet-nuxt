@@ -11,6 +11,12 @@
 		/>
 
 		<div class="pricing-card__wrap">
+			<div
+				v-if="item.codename"
+				class="pricing-card__codename"
+			>
+				{{ item.codename }}
+			</div>
 			<div class="pricing-card__title" v-html="item.title"/>
 			<Price :value="item.price" class="pricing-card__price"/>
 			<div class="pricing-card__info">

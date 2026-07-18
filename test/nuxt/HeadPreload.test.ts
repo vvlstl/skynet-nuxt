@@ -16,9 +16,11 @@ describe('app.vue: font preload в useHead', () => {
 		expect(APP_VUE).toMatch(/crossorigin:\s*['"]anonymous['"]/)
 	})
 
-	it('содержит preload для Bender-Black и Zector-Regular', () => {
+	it('содержит preload для Bender-Black, Bender-Light, Bender-Regular и ShareTechMono-Regular.woff2', () => {
 		expect(APP_VUE).toMatch(/Bender-Black\.woff2/)
-		expect(APP_VUE).toMatch(/Zector-Regular\.woff2/)
+		expect(APP_VUE).toMatch(/Bender-Light\.woff2/)
+		expect(APP_VUE).toMatch(/Bender-Regular\.woff2/)
+		expect(APP_VUE).toMatch(/ShareTechMono-Regular\.woff2/)
 	})
 
 	it('font preload включается в link-массив useHead', () => {

@@ -24,28 +24,39 @@
 
 	const {t} = useI18n()
 	const items = computed((): TPricingCard[] => {
-		const list = [
-			t('pricing.list.speed'),
-			t('pricing.list.servers'),
-			t('pricing.list.restrictions'),
-			t('pricing.list.support'),
-		]
 		return [
 			{
+				codename: 'TEST DRIVE',
 				title: t('pricing.card.week.title'),
 				price: 100,
-				list,
+				list: [
+					t('pricing.card.week.list.test'),
+					t('pricing.card.week.list.access'),
+					t('pricing.card.week.list.instant'),
+				],
 			},
 			{
+				codename: 'CYBER CITIZEN',
 				title: t('pricing.card.month.title'),
 				price: 300,
-				list,
+				list: [
+					t('pricing.card.month.list.priority'),
+					t('pricing.card.month.list.encryption'),
+					t('pricing.card.month.list.nolog'),
+					t('pricing.card.month.list.dpi'),
+				],
 				isPopular: true,
 			},
 			{
+				codename: 'NET RUNNER',
 				title: t('pricing.card.quarter.title'),
 				price: 800,
-				list,
+				list: [
+					t('pricing.card.quarter.list.max'),
+					t('pricing.card.quarter.list.autonomy'),
+					t('pricing.card.quarter.list.savings'),
+					t('pricing.card.quarter.list.support'),
+				],
 			}
 		];
 	});

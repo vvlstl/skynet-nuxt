@@ -9,8 +9,8 @@
 	import Header from "~/components/layout/Header.vue";
 	import Footer from "~/components/layout/Footer.vue";
 
-	const { t, locale, locales } = useI18n()
-	const i18nHead = useLocaleHead({ seo: true })
+	const {t, locale, locales} = useI18n()
+	const i18nHead = useLocaleHead({seo: true})
 
 	const htmlLang = computed(() => {
 		if (i18nHead.value.htmlAttrs?.lang) return i18nHead.value.htmlAttrs.lang
@@ -18,15 +18,47 @@
 		return match?.language ?? locale.value
 	})
 
-	// Bender объявлен как LCP-критичный шрифт для заголовков, Bender-Black
-	// используется в декоре, Zector — для nav labels. preload с
-	// crossorigin=anonymous обязателен для font/woff2, иначе браузер
-	// скачает шрифт повторно при парсинге @font-face.
+	/**
+	 * preload с crossorigin=anonymous обязателен для font/woff2, иначе браузер
+	 * скачает шрифт повторно при парсинге @font-face.
+	 */
 	const fontBase = '/skynet-nuxt/fonts/'
 	const fontPreloads = computed(() => ([
-		{ rel: 'preload', href: `${fontBase}Bender-Bold.woff2`, as: 'font', type: 'font/woff2', crossorigin: 'anonymous' },
-		{ rel: 'preload', href: `${fontBase}Bender-Black.woff2`, as: 'font', type: 'font/woff2', crossorigin: 'anonymous' },
-		{ rel: 'preload', href: `${fontBase}Zector-Regular.woff2`, as: 'font', type: 'font/woff2', crossorigin: 'anonymous' },
+		{
+			rel: 'preload',
+			href: `${fontBase}Bender-Bold.woff2`,
+			as: 'font',
+			type: 'font/woff2',
+			crossorigin: 'anonymous'
+		},
+		{
+			rel: 'preload',
+			href: `${fontBase}Bender-Black.woff2`,
+			as: 'font',
+			type: 'font/woff2',
+			crossorigin: 'anonymous'
+		},
+		{
+			rel: 'preload',
+			href: `${fontBase}Bender-Light.woff2`,
+			as: 'font',
+			type: 'font/woff2',
+			crossorigin: 'anonymous'
+		},
+		{
+			rel: 'preload',
+			href: `${fontBase}Bender-Regular.woff2`,
+			as: 'font',
+			type: 'font/woff2',
+			crossorigin: 'anonymous'
+		},
+		{
+			rel: 'preload',
+			href: `${fontBase}ShareTechMono-Regular.woff2`,
+			as: 'font',
+			type: 'font/woff2',
+			crossorigin: 'anonymous'
+		},
 	]))
 
 	const headData = computed(() => ({

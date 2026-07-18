@@ -56,7 +56,6 @@
     &__description {
         color: @cGray500;
         font: 400 var(--fs16) / 1.6 @font;
-        max-width: unit((220 / 16), em);
     }
 
     &__stats {
@@ -155,13 +154,23 @@
         }
     }
 
+    @media @mediaLg {
+        &__content {
+            .column-property(--panel, @count: 4, @total: 12);
+            .column-property(--map, @count: 8, @total: 12);
+        }
+
+        &__title {
+            font-size: var(--fs24);
+        }
+    }
+
     @media @mediaMd {
         &__content {
             grid-template-columns: 100%;
         }
 
         &__info-panel {
-            flex-direction: row;
             border-right: none;
             border-bottom: 1px solid @cStroke;
             margin-right: calc(-1 * var(--page-gutter));
@@ -183,10 +192,6 @@
     @media @mediaSm {
         &__info-panel {
             flex-direction: column;
-        }
-
-        &__title {
-            font-size: var(--fs24);
         }
     }
 }
