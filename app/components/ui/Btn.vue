@@ -18,7 +18,7 @@
 		>
 			<span></span>
 		</span>
-		<span class="btn__text">{{ text }}</span>
+		<span class="btn__text" v-html="text"/>
 		<slot name="iconRight"></slot>
 	</component>
 </template>

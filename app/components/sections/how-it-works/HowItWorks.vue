@@ -18,19 +18,30 @@
 							</defs>
 
 							<g filter="url(#globeGlow)">
-								<circle cx="100" cy="100" r="90" fill="none" stroke="#ff1b1b" stroke-width="0.6" opacity="0.6"/>
+								<circle cx="100" cy="100" r="90" fill="none" stroke="#ff1b1b" stroke-width="0.6"
+								        opacity="0.6"/>
 
-								<ellipse cx="100" cy="100" rx="90" ry="23.3" fill="none" stroke="#ff1b1b" stroke-width="0.4" opacity="0.36"/>
-								<ellipse cx="100" cy="100" rx="90" ry="45.0" fill="none" stroke="#ff1b1b" stroke-width="0.4" opacity="0.42"/>
-								<ellipse cx="100" cy="100" rx="90" ry="63.6" fill="none" stroke="#ff1b1b" stroke-width="0.4" opacity="0.48"/>
-								<ellipse cx="100" cy="100" rx="90" ry="77.9" fill="none" stroke="#ff1b1b" stroke-width="0.4" opacity="0.52"/>
-								<ellipse cx="100" cy="100" rx="90" ry="86.9" fill="none" stroke="#ff1b1b" stroke-width="0.4" opacity="0.54"/>
+								<ellipse cx="100" cy="100" rx="90" ry="23.3" fill="none" stroke="#ff1b1b"
+								         stroke-width="0.4" opacity="0.36"/>
+								<ellipse cx="100" cy="100" rx="90" ry="45.0" fill="none" stroke="#ff1b1b"
+								         stroke-width="0.4" opacity="0.42"/>
+								<ellipse cx="100" cy="100" rx="90" ry="63.6" fill="none" stroke="#ff1b1b"
+								         stroke-width="0.4" opacity="0.48"/>
+								<ellipse cx="100" cy="100" rx="90" ry="77.9" fill="none" stroke="#ff1b1b"
+								         stroke-width="0.4" opacity="0.52"/>
+								<ellipse cx="100" cy="100" rx="90" ry="86.9" fill="none" stroke="#ff1b1b"
+								         stroke-width="0.4" opacity="0.54"/>
 
-								<ellipse cx="100" cy="100" rx="23.3" ry="90" data-meridian style="animation-delay:0s" fill="none" stroke="#ff1b1b" stroke-width="0.4" opacity="0.36"/>
-								<ellipse cx="100" cy="100" rx="45.0" ry="90" data-meridian style="animation-delay:-1.2s" fill="none" stroke="#ff1b1b" stroke-width="0.4" opacity="0.42"/>
-								<ellipse cx="100" cy="100" rx="63.6" ry="90" data-meridian style="animation-delay:-2.4s" fill="none" stroke="#ff1b1b" stroke-width="0.4" opacity="0.48"/>
-								<ellipse cx="100" cy="100" rx="77.9" ry="90" data-meridian style="animation-delay:-3.6s" fill="none" stroke="#ff1b1b" stroke-width="0.4" opacity="0.52"/>
-								<ellipse cx="100" cy="100" rx="86.9" ry="90" data-meridian style="animation-delay:-4.8s" fill="none" stroke="#ff1b1b" stroke-width="0.4" opacity="0.54"/>
+								<ellipse cx="100" cy="100" rx="23.3" ry="90" data-meridian style="animation-delay:0s"
+								         fill="none" stroke="#ff1b1b" stroke-width="0.4" opacity="0.36"/>
+								<ellipse cx="100" cy="100" rx="45.0" ry="90" data-meridian style="animation-delay:-1.2s"
+								         fill="none" stroke="#ff1b1b" stroke-width="0.4" opacity="0.42"/>
+								<ellipse cx="100" cy="100" rx="63.6" ry="90" data-meridian style="animation-delay:-2.4s"
+								         fill="none" stroke="#ff1b1b" stroke-width="0.4" opacity="0.48"/>
+								<ellipse cx="100" cy="100" rx="77.9" ry="90" data-meridian style="animation-delay:-3.6s"
+								         fill="none" stroke="#ff1b1b" stroke-width="0.4" opacity="0.52"/>
+								<ellipse cx="100" cy="100" rx="86.9" ry="90" data-meridian style="animation-delay:-4.8s"
+								         fill="none" stroke="#ff1b1b" stroke-width="0.4" opacity="0.54"/>
 							</g>
 						</svg>
 
@@ -40,8 +51,8 @@
 									<Icon name="hugeicons:arrow-right-01"/>
 								</span>
 								<div class="how-it-works__log-info">
-									<span class="how-it-works__log-label">{{ t('how-it-works.log.authorization') }}</span>
-									<span class="how-it-works__log-status">{{ t('how-it-works.log.status') }}</span>
+									<span class="how-it-works__log-label" v-html="t('how-it-works.log.authorization')"/>
+									<span class="how-it-works__log-status" v-html="t('how-it-works.log.status')"/>
 								</div>
 							</div>
 							<div class="how-it-works__log-item">
@@ -49,8 +60,8 @@
 									<Icon name="hugeicons:arrow-right-01"/>
 								</span>
 								<div class="how-it-works__log-info">
-									<span class="how-it-works__log-label">{{ t('how-it-works.log.plan') }}</span>
-									<span class="how-it-works__log-status">{{ t('how-it-works.log.status') }}</span>
+									<span class="how-it-works__log-label" v-html="t('how-it-works.log.plan')"/>
+									<span class="how-it-works__log-status" v-html="t('how-it-works.log.status')"/>
 								</div>
 							</div>
 							<div class="how-it-works__log-item">
@@ -58,8 +69,8 @@
 									<Icon name="hugeicons:arrow-right-01"/>
 								</span>
 								<div class="how-it-works__log-info">
-									<span class="how-it-works__log-label">{{ t('how-it-works.log.payment') }}</span>
-									<span class="how-it-works__log-status">{{ t('how-it-works.log.status') }}</span>
+									<span class="how-it-works__log-label" v-html="t('how-it-works.log.payment')"/>
+									<span class="how-it-works__log-status" v-html="t('how-it-works.log.status')"/>
 								</div>
 							</div>
 							<div class="how-it-works__log-item">
@@ -67,8 +78,8 @@
 									<Icon name="hugeicons:arrow-right-01"/>
 								</span>
 								<div class="how-it-works__log-info">
-									<span class="how-it-works__log-label">{{ t('how-it-works.log.config') }}</span>
-									<span class="how-it-works__log-status">{{ t('how-it-works.log.status') }}</span>
+									<span class="how-it-works__log-label" v-html="t('how-it-works.log.config')"/>
+									<span class="how-it-works__log-status" v-html="t('how-it-works.log.status')"/>
 								</div>
 							</div>
 						</div>
@@ -77,9 +88,7 @@
 							<div class="how-it-works__result-line-icon">
 								<Icon name="hugeicons:arrow-right-01"/>
 							</div>
-							<span class="how-it-works__result-line">
-								{{ t('how-it-works.log.result') }}
-							</span>
+							<span class="how-it-works__result-line" v-html="t('how-it-works.log.result')"/>
 						</div>
 					</div>
 
@@ -89,12 +98,8 @@
 								<Icon name="hugeicons:authorized"/>
 							</div>
 							<div class="how-it-works__step-info">
-								<p class="how-it-works__step-title">
-									{{ t('how-it-works.steps.start.title') }}
-								</p>
-								<p class="how-it-works__step-desc">
-									{{ t('how-it-works.steps.start.desc') }}
-								</p>
+								<p class="how-it-works__step-title" v-html="t('how-it-works.steps.start.title')"/>
+								<p class="how-it-works__step-desc" v-html="t('how-it-works.steps.start.desc')"/>
 							</div>
 						</div>
 
@@ -103,10 +108,8 @@
 								<Icon name="hugeicons:sticky-note-01"/>
 							</div>
 							<div class="how-it-works__step-info">
-								<p class="how-it-works__step-title">{{ t('how-it-works.steps.tariff.title') }}</p>
-								<p class="how-it-works__step-desc">
-									{{ t('how-it-works.steps.tariff.desc') }}
-								</p>
+								<p class="how-it-works__step-title" v-html="t('how-it-works.steps.tariff.title')"/>
+								<p class="how-it-works__step-desc" v-html="t('how-it-works.steps.tariff.desc')"/>
 							</div>
 						</div>
 
@@ -115,10 +118,8 @@
 								<Icon name="hugeicons:cloud-download"/>
 							</div>
 							<div class="how-it-works__step-info">
-								<p class="how-it-works__step-title">{{ t('how-it-works.steps.access.title') }}</p>
-								<p class="how-it-works__step-desc">
-									{{ t('how-it-works.steps.access.desc') }}
-								</p>
+								<p class="how-it-works__step-title" v-html="t('how-it-works.steps.access.title')"/>
+								<p class="how-it-works__step-desc" v-html="t('how-it-works.steps.access.desc')"/>
 							</div>
 						</div>
 					</div>

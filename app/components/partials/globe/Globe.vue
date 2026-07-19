@@ -7,9 +7,8 @@
 		<div
 			v-if="!ready"
 			class="globe__status"
-		>
-			{{ statusText }}
-		</div>
+			v-html="statusText"
+		/>
 		<Transition name="fade">
 			<div
 				v-if="!supported"
@@ -106,9 +105,11 @@
 		ctx.start()
 	}
 
-	// Откладываем тяжёлую инициализацию Three.js сцены до простоя главного
-	// потока — снимает блокировку TBT при попадании Globe в viewport.
-	// Fallback на setTimeout для браузеров без requestIdleCallback.
+	/**
+	 * Откладываем тяжёлую инициализацию Three.js сцены до простоя главного
+	 * потока — снимает блокировку TBT при попадании Globe в viewport.
+	 * Fallback на setTimeout для браузеров без requestIdleCallback.
+	 */
 	function scheduleGlobeInit(): void {
 		if (typeof window.requestIdleCallback === 'function') {
 			window.requestIdleCallback(() => {
@@ -132,9 +133,11 @@
 			return
 		}
 
-		// Ленивая инициализация: Three.js сцена создаётся только когда элемент
-		// попадает в viewport. rootMargin=0px — не предзагружаем Globe заранее,
-		// чтобы не блокировать главный поток на above-fold рендере.
+		/**
+		 * Ленивая инициализация: Three.js сцена создаётся только когда элемент
+		 * попадает в viewport. rootMargin=0px — не предзагружаем Globe заранее,
+		 * чтобы не блокировать главный поток на above-fold рендере.
+		 */
 		viewportObserver = new IntersectionObserver(
 			(entries) => {
 				if (entries[0]?.isIntersecting) {

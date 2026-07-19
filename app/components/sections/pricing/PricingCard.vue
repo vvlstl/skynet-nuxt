@@ -14,9 +14,8 @@
 			<div
 				v-if="item.codename"
 				class="pricing-card__codename"
-			>
-				{{ item.codename }}
-			</div>
+				v-html="item.codename"
+			/>
 			<div class="pricing-card__title" v-html="item.title"/>
 			<Price :value="item.price" class="pricing-card__price"/>
 			<div class="pricing-card__info">
@@ -24,9 +23,8 @@
 					<li
 						v-for="(infoItem, index) in item.list"
 						:key="index"
-					>
-						{{ infoItem }}
-					</li>
+						v-html="infoItem"
+					/>
 				</ul>
 			</div>
 			<Btn

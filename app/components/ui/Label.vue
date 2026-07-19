@@ -3,7 +3,7 @@
 		<div v-if="icon" class="label__icon">
 			<Icon :name="icon"/>
 		</div>
-		<div class="label__value">{{ value }}</div>
+		<div class="label__value" v-html="value"/>
 	</div>
 </template>
 

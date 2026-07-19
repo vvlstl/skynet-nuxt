@@ -2,9 +2,7 @@
 	<footer class="footer">
 		<div class="content-container">
 			<div class="footer__content">
-				<div class="footer__right">
-					{{ t('footer.rights', {year: currentYear}) }}
-				</div>
+				<div class="footer__right" v-html="t('footer.rights', {year: currentYear})"/>
 				<div class="footer__left">
 					<CyberLink
 						class="footer__link"

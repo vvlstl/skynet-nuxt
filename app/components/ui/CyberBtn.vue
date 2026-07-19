@@ -10,7 +10,7 @@
 		@mouseleave="handleMouseLeave"
 	>
 		<slot name="iconLeft"></slot>
-		<span class="btn__text" :data-label="label">{{ text }}</span>
+		<span class="btn__text" :data-label="label" v-html="text"/>
 		<slot name="iconRight"></slot>
 		<span class="btn__corner"></span>
 	</component>

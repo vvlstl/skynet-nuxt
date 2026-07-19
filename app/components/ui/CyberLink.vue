@@ -7,9 +7,7 @@
 		@mouseenter="handleMouseEnter"
 		@mouseleave="handleMouseLeave"
 	>
-		<span class="link__text" :data-label="label">
-			{{ text }}
-		</span>
+		<span class="link__text" :data-label="label" v-html="text"/>
 	</a>
 </template>
 

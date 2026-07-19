@@ -3,12 +3,8 @@
 		<div class="content-container">
 			<div class="promo-block__content">
 				<div class="promo-block__info">
-					<h1 class="promo-block__title">
-						{{ t('promo-block.title') }}
-					</h1>
-					<div class="promo-block__description">
-						{{ t('promo-block.description') }}
-					</div>
+					<h1 class="promo-block__title" v-html="t('promo-block.title')"/>
+					<div class="promo-block__description" v-html="t('promo-block.description')"/>
 					<div class="promo-block__group-btns">
 						<Btn
 							:text="t('promo-block.btn-activate')"

@@ -3,10 +3,7 @@
 		<div class="device-card__icon">
 			<Icon :name="item.icon"/>
 		</div>
-		<div class="device-card__title">
-			{{ item.title }}
-		</div>
-
+		<div class="device-card__title" v-html="item.title"/>
 	</div>
 </template>
 

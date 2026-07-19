@@ -4,9 +4,9 @@
 			<div class="network__content">
 				<div class="network__info-panel">
 					<div class="network__info-panel-header">
-						<h2 class="network__title"> {{ t('network.title') }} </h2>
+						<h2 class="network__title" v-html="t('network.title')"/>
 						<div class="network__divider"></div>
-						<p class="network__description"> {{ t('network.description') }} </p>
+						<p class="network__description" v-html="t('network.description')"/>
 					</div>
 					<div class="network__stats">
 						<div class="network__stat-row">

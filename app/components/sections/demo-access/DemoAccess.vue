@@ -31,12 +31,9 @@
 								<div
 									class="demo-access__step-title"
 									:class="{'demo-access__step-title--is-lit': step.isTitleLit}"
-								>
-									{{ step.title }}
-								</div>
-								<div class="demo-access__step-desc">
-									{{ step.desc }}
-								</div>
+									v-html="step.title"
+								/>
+								<div class="demo-access__step-desc" v-html="step.desc"/>
 							</div>
 						</div>
 					</div>
@@ -46,13 +43,11 @@
 							<span class="demo-access__terminal-head-dot is-red"/>
 							<span class="demo-access__terminal-head-dot"/>
 							<span class="demo-access__terminal-head-dot"/>
-							<span class="demo-access__terminal-head-txt">
-								{{ t('demo-access.terminal.head') }}
-							</span>
+							<span class="demo-access__terminal-head-txt" v-html="t('demo-access.terminal.head')"/>
 						</div>
 
 						<div class="demo-access__terminal-ticker">
-							<span>{{ tickerText }}</span>
+							<span v-html="tickerText"/>
 						</div>
 
 						<div class="demo-access__card-top">
@@ -108,12 +103,9 @@
 								<div
 									class="demo-access__clabel"
 									:class="{'is-glow': isActivated}"
-								>
-									{{ isActivated ? t('demo-access.label.activated') : t('demo-access.label.hold') }}
-								</div>
-								<div class="demo-access__cdesc">
-									{{ t('demo-access.desc') }}
-								</div>
+									v-html="demoAccessCLabel"
+								/>
+								<div class="demo-access__cdesc" v-html="demoAccessDesc"/>
 							</div>
 
 							<div class="demo-access__pbar-track">
@@ -139,9 +131,8 @@
 								<div
 									class="demo-access__stat-v"
 									:class="{'demo-access__stat-v--is-lit': stat.isLit}"
-								>
-									{{ stat.label }}
-								</div>
+									v-html="stat.label"
+								/>
 							</div>
 						</div>
 
@@ -151,23 +142,19 @@
 							:class="{'is-show': isActivated}"
 						>
 							<div class="demo-access__key-row">
-								<div class="demo-access__key-txt">
-									{{ placeholderKey }}
-								</div>
+								<div class="demo-access__key-txt" v-html="placeholderKey"/>
 								<button
 									type="button"
-									class="demo-access__copy-btn"
-									:class="{'is-copied': isCopied}"
+									class="demo-access__copy-btn btn btn--sm"
+									:class="{'demo-access__copy-btn--is-copied': isCopied}"
 									@click="copyKey"
 								>
-									{{ isCopied ? t('demo-access.label.copied') : t('demo-access.label.copy') }}
+									<span class="btn__text" v-html="copyBtn"/>
 								</button>
 							</div>
 						</div>
 
-						<div class="demo-access__note">
-							{{ t('demo-access.note') }}
-						</div>
+						<div class="demo-access__note" v-html="t('demo-access.note')"/>
 					</div>
 				</div>
 			</div>
@@ -194,6 +181,14 @@
 			? t('demo-access.terminal.ticker-active')
 			: t('demo-access.terminal.ticker-idle'),
 	)
+
+	const demoAccessCLabel = computed<string>(() => {
+		return isActivated.value ? t('demo-access.label.activated') : t('demo-access.label.hold')
+	});
+
+	const copyBtn = computed<string>(() => {
+		return isCopied.value ? t('demo-access.label.copied') : t('demo-access.label.copy');
+	});
 
 	const steps = computed(() => [
 		{
@@ -251,6 +246,10 @@
 
 	const icon = computed(() => {
 		return !isActivated.value ? 'hugeicons:shield-key' : 'hugeicons:checkmark-circle-02';
+	})
+
+	const demoAccessDesc = computed(() => {
+		return isActivated.value ? t('demo-access.desc-active') : t('demo-access.desc');
 	})
 
 	async function copyKey(e: Event): Promise<void> {

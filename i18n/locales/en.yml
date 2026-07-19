@@ -1,12 +1,12 @@
 # English translations
 
 meta:
-  title: SKYNET VPN — control above the network without restrictions
+  title: "SKYNET VPN&nbsp;&mdash; control above the network without restrictions"
 
 header:
   test-drive: Test drive
   pricing: Pricing
-  howItWorks: How it works
+  howItWorks: How it&nbsp;works
   support: Support
   login: LogIn
 
@@ -15,54 +15,53 @@ promo-block:
     YOUR NETWORK
     YOUR RULES
   description: |-
-    Say NO to the advancing Cheburnet. 
-    SKYNET VPN — your personal teleport to the free global network. 
-    No censorship, no throttling, no stupid restrictions
-  btn-activate:
-    ACTIVATE ACCESS
+    Say NO&nbsp;to&nbsp;the advancing Cheburnet.
+    SKYNET VPN&nbsp;&mdash; your personal teleport to&nbsp;the free global network.
+    No&nbsp;censorship, no&nbsp;throttling, no&nbsp;stupid restrictions
+  btn-activate: ACTIVATE ACCESS
 
 devices:
-  title: SUPPORT FOR ALL DEVICES
+  title: SUPPORT FOR ALL&nbsp;DEVICES
 
 network:
   title: |-
     DECENTRALIZED
     ARCHITECTURE
   description: |-
-    127 autonomous Nodes worldwide. If regulators block one gateway, SKYNET instantly
-    reroutes traffic through backup channels. This network cannot be shut down from outside.
+    127 autonomous Nodes worldwide. If&nbsp;regulators block one gateway, SKYNET instantly
+    reroutes traffic through backup channels. This network cannot be&nbsp;shut down from outside.
 
 manifest:
-  title: SAY "NO" TO CHEBURNET
+  title: SAY &laquo;NO&raquo; TO&nbsp;CHEBURNET
   text: |-
-    The Internet is being turned into a closed pen with three permitted sites and
-    endless throttling. We did not create SKYNET for you to put up with limitations.
-    We use next-generation VLESS protocols that disguise your traffic as ordinary,
-    safe web surfing. To the censors, you simply do not exist on the network.
-    Stay part of the global world, no matter what happens outside.
+    The Internet is&nbsp;being turned into a&nbsp;closed pen with three permitted sites and
+    endless throttling. We&nbsp;did not create SKYNET for you to&nbsp;put up&nbsp;with limitations.
+    We&nbsp;use next-generation VLESS protocols that disguise your traffic as&nbsp;ordinary,
+    safe web surfing. To&nbsp;the censors, you simply do&nbsp;not exist on&nbsp;the network.
+    Stay part of&nbsp;the global world, no&nbsp;matter what happens outside.
 
 pricing:
   title: CHANNEL SELECTION
   card:
     week:
-      title: TEST DRIVE / ENTRY GATEWAY
+      title: TEST DRIVE&nbsp;/ ENTRY GATEWAY
       list:
-        test: Quick test drive of the SKYNET architecture
-        access: Full access to the secure VLESS protocol
+        test: Quick test drive of&nbsp;the SKYNET architecture
+        access: Full access to&nbsp;the secure VLESS protocol
         instant: Perfect for instant connectivity check outside Cheburnet
     month:
-      title: CYBER CITIZEN / NETWORK CITIZEN
+      title: CYBER CITIZEN&nbsp;/ NETWORK CITIZEN
       list:
-        priority: Priority channel with no speed drops
+        priority: Priority channel with no&nbsp;speed drops
         encryption: Military-grade encryption
-        nolog: Zero logging (absolute absence of digital traces)
+        nolog: Zero logging (absolute absence of&nbsp;digital traces)
         dpi: Deep packet inspection immunity (DPI-bypass)
     quarter:
-      title: NET RUNNER / UNLIMITED ACCESS
+      title: NET RUNNER&nbsp;/ UNLIMITED ACCESS
       list:
-        max: Maximum priority on all global nodes
-        autonomy: Full autonomy from Cheburnet for 90 days
-        savings: Significant savings compared to the monthly plan
+        max: Maximum priority on&nbsp;all global nodes
+        autonomy: Full autonomy from Cheburnet for 90&nbsp;days
+        savings: Significant savings compared to&nbsp;the monthly plan
         support: Dedicated 24/7 emergency support line
   label:
     popular: POPULAR
@@ -70,7 +69,7 @@ pricing:
     connect: CONNECT
 
 how-it-works:
-  title: HOW IT WORKS
+  title: HOW IT&nbsp;WORKS
   log:
     authorization: AUTHORIZATION
     plan: PLAN SELECTED
@@ -78,52 +77,55 @@ how-it-works:
     config: VPN CONFIG GENERATED
     status: SUCCESS
     result: |-
-      CONNECTION ESTABLISHED. 
-      WELCOME TO THE FREE INTERNET.
+      CONNECTION ESTABLISHED.
+      WELCOME TO&nbsp;THE FREE INTERNET.
   steps:
     start:
       title: PROTOCOL ACTIVATION
-      desc: Launch the bot in Telegram with the `/start` command — this is your personal control terminal.
+      desc: Launch the bot in&nbsp;Telegram with the `/start` command&nbsp;&mdash; this is&nbsp;your personal control terminal.
     tariff:
       title: CHANNEL SELECTION
-      desc: Determine the level of autonomy you need (key validity period) and make an instant secure payment.
+      desc: Determine the level of&nbsp;autonomy you need (key validity period) and make an&nbsp;instant secure payment.
     access:
       title: NETWORK ENTRY
-      desc: Import the generated VLESS key in one click. You are online. The borders are erased.
+      desc: Import the generated VLESS key in&nbsp;one click. You are online. The borders are erased.
 
 demo-access:
-  title: DEMO VPN ACCESS
-  subtitle: GET A TEMPORARY KEY AND VERIFY THE QUALITY OF THE SERVICE
-  desc: Hold the button for 3 seconds — get a VLESS demo key to test the service. Key is valid for 6 hours.
+  title: PROTOCOL TEST DRIVE
+  subtitle: GET A&nbsp;TEMPORARY VLESS KEY AND MAKE SURE THAT CHEBURNET IS&nbsp;NOT A&nbsp;VERDICT.
+  desc: Hold down the button for 3&nbsp;seconds. Skynet will install a&nbsp;secure tunnel and generate your personal VLESS key. The key is&nbsp;valid for 6&nbsp;hours.
+  desc-active: Your personal VLESS key has been generated. Copy it&nbsp;and import it&nbsp;into the client.
   step1:
-    title: HOLD THE BUTTON
-    desc: Press and hold for 3 seconds to activate
+    title: Activate the gateway
+    desc: Hold down the button for 3&nbsp;seconds. SKYNET will generate a&nbsp;personal key and install a&nbsp;secure tunnel.
   step2:
-    title: COPY THE KEY
-    desc: Click the Copy Key button
+    title: Copy the VLESS key
+    desc: Your personal access token is&nbsp;ready. Copy it&nbsp;with one click. It&rsquo;s valid for 6&nbsp;hours.
   step3:
-    title: CONNECT TO VPN
-    desc: Follow the connection instructions
+    title: Import to&nbsp;the client
+    desc: Insert the key into any VLESS client. One click and you&rsquo;re online. Borders are erased, Cheburnet is&nbsp;behind.
   step4:
-    title: SUBSCRIBE
-    desc: Open the bot for full access
+    title: Create a&nbsp;permanent channel
+    desc: Are you convinced of&nbsp;the quality? Switch to&nbsp;the Telegram bot and choose a&nbsp;tariff from NET RUNNER to&nbsp;CYBER CITIZEN.
   terminal:
     head: SKYNET.VPN // DEMO_SESSION
-    ticker-idle: 'NODE_SCAN: 127/127   UPLINK: READY   PROTOCOL: VLESS+REALITY   STATUS: AWAITING_AUTH   LATENCY: 12ms'
-    ticker-active: 'KEY_GENERATED: OK   SESSION_START   TTL: 6H   NODE: node01.skynet.net   PROTOCOL: VLESS+REALITY   ENC: XTLS'
+    ticker-idle: |-
+      &rsquo;NODE_SCAN: 127/127&nbsp;UPLINK: READY PROTOCOL: VLESS+REALITY STATUS: AWAITING_AUTH LATENCY: 12ms&rsquo;
+    ticker-active: |-
+      &rsquo;KEY_GENERATED: OK&nbsp;SESSION_START TTL: 6H&nbsp;NODE: node01.skynet.net PROTOCOL: VLESS+REALITY ENC: XTLS&rsquo;
   label:
-    hold: HOLD TO ACTIVATE
+    hold: HOLD&nbsp;TO ACTIVATE
     activated: KEY ACTIVATED
     copy: COPY
     copied: COPIED
   stats:
-    hours: UP TO 6 HOURS
-    speed: 100 MBIT/S
-    protocol: VLESS / REALITY
-  note: The demo key is issued once for 6 hours. For permanent access, open the Telegram bot.
+    hours: UP&nbsp;TO&nbsp;6&nbsp;HOURS
+    speed: 100&nbsp;MBIT/S
+    protocol: VLESS&nbsp;/ REALITY
+  note: The demo key is&nbsp;issued once for 6&nbsp;hours. For permanent access, open the Telegram bot.
 
 footer:
-  rights: © {year} SKYNET VPN. ALL RIGHTS RESERVED
+  rights: "&copy;&nbsp;{year} SKYNET VPN. ALL&nbsp;RIGHTS RESERVED"
   link:
     privacy: PRIVACY POLICY
     agreement: USER AGREEMENTS

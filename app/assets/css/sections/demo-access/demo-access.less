@@ -286,11 +286,8 @@
         }
     }
 
-    &__info {
-        text-align: center;
-    }
-
     &__clabel {
+        text-align: center;
         font-size: var(--fs16);
         letter-spacing: var(--letter-spacing);
         text-transform: uppercase;
@@ -309,7 +306,6 @@
         font: 400 var(--fs14) / 1.4 @font;
         color: fade(@cWhite, 27);
         text-align: center;
-        max-width: unit((300 / 16), rem);
     }
 
     &__pbar-track {
@@ -425,17 +421,9 @@
     }
 
     &__copy-btn {
-        flex: 0 0 auto;
-        background: none;
+        --btn-color: @cGray800;
         border: 1px solid @cBlack600;
-        color: @cGray800;
-        font-family: @font;
-        font-size: var(--fs12);
-        padding: var(--m4) var(--m10);
-        cursor: pointer;
-        text-transform: uppercase;
-        letter-spacing: var(--letter-spacing);
-        .transit(all);
+        flex: 0 0 auto;
 
         .hover({
             border-color: @cRed500;
@@ -443,7 +431,7 @@
             box-shadow: 0 0 var(--m8) fade(@cRed500, 20);
         });
 
-        &.is-copied {
+        &--is-copied {
             border-color: @cRed500;
             color: @cRed500;
             box-shadow: 0 0 var(--m8) fade(@cRed500, 30);
