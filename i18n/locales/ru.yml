@@ -48,12 +48,14 @@ pricing:
   title: ВЫБОР КАНАЛА СВЯЗИ
   card:
     week:
+      price: '100'
       title: TEST DRIVE&nbsp;/ ВХОДНОЙ ШЛЮЗ
       list:
         test: Быстрый тест-драйв архитектуры SKYNET
         access: Полный доступ к&nbsp;защищенному VLESS-протоколу
         instant: Идеально для мгновенной проверки связи вне Чебурнета
     month:
+      price: '300'
       title: CYBER CITIZEN&nbsp;/ СЕТЕВОЙ ГРАЖДАНИН
       list:
         priority: Приоритетный пропускной канал без просадок скорости
@@ -61,6 +63,7 @@ pricing:
         nolog: Нулевой логгинг (абсолютное отсутствие цифровых следов)
         dpi: Иммунитет к&nbsp;глубокому анализу пакетов (DPI-bypass)
     quarter:
+      price: '800'
       title: NET RUNNER&nbsp;/ БЕЗЛИМИТНЫЙ ДОСТУП
       list:
         max: Максимальный приоритет на&nbsp;всех глобальных нодах

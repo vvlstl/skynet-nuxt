@@ -17,7 +17,7 @@
 				v-html="item.codename"
 			/>
 			<div class="pricing-card__title" v-html="item.title"/>
-			<Price :value="item.price" class="pricing-card__price"/>
+			<Price :value="Number(item.price)" class="pricing-card__price"/>
 			<div class="pricing-card__info">
 				<ul>
 					<li

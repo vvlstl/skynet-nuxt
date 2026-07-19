@@ -44,12 +44,14 @@ pricing:
   title: CHANNEL SELECTION
   card:
     week:
+      price: '2'
       title: TEST DRIVE&nbsp;/ ENTRY GATEWAY
       list:
         test: Quick test drive of&nbsp;the SKYNET architecture
         access: Full access to&nbsp;the secure VLESS protocol
         instant: Perfect for instant connectivity check outside Cheburnet
     month:
+      price: '4'
       title: CYBER CITIZEN&nbsp;/ NETWORK CITIZEN
       list:
         priority: Priority channel with no&nbsp;speed drops
@@ -57,6 +59,7 @@ pricing:
         nolog: Zero logging (absolute absence of&nbsp;digital traces)
         dpi: Deep packet inspection immunity (DPI-bypass)
     quarter:
+      price: '12'
       title: NET RUNNER&nbsp;/ UNLIMITED ACCESS
       list:
         max: Maximum priority on&nbsp;all global nodes

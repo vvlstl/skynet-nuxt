@@ -28,7 +28,7 @@
 			{
 				codename: 'TEST DRIVE',
 				title: t('pricing.card.week.title'),
-				price: 100,
+				price: t('pricing.card.week.price'),
 				list: [
 					t('pricing.card.week.list.test'),
 					t('pricing.card.week.list.access'),
@@ -38,7 +38,7 @@
 			{
 				codename: 'CYBER CITIZEN',
 				title: t('pricing.card.month.title'),
-				price: 300,
+				price: t('pricing.card.month.price'),
 				list: [
 					t('pricing.card.month.list.priority'),
 					t('pricing.card.month.list.encryption'),
@@ -50,7 +50,7 @@
 			{
 				codename: 'NET RUNNER',
 				title: t('pricing.card.quarter.title'),
-				price: 800,
+				price: t('pricing.card.quarter.price'),
 				list: [
 					t('pricing.card.quarter.list.max'),
 					t('pricing.card.quarter.list.autonomy'),
