@@ -2,7 +2,10 @@
 	<section class="demo-access">
 		<div class="content-container">
 			<div class="demo-access__content">
-				<SectionHead :title="t('demo-access.title')"/>
+				<SectionHead
+					:title="t('demo-access.title')"
+					:subtitle="t('demo-access.subtitle')"
+				/>
 
 				<div class="demo-access__grid">
 					<div class="demo-access__steps">

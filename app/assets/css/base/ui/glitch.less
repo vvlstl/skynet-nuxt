@@ -1,0 +1,26 @@
+@import "../../_var";
+
+.glitch {
+    position: relative;
+    display: inline-block;
+
+    &:before, &:after {
+        content: attr(data-text);
+        position: absolute;
+        inset: 0;
+        text-align: center
+    }
+
+    &:before {
+        color: @cRed500;
+        clip: rect(0, unit((900 / 16), rem), var(--m2), 0);
+        animation: glitch1 3s infinite linear
+    }
+
+    &:after {
+        color: @cRedOrange;
+        clip: rect(0, unit((900 / 16), rem), var(--m4), 0);
+        animation: glitch2 3s infinite linear;
+        left: var(--m2)
+    }
+}
