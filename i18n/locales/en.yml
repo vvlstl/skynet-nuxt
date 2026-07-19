@@ -85,7 +85,7 @@ how-it-works:
   steps:
     start:
       title: PROTOCOL ACTIVATION
-      desc: Launch the bot in&nbsp;Telegram with the `/start` command&nbsp;&mdash; this is&nbsp;your personal control terminal.
+      desc: Log in&nbsp;to&nbsp;the website or&nbsp;launch the bot in&nbsp;Telegram via the `/start` command. This is&nbsp;your personal control terminal.
     tariff:
       title: CHANNEL SELECTION
       desc: Determine the level of&nbsp;autonomy you need (key validity period) and make an&nbsp;instant secure payment.
@@ -125,7 +125,7 @@ demo-access:
     hours: UP&nbsp;TO&nbsp;6&nbsp;HOURS
     speed: 100&nbsp;MBIT/S
     protocol: VLESS&nbsp;/ REALITY
-  note: The demo key is&nbsp;issued once for 6&nbsp;hours. For permanent access, open the Telegram bot.
+  note: The demo key is&nbsp;issued once for 6&nbsp;hours. For permanent access, log in&nbsp;to&nbsp;the website or&nbsp;log into the Telegram bot.
 
 footer:
   rights: "&copy;&nbsp;{year} SKYNET VPN. ALL&nbsp;RIGHTS RESERVED"

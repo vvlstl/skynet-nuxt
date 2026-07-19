@@ -89,7 +89,7 @@ how-it-works:
   steps:
     start:
       title: АКТИВАЦИЯ ПРОТОКОЛА
-      desc: Запусти бота в&nbsp;Telegram через команду `/start` &mdash; это твой персональный терминал управления.
+      desc: Авторизуйся на&nbsp;сайте или запусти бота в&nbsp;Telegram через команду /start&nbsp;&mdash; это твой персональный терминал управления.
     tariff:
       title: ВЫБОР КАНАЛА
       desc: Определи необходимый уровень автономности (срок действия ключа) и&nbsp;проведи мгновенную защищённую оплату.
@@ -129,7 +129,7 @@ demo-access:
     hours: ДО&nbsp;6&nbsp;ЧАСОВ
     speed: 100&nbsp;МБИТ/С
     protocol: VLESS&nbsp;/ REALITY
-  note: Демо-ключ выдаётся один раз на&nbsp;6&nbsp;часов. Для постоянного доступа перейдите в&nbsp;Telegram-бот.
+  note: Демо-ключ выдаётся один раз на&nbsp;6&nbsp;часов. Для постоянного доступа&nbsp;&mdash; авторизуйся на&nbsp;сайте или перейди в&nbsp;Telegram-бот.
 
 footer:
   rights: "&copy;&nbsp;{ year } SKYNET VPN. ВСЕ ПРАВА ЗАЩИЩЕНЫ"
