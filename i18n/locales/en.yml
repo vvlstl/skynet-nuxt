@@ -96,7 +96,7 @@ how-it-works:
 demo-access:
   title: PROTOCOL TEST DRIVE
   subtitle: GET A&nbsp;TEMPORARY VLESS KEY AND MAKE SURE THAT CHEBURNET IS&nbsp;NOT A&nbsp;VERDICT.
-  desc: Hold down the button for 3&nbsp;seconds. Skynet will install a&nbsp;secure tunnel and generate your personal VLESS key. The key is&nbsp;valid for 6&nbsp;hours.
+  desc: Hold down the button for 3&nbsp;seconds. SKYNET will install a&nbsp;secure tunnel and generate your personal VLESS key. The key is&nbsp;valid for 6&nbsp;hours.
   desc-active: Your personal VLESS key has been generated. Copy it&nbsp;and import it&nbsp;into the client.
   step1:
     title: Activate the gateway
