@@ -1,28 +1,41 @@
 @import "../../_var";
 
 .globe {
-	position: relative;
-	width: 100%;
-	height: 100%;
-	min-height: 320px;
-	touch-action: none;
+    position: relative;
+    width: 100%;
+    height: 100%;
+    min-height: 320px;
+    touch-action: none;
 
-	&--hidden {
-		opacity: 0;
-		pointer-events: none;
-	}
+    &--hidden {
+        opacity: 0;
+        pointer-events: none;
+    }
 
-	&__dummy {
-		--size: unit((580 / 16), rem);
+    &__dummy {
+        --size: unit((480 / 16), rem);
 
-		.size(var(--size));
-		position: absolute;
-		top: 50%;
-		right:0;
-		transform: translateY(-50%);
-		color: fade(@cRed500, 40);
-		font-size: var(--fs16);
-		letter-spacing: var(--letter-spacing);
-		text-transform: uppercase;
-	}
+        .size(var(--size));
+        position: absolute;
+        top: 50%;
+        right: calc(var(--content-width) - 85%);
+        transform: translateY(-50%);
+        color: fade(@cRed500, 40);
+        font-size: var(--fs16);
+        letter-spacing: var(--letter-spacing);
+        text-transform: uppercase;
+
+        span {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+    }
+
+    @media @mediaLg {
+        &__dummy {
+            right: calc(var(--content-width) - 95%);
+        }
+    }
 }

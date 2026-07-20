@@ -6,9 +6,10 @@
 	>
 		<div
 			v-if="!ready"
-			class="globe__status"
-			v-html="statusText"
-		/>
+			class="globe__dummy"
+		>
+			<span v-html="statusText"/>
+		</div>
 		<Transition name="fade">
 			<div
 				v-if="!supported"
