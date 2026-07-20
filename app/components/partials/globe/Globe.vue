@@ -12,9 +12,11 @@
 		<Transition name="fade">
 			<div
 				v-if="!supported"
-				class="globe__status"
+				class="globe__dummy"
 			>
-				<slot name="fallback"></slot>
+				<slot name="fallback">
+					<GlobeSvg/>
+				</slot>
 			</div>
 		</Transition>
 	</div>
@@ -25,6 +27,7 @@
 	import {useResizeObserver} from '~/composables/useResizeObserver'
 	import type {GlobeSceneContext, UseGlobeSceneOptions} from '~/composables/useGlobeScene'
 	import type {ColorRepresentation} from 'three'
+	import GlobeSvg from "~/components/partials/globe/GlobeSvg.vue";
 
 	type TComponentProps = {
 		visible?: boolean

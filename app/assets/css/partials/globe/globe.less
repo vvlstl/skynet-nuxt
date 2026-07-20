@@ -12,11 +12,14 @@
 		pointer-events: none;
 	}
 
-	&__status {
+	&__dummy {
+		--size: unit((580 / 16), rem);
+
+		.size(var(--size));
 		position: absolute;
 		top: 50%;
-		right:15%;
-		transform: translate(-100%, -50%);
+		right:0;
+		transform: translateY(-50%);
 		color: fade(@cRed500, 40);
 		font-size: var(--fs16);
 		letter-spacing: var(--letter-spacing);

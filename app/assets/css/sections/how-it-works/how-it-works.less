@@ -31,40 +31,13 @@
     }
 
     &__globe {
+        --size: unit((230 / 16), rem);
+
+        .size(var(--size));
+
         position: absolute;
         right: var(--m28);
         top: 0;
-        width: unit((230 / 16), rem);
-        height: unit((230 / 16), rem);
-        opacity: .55;
-        pointer-events: none;
-        transform: rotate(-23.5deg);
-
-        ellipse[data-meridian] {
-            transform-box: fill-box;
-            transform-origin: center;
-            animation: globeMeridian 6s ease-in-out infinite;
-
-            &:nth-of-type(1) {
-                animation-delay: 0s;
-            }
-
-            &:nth-of-type(2) {
-                animation-delay: -1.2s;
-            }
-
-            &:nth-of-type(3) {
-                animation-delay: -2.4s;
-            }
-
-            &:nth-of-type(4) {
-                animation-delay: -3.6s;
-            }
-
-            &:nth-of-type(5) {
-                animation-delay: -4.8s;
-            }
-        }
     }
 
     &__log {
