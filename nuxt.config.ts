@@ -116,6 +116,8 @@ export default defineNuxtConfig({
     },
 
     vite: {
+        sourcemap: false,
+
         css: {
             preprocessorOptions: {
                 less: {

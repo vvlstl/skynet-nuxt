@@ -1,23 +1,11 @@
 <template>
-	<PromoBlock/>
+	<PromoBlock class="page__section"/>
 	<Devices class="page__section"/>
 	<NetworkSection class="page__section"/>
-	<DemoAccess
-		id="demo-access"
-		class="page__section"
-	/>
-	<PricingSection
-		id="pricing"
-		class="page__section"
-	/>
-	<HowItWorks
-		id="how-it-works"
-		class="page__section"
-	/>
-	<GlobalManifest
-		id="manifest"
-		class="page__section"
-	/>
+	<DemoAccess id="demo-access" class="page__section"/>
+	<PricingSection id="pricing" class="page__section"/>
+	<HowItWorks id="how-it-works" class="page__section"/>
+	<GlobalManifest id="manifest" class="page__section"/>
 </template>
 
 <script setup lang="ts">
