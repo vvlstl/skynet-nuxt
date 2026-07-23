@@ -61,14 +61,28 @@
 		},
 	]))
 
+	const faviconBase = '/skynet-nuxt/favicons/'
+	const faviconLinks = [
+		{ rel: 'icon', type: 'image/x-icon', href: `${faviconBase}favicon.ico` },
+		{ rel: 'icon', type: 'image/png', sizes: '16x16', href: `${faviconBase}favicon-16x16.png` },
+		{ rel: 'icon', type: 'image/png', sizes: '32x32', href: `${faviconBase}favicon-32x32.png` },
+		{ rel: 'apple-touch-icon', sizes: '180x180', href: `${faviconBase}apple-touch-icon.png` },
+		{ rel: 'manifest', href: `${faviconBase}site.webmanifest` }
+	]
+
+	const faviconMeta = [
+		{ name: 'theme-color', content: '#050505' },
+		{ name: 'application-name', content: 'SKYNET VPN' }
+	]
+
 	const headData = computed(() => ({
 		htmlAttrs: {
 			lang: htmlLang.value,
 			dir: i18nHead.value.htmlAttrs?.dir
 		},
 		title: t('meta.title'),
-		link: [...(i18nHead.value.link ?? []), ...fontPreloads.value],
-		meta: [...(i18nHead.value.meta ?? [])]
+		link: [...(i18nHead.value.link ?? []), ...fontPreloads.value, ...faviconLinks],
+		meta: [...(i18nHead.value.meta ?? []), ...faviconMeta]
 	}))
 
 	useHead(headData)

@@ -1,0 +1,20 @@
+{
+  "name": "SKYNET VPN",
+  "short_name": "SKYNET",
+  "icons": [
+    {
+      "src": "/skynet-nuxt/favicons/android-chrome-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/skynet-nuxt/favicons/android-chrome-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ],
+  "theme_color": "#050505",
+  "background_color": "#050505",
+  "display": "standalone",
+  "start_url": "/skynet-nuxt/"
+}
